@@ -1,30 +1,83 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react"
+import axios from "../../config/axios";
+import {useNavigate} from 'react-router-dom'
+import { UserContext } from "../../App";
 
 export default function Register() {
+   const navigate = useNavigate()
+   const {userDispatch} = useContext(UserContext)
    const [username, setUsername] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
-   const [userType, setUserType] = useState('customer'); // Default to 'customer'
+   const [role,setRole] = useState('customer'); // Default to 'customer'
+   const [serverErrors,setServerErrors] = useState([])
 
    const handleUserTypeChange = (e) => {
-      setUserType(e.target.value);
+      setRole(e.target.value);
    };
 
-   const handleSubmit = (e) => {
-      e.preventDefault();
+   const handleSubmit = async(e) => {
+      e.preventDefault()
+      const formData = {
+         username,
+         email,
+         password,
+         role
+      }
+      console.log(formData)
+      if(role === 'customer'){
+         try{
+            const response = await axios.post('/api/user/register',formData)
+            const user = response.data
+            // console.log(user)
+         }catch(e){
+            console.log(e)
+            setServerErrors(e.response.data.errors)
+         }   
+      }else {
+         navigate('/company')
+      }
       // Here you can handle form submission based on user type
       // For example, if userType === 'company', perform specific actions
-   };
+   }
 
    return (
       <div>
-         <form onSubmit={handleSubmit}>
+         <form>
             <h2>Register</h2>
+            {serverErrors.length>0 && (
+               <div>
+                  {serverErrors.map(ele =>{
+                     return <li>{ele.msg}</li>
+                  })}
+               </div>
+            )}
+            <label htmlFor="username">Username</label><br/>
+            <input 
+               type="text"
+               id="username"
+               value={username}
+               onChange={e => setUsername(e.target.value)}
+            /><br/>
+            <label htmlFor="email">Email</label><br/>
+            <input 
+               type="email"
+               id="email"
+               value={email}
+               onChange={e => setEmail(e.target.value)}
+            /><br/>
+            <label htmlFor="password">Password</label><br/>
+            <input 
+               type="password"
+               id="password"
+               value={password}
+               onChange={e => setPassword(e.target.value)}
+            /><br/>
             <label>
                <input
                   type="radio"
                   value="customer"
-                  checked={userType === 'customer'}
+                  checked={role === 'customer'}
                   onChange={handleUserTypeChange}
                />
                Customer
@@ -32,64 +85,16 @@ export default function Register() {
             <label>
                <input
                   type="radio"
-                  value="company"
-                  checked={userType === 'company'}
+                  value="companyAdmin"
+                  checked={role === 'companyAdmin'}
                   onChange={handleUserTypeChange}
                />
                Company
-            </label>
-            <br />
-
-            {userType === 'company' ? (
-               <>
-                  <label>Enter Username</label><br />
-                  <input
-                     type="text"
-                     value={username}
-                     onChange={(e) => setUsername(e.target.value)}
-                  /><br />
-
-                  <label>Enter Email</label><br />
-                  <input
-                     type="email"
-                     value={email}
-                     onChange={(e) => setEmail(e.target.value)}
-                  /><br />
-
-                  <label>Enter Password</label><br />
-                  <input
-                     type="password"
-                     value={password}
-                     onChange={(e) => setPassword(e.target.value)}
-                  /><br />
-                  <button type="submit">Next Page</button>
-               </>
-            ) : (
-               <div>
-                  <label>Enter Username</label><br />
-                  <input
-                     type="text"
-                     value={username}
-                     onChange={(e) => setUsername(e.target.value)}
-                  /><br />
-
-                  <label>Enter Email</label><br />
-                  <input
-                     type="email"
-                     value={email}
-                     onChange={(e) => setEmail(e.target.value)}
-                  /><br />
-
-                  <label>Enter Password</label><br />
-                  <input
-                     type="password"
-                     value={password}
-                     onChange={(e) => setPassword(e.target.value)}
-                  /><br />
-                  <button type="submit">Submit</button>
-               </div>
-            )}
+            </label><br />
+            <button onClick={handleSubmit}>{role === 'customer'?'Submit':'Next'}</button>
          </form>
       </div>
    );
 }
+
+ 

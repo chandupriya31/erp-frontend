@@ -11,6 +11,8 @@ import Customer from './components/customer/customer';
 import Login from './components/Auth/Login';
 import userReducer from './reducer/UserReducer';
 
+import Company from './components/Auth/Company';
+import CompanyDetails from './components/Auth/CompanyDetails';
 export const UserContext = createContext()
 
 
@@ -44,6 +46,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/company' element={<Company/>}/>
+          <Route path='/companyDetails' element={<CompanyDetails/>}/>
           <Route path='/login' element={<Login />} />
           <Route path='/companyContainer' element={<CompanyContainer />} />
           <Route path='/customer' element={<Customer />} />
