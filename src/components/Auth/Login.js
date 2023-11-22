@@ -52,11 +52,21 @@ export default function Login() {
       }
    });
    return (
-      <div className="container">
-         <div className="row justify-content-center">
-            <div className="col-md-6">
-               <div className="card w-75 ">
-                  <div className="card-body d-flex flex-column ">
+      <div className="container d-flex justify-content-center mt-5 ">
+               {serverError.length > 0 && (
+                  <div className="server-errors mt-3 ">
+                     {serverError.map((ele, index) => (
+                        <div key={index} className="alert alert-danger" style={{ width: '200px' }} role="alert">
+                           <b>Server Error</b><br />
+                           {ele.msg}
+                        </div>
+                     ))}
+                  </div>
+               )}
+         <div className="row w-50 justify-content-end ">
+            <div className="col-md-6  w-75">
+               <div className="card  ">
+                  <div className="card-body d-flex flex-column justify-content-center ">
                      <h5 className="card-title text-center mb-4">Login</h5>
                      <form onSubmit={formik.handleSubmit}>
                         <div className="mb-3">
@@ -71,7 +81,6 @@ export default function Login() {
                            />
                            <div className="text-danger">{formik.errors.email}</div>
                         </div>
-
                         <div className="mb-3">
                            <label htmlFor="password" className="form-label">Enter Password</label>
                            <input
@@ -90,19 +99,6 @@ export default function Login() {
                      </form>
                   </div>
                </div>
-            </div>
-            {/* Display server errors on the right side */}
-            <div className="col-md-6">
-               {serverError.length > 0 && (
-                  <div className="server-errors mt-3">
-                     {serverError.map((ele, index) => (
-                        <div key={index} className="alert alert-danger" style={{ width: '200px' }} role="alert">
-                           <b>Server Error</b><br />
-                           {ele.msg}
-                        </div>
-                     ))}
-                  </div>
-               )}
             </div>
          </div>
       </div>
