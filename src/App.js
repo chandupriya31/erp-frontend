@@ -6,7 +6,9 @@ import Register from './components/Auth/Register';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Home from './components/Home';
 import userReducer from './reducer/UserReducer';
-const UserContext = createContext()
+import Company from './components/Auth/Company';
+import CompanyDetails from './components/Auth/CompanyDetails';
+export const UserContext = createContext()
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/company' element={<Company/>}/>
+          <Route path='/companyDetails' element={<CompanyDetails/>}/>
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
