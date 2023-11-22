@@ -36,18 +36,19 @@ function CompanyDetails(props){
             username: state.formData.username ,
             email: state.formData.email,
             password: state.formData.password,
+            role: state.formData.role,
             companyname:state.companyname,
             GST:state.GST,
             contactdetails:state.contactdetails,
             details
         }
         console.log(formData)
-        try{
-            const companyData = await axios.post('/api/company/register',formData)
-            console.log(companyData.data)
-        }catch(e){
-            setServerErrors(e.response.data.errors)
-        }
+        // try{
+        //     const companyData = await axios.post('/api/company/register',formData)
+        //     console.log(companyData.data)
+        // }catch(e){
+        //     setServerErrors(e.response.data.errors)
+        // }
     }
     return(
         <div>
