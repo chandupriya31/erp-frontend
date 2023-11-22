@@ -10,7 +10,7 @@ export default function Register(props) {
    const [username, setUsername] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
-   const [role,setRole] = useState(''); // Default to 'customer'
+   const [role,setRole] = useState('customer'); // Default to 'customer'
    const [serverErrors,setServerErrors] = useState([])
 
    const handleUserTypeChange = (e) => {
