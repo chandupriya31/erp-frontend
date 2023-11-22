@@ -16,6 +16,7 @@ function CompanyDetails(props){
         mission:'',
         aboutus:''
     })
+    const [serverErrors,setServerErrors] = useState([])
     const handleDetails = (e) => {
         const { name, value } = e.target
         setDetails((prev) => ({
@@ -41,8 +42,12 @@ function CompanyDetails(props){
             details
         }
         console.log(formData)
-        const companyData = await axios.post('/api/company/register',formData)
-        console.log(companyData.data)
+        try{
+            const companyData = await axios.post('/api/company/register',formData)
+            console.log(companyData.data)
+        }catch(e){
+            setServerErrors(e.response.data.errors)
+        }
     }
     return(
         <div>
@@ -70,6 +75,13 @@ function CompanyDetails(props){
             ></textarea><br/>
             <button onClick={handleBack}>Back</button>
             <button onClick={handleSubmit}>Submit</button>
+            {serverErrors.length>0 && (
+                <div>
+                    {serverErrors.map(ele =>{
+                        return <li>{ele.msg}</li>
+                    })}
+                </div>
+            )}
         </div>
     )
 }
