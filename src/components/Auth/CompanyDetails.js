@@ -43,12 +43,12 @@ function CompanyDetails(props){
             details
         }
         console.log(formData)
-        // try{
-        //     const companyData = await axios.post('/api/company/register',formData)
-        //     console.log(companyData.data)
-        // }catch(e){
-        //     setServerErrors(e.response.data.errors)
-        // }
+        try{
+            const companyData = await axios.post('/api/company/register',formData)
+            console.log(companyData.data)
+        }catch(e){
+            setServerErrors(e.response.data.errors)
+        }
     }
     return(
         <div>
