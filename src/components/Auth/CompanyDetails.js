@@ -1,11 +1,13 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-function CompanyDetails() {
-    const [details, setDetails] = useState({
-        vision: '',
-        mission: '',
-        aboutus: ''
+function CompanyDetails(props){
+    const {username,email,password,companyname,GST,contactdetails} = props
+    const navigate = useNavigate()
+    const [details,setDetails] = useState({
+        vision:'',
+        mission:'',
+        aboutus:''
     })
     const handleDetails = (e) => {
         const { name, value } = e.target
