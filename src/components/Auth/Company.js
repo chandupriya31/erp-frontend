@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-const Company = ()=>{
+const Company = (props)=>{
     const navigate = useNavigate()
     const [companyname,setCompanyName] = useState('')
     const [GST,setGst] = useState('')
@@ -12,6 +12,18 @@ const Company = ()=>{
         phone:'',
         email:''
     })
+
+    const handleAddressChange = (e) => {
+        const { name, value } = e.target;
+        // console.log(name,value);
+        setContactDetails((prev) => ({
+            ...prev,
+            address: {
+                ...prev.address.name,
+                [name]: value
+            }
+        }));
+    };
 
     const handleChange = (e)=>{
         const {name,value} = e.target
@@ -65,7 +77,7 @@ const Company = ()=>{
                 id="address.name"
                 name="address.name"
                 value={contactdetails.address.name}
-                onChange={handleChange}
+                onChange={handleAddressChange}
             /><br/>
             <label htmlFor="phno">Phone Number</label><br/>
             <input

@@ -1,11 +1,15 @@
-import React, { useContext, useState } from "react"
+import React, { createContext, useReducer, useState } from "react"
 import axios from "../../config/axios";
 import {useNavigate} from 'react-router-dom'
-import { UserContext } from "../../App";
+import regReducer from "../../reducer/RegReducer";
 
-export default function Register() {
+export const RegisterContext = createContext()
+
+export default function Register(props) {
+   const [user,dispatch] = useReducer(regReducer,{reg:{}})
+   console.log('user',user)
    const navigate = useNavigate()
-   const {userDispatch} = useContext(UserContext)
+   // const {userDispatch} = useContext(UserContext)
    const [username, setUsername] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
@@ -24,7 +28,6 @@ export default function Register() {
          password,
          role
       }
-      console.log(formData)
       if(role === 'customer'){
          try{
             const response = await axios.post('/api/user/register',formData)
@@ -35,64 +38,70 @@ export default function Register() {
             setServerErrors(e.response.data.errors)
          }   
       }else {
+         dispatch({type:"REGISTER",payload:formData})
+         console.log(formData)
          navigate('/company')
       }
       // Here you can handle form submission based on user type
       // For example, if userType === 'company', perform specific actions
    }
+   
 
    return (
       <div>
-         <form>
-            <h2>Register</h2>
-            {serverErrors.length>0 && (
-               <div>
-                  {serverErrors.map(ele =>{
-                     return <li>{ele.msg}</li>
-                  })}
-               </div>
-            )}
-            <label htmlFor="username">Username</label><br/>
-            <input 
-               type="text"
-               id="username"
-               value={username}
-               onChange={e => setUsername(e.target.value)}
-            /><br/>
-            <label htmlFor="email">Email</label><br/>
-            <input 
-               type="email"
-               id="email"
-               value={email}
-               onChange={e => setEmail(e.target.value)}
-            /><br/>
-            <label htmlFor="password">Password</label><br/>
-            <input 
-               type="password"
-               id="password"
-               value={password}
-               onChange={e => setPassword(e.target.value)}
-            /><br/>
-            <label>
-               <input
-                  type="radio"
-                  value="customer"
-                  checked={role === 'customer'}
-                  onChange={handleUserTypeChange}
-               />
-               Customer
-            </label>
-            <label>
-               <input
-                  type="radio"
-                  value="companyAdmin"
-                  checked={role === 'companyAdmin'}
-                  onChange={handleUserTypeChange}
-               />
-               Company
-            </label><br />
-            <button onClick={handleSubmit}>{role === 'customer'?'Submit':'Next'}</button>
-         </form>
+         <RegisterContext.Provider value={{user,dispatch}}>
+            <form>
+               <h2>Register</h2>
+
+               {serverErrors.length>0 && (
+                  <div>
+                     {serverErrors.map(ele =>{
+                        return <li>{ele.msg}</li>
+                     })}
+                  </div>
+               )}
+               <label htmlFor="username">Username</label><br/>
+               <input 
+                  type="text"
+                  id="username"
+                  value={username}
+                  onChange={e => setUsername(e.target.value)}
+               /><br/>
+               <label htmlFor="email">Email</label><br/>
+               <input 
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+               /><br/>
+               <label htmlFor="password">Password</label><br/>
+               <input 
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+               /><br/>
+               <label>
+                  <input
+                     type="radio"
+                     value="customer"
+                     checked={role === 'customer'}
+                     onChange={handleUserTypeChange}
+                  />
+                  Customer
+               </label>
+               <label>
+                  <input
+                     type="radio"
+                     value="companyAdmin"
+                     checked={role === 'companyAdmin'}
+                     onChange={handleUserTypeChange}
+                  />
+                  Company
+               </label><br />
+               <button onClick={handleSubmit}>{role === 'customer'?'Submit':'Next'}</button>
+            </form>
+         </RegisterContext.Provider>
       </div>
    );
 }

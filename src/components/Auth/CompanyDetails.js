@@ -1,6 +1,9 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
-function CompanyDetails(){
+function CompanyDetails(props){
+    const {username,email,password,companyname,GST,contactdetails} = props
+    const navigate = useNavigate()
     const [details,setDetails] = useState({
         vision:'',
         mission:'',
@@ -11,6 +14,26 @@ function CompanyDetails(){
         setDetails((prev)=>({
             ...prev,[name]:value
         }))
+    }
+    const handleBack = (e)=>{
+        e.preventDefault()
+        const formData = {
+            details
+        }
+        navigate('/company')
+    }
+    const handleSubmit = (e)=>{  
+        e.preventDefault()
+        const formData = {
+            username,
+            email,
+            password,
+            companyname,
+            GST,
+            contactdetails,
+            details
+        }
+        console.log('main',formData)
     }
     return(
         <div>
@@ -36,7 +59,8 @@ function CompanyDetails(){
                 value={details.vision}
                 onChange={handleDetails}
             ></textarea><br/>
-            <button>Submit</button>
+            <button onClick={handleBack}>Back</button>
+            <button onClick={handleSubmit}>Submit</button>
         </div>
     )
 }
