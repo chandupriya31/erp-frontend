@@ -1,4 +1,4 @@
-export default function Company() {
+export default function CompanyContainer() {
 
    return (
       <div>

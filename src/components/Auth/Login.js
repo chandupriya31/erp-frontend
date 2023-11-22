@@ -30,18 +30,15 @@ export default function Login() {
             })
             const user = profile.data
             console.log('user', user);
-            const company = profile.data.company
-            console.log(company, 'company')
             const companyuser = profile.data.user
             console.log(companyuser, 'com-user')
             if (user.role == 'customer') {
-               userDispatch({ type: 'USER_LOGIN', user })
+               userDispatch({ type: 'USER_LOGIN', payload: user })
                navigate('/customer')
             }
             if (user.user.role == 'companyAdmin') {
-               userDispatch({ type: 'USER_LOGIN', companyuser })
-               userDispatch({ type: 'COMPANY', company })
-               navigate('/company')
+               userDispatch({ type: 'USER_LOGIN', payload: companyuser })
+               navigate('/companyContainer')
             }
          } catch (e) {
             console.log(e)
