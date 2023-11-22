@@ -1,19 +1,16 @@
-import React, { createContext, useReducer, useState } from "react"
+import React, { useContext, useState } from "react"
 import axios from "../../config/axios";
 import {useNavigate} from 'react-router-dom'
-import regReducer from "../../reducer/RegReducer";
-
-export const RegisterContext = createContext()
+import { UserContext } from "../../App";
+import Company from "./Company";
 
 export default function Register(props) {
-   const [user,dispatch] = useReducer(regReducer,{reg:{}})
-   console.log('user',user)
    const navigate = useNavigate()
    // const {userDispatch} = useContext(UserContext)
    const [username, setUsername] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
-   const [role,setRole] = useState('customer'); // Default to 'customer'
+   const [role,setRole] = useState(''); // Default to 'customer'
    const [serverErrors,setServerErrors] = useState([])
 
    const handleUserTypeChange = (e) => {
@@ -28,6 +25,7 @@ export default function Register(props) {
          password,
          role
       }
+      // console.log(formData)
       if(role === 'customer'){
          try{
             const response = await axios.post('/api/user/register',formData)
@@ -38,70 +36,65 @@ export default function Register(props) {
             setServerErrors(e.response.data.errors)
          }   
       }else {
-         dispatch({type:"REGISTER",payload:formData})
-         console.log(formData)
-         navigate('/company')
+         navigate('/company',{state:{formData}})
       }
       // Here you can handle form submission based on user type
       // For example, if userType === 'company', perform specific actions
    }
-   
 
    return (
       <div>
-         <RegisterContext.Provider value={{user,dispatch}}>
-            <form>
-               <h2>Register</h2>
+         <form>
+            <h2>Register</h2>
 
-               {serverErrors.length>0 && (
-                  <div>
-                     {serverErrors.map(ele =>{
-                        return <li>{ele.msg}</li>
-                     })}
-                  </div>
-               )}
-               <label htmlFor="username">Username</label><br/>
-               <input 
-                  type="text"
-                  id="username"
-                  value={username}
-                  onChange={e => setUsername(e.target.value)}
-               /><br/>
-               <label htmlFor="email">Email</label><br/>
-               <input 
-                  type="email"
-                  id="email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-               /><br/>
-               <label htmlFor="password">Password</label><br/>
-               <input 
-                  type="password"
-                  id="password"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-               /><br/>
-               <label>
-                  <input
-                     type="radio"
-                     value="customer"
-                     checked={role === 'customer'}
-                     onChange={handleUserTypeChange}
-                  />
-                  Customer
-               </label>
-               <label>
-                  <input
-                     type="radio"
-                     value="companyAdmin"
-                     checked={role === 'companyAdmin'}
-                     onChange={handleUserTypeChange}
-                  />
-                  Company
-               </label><br />
-               <button onClick={handleSubmit}>{role === 'customer'?'Submit':'Next'}</button>
-            </form>
-         </RegisterContext.Provider>
+            {serverErrors.length>0 && (
+               <div>
+                  {serverErrors.map(ele =>{
+                     return <li>{ele.msg}</li>
+                  })}
+               </div>
+            )}
+            <label htmlFor="username">Username</label><br/>
+            <input 
+               type="text"
+               id="username"
+               value={username}
+               onChange={e => setUsername(e.target.value)}
+            /><br/>
+            <label htmlFor="email">Email</label><br/>
+            <input 
+               type="email"
+               id="email"
+               value={email}
+               onChange={e => setEmail(e.target.value)}
+            /><br/>
+            <label htmlFor="password">Password</label><br/>
+            <input 
+               type="password"
+               id="password"
+               value={password}
+               onChange={e => setPassword(e.target.value)}
+            /><br/>
+            <label>
+               <input
+                  type="radio"
+                  value="customer"
+                  checked={role === 'customer'}
+                  onChange={handleUserTypeChange}
+               />
+               Customer
+            </label>
+            <label>
+               <input
+                  type="radio"
+                  value="companyAdmin"
+                  checked={role === 'companyAdmin'}
+                  onChange={handleUserTypeChange}
+               />
+               Company
+            </label><br />
+            <button onClick={handleSubmit}>{role === 'customer'?'Submit':'Next'}</button>
+         </form>
       </div>
    );
 }

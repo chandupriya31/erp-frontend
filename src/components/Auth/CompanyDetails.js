@@ -1,8 +1,15 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
+import axios from "../../config/axios"
+// import { RegisterContext } from "./Register"
 
 function CompanyDetails(props){
-    const {username,email,password,companyname,GST,contactdetails} = props
+    // const {username,email,password,companyname,GST,contactdetails} = props
+    const {state} = useLocation()
+    // console.log(state,'data1')
+    // console.log(state.formData.username)
+    // const {user} = useContext(RegisterContext)
+    // console.log(user)
     const navigate = useNavigate()
     const [details,setDetails] = useState({
         vision:'',
@@ -22,18 +29,20 @@ function CompanyDetails(props){
         }
         navigate('/company')
     }
-    const handleSubmit = (e)=>{  
+    const handleSubmit = async(e)=>{  
         e.preventDefault()
         const formData = {
-            username,
-            email,
-            password,
-            companyname,
-            GST,
-            contactdetails,
+            username: state.formData.username ,
+            email: state.formData.email,
+            password: state.formData.password,
+            companyname:state.companyname,
+            GST:state.GST,
+            contactdetails:state.contactdetails,
             details
         }
-        console.log('main',formData)
+        console.log(formData)
+        const companyData = await axios.post('/api/company/register',formData)
+        console.log(companyData.data)
     }
     return(
         <div>

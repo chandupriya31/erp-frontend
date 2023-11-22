@@ -1,7 +1,14 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useContext, useState } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
+// import { RegisterContext } from "./Register"
 
 const Company = (props)=>{
+    // const {user,dispatch} = useContext(RegisterContext)
+    // console.log(user)
+    const {state} = useLocation()
+    const data = state
+    // console.log('data',data)
+    // console.log(state,'state')
     const navigate = useNavigate()
     const [companyname,setCompanyName] = useState('')
     const [GST,setGst] = useState('')
@@ -39,18 +46,19 @@ const Company = (props)=>{
             GST,
             contactdetails
         }
-        navigate('/register')
+        navigate('/register',{state:{...data,...formData}})
     }
 
-    const handleClick = (e)=>{
-        e.preventDefault()
+    const handleClick = ()=>{
+        // e.preventDefault()
         const formData={
             companyname,
             GST,
             contactdetails
         }
-        console.log(formData)
-        navigate('/companyDetails')
+        // console.log(formData)
+        // console.log({...data,...formData},'2nd')
+        navigate('/companyDetails',{state:{...data,...formData}})
     }
 
     return (
@@ -75,7 +83,7 @@ const Company = (props)=>{
             <input 
                 type="text"
                 id="address.name"
-                name="address.name"
+                name="name"
                 value={contactdetails.address.name}
                 onChange={handleAddressChange}
             /><br/>
