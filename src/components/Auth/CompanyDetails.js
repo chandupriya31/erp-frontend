@@ -85,5 +85,4 @@ function CompanyDetails(props){
         </div>
     )
 }
-
 export default CompanyDetails
