@@ -36,6 +36,7 @@ function CompanyDetails(props){
             username: state.formData.username ,
             email: state.formData.email,
             password: state.formData.password,
+            role: state.formData.role,
             companyname:state.companyname,
             GST:state.GST,
             contactdetails:state.contactdetails,
