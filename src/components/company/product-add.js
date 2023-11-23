@@ -1,12 +1,14 @@
-import React from "react";
-import Form from 'react-bootstrap/Form';
-import { useState, useEffect } from "react";
-import { UseSelector, useDispatch } from "react-redux";
-import InputGroup from 'react-bootstrap/InputGroup';
-import { startAddProduct } from "../action/productactionCltr";
-import Button from 'react-bootstrap/Button';
+import React from "react"
+import Form from 'react-bootstrap/Form'
+import { useState, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import InputGroup from 'react-bootstrap/InputGroup'
+import { startAddProduct } from "../action/productactionCltr"
+import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-import axios from "../../config/axios";
+import axios from "../../config/axios"
+import Toast from 'react-bootstrap/Toast'
+import ToastContainer from 'react-bootstrap/ToastContainer'
 export default function AddProduct() {
    const [productname, setProductName] = useState('')
    const [description, setDescription] = useState('')
@@ -18,40 +20,78 @@ export default function AddProduct() {
    const [categoryId, setCategoryId] = useState('')
    const [productWarrenty, setProductWarrenty] = useState('')
    const [paymentTerms, setPaymentTerms] = useState('')
+   const [formerrors, setFormErrors] = useState({})
+   const [showToast, setShowToast] = useState(true)
+   const errors = {}
 
    const dispatch = useDispatch()
 
+   const handleClose = () => {
+      setShowToast(false) // Set the state to hide the toast when the close button is clicked
+   }
+
+   const serverErrors = useSelector((state) => {
+      return state.product.serverErrors
+   })
+
+   function runValidation() {
+      if (productname.length == 0) {
+         errors.productname = "*productname required"
+      }
+      if (description.length == 0) {
+         errors.description = "*description required"
+      }
+      if (categoryId.length == 0) {
+         errors.categoryId = " *caterogy required"
+      }
+      if (cost.length == 0) {
+         errors.cost = '*per unit cost required'
+      }
+      if (files.length == 0) {
+         errors.files = '*upload images'
+      }
+      if (productWarrenty.length == 0) {
+         errors.productWarrenty = '*required warrenty of product'
+      }
+      if (paymentTerms.length == 0) {
+         errors.paymentTerms = '*payment terms requires'
+      }
+      return errors
+   }
    function handleSubmit(e) {
       e.preventDefault()
-      const formData = new FormData()
-      formData.append('productname', productname)
-      formData.append('description', description)
-      formData.append('companyId', '655711893eba121f3032fa61')
-      formData.append('perUnitCost', Number(cost))
-      formData.append('categoryId', categoryId)
-      formData.append('productWarranty', productWarrenty)
-      formData.append('paymentTerms', paymentTerms)
+      runValidation()
+      if (Object.keys(errors).length == 0) {
+         const formData = new FormData()
+         formData.append('productname', productname)
+         formData.append('description', description)
+         formData.append('companyId', '655711893eba121f3032fa61')
+         formData.append('perUnitCost', Number(cost))
+         formData.append('categoryId', categoryId)
+         formData.append('productWarranty', productWarrenty)
+         formData.append('paymentTerms', paymentTerms)
 
-      files.forEach((obj) => {
-         formData.append('image', obj)
-      })
-      dispatch(startAddProduct(formData))
-         .then(() => {
-            // Reset form fields after successful submission
-            setProductName('');
-            setDescription('');
-            setCategoryId('');
-            setCost('');
-            setFiles([]);
-            setProductWarrenty('');
-            setPaymentTerms('');
-            setCategoryName('');
+         files.forEach((obj) => {
+            formData.append('image', obj)
          })
-         .catch((error) => {
-            console.log(error);
-            // Handle errors if necessary
-         });
+         dispatch(startAddProduct(formData))
+            .then(() => {
+               // Reset form fields after successful submission
+               setProductName('')
+               setDescription('')
+               setCategoryId('')
+               setCost('')
+               setFiles([])
+               setProductWarrenty('')
+               setPaymentTerms('')
+               setCategoryName('')
+               setFormErrors({})
+            })
+      } else {
+         setFormErrors(errors)
+      }
    }
+
    useEffect(() => {
       (async () => {
          try {
@@ -65,7 +105,7 @@ export default function AddProduct() {
 
    function handleFiles(e) {
       const upload = e.target.files
-      setFiles(prevFiles => [...prevFiles, ...upload]);
+      setFiles(prevFiles => [...prevFiles, ...upload])
    }
    console.log(files)
    const handleAdd = async () => {
@@ -100,8 +140,14 @@ export default function AddProduct() {
                      <Form.Group className="mb-3">
                         <Form.Label>Enter product name</Form.Label>
                         <Form.Control type="text" value={productname} onChange={(e) => setProductName(e.target.value)} style={{ width: '500px' }} />
+                        {formerrors.productname && (
+                           <span className="red" style={{ position: 'absolute', top: 10, right: 0 }}>{formerrors.productname}</span>
+                        )}
                         <Form.Label>Product description</Form.Label>
                         <Form.Control as='textarea' value={description} onChange={(e) => setDescription(e.target.value)} />
+                        {formerrors.description && (
+                           <span className="red" style={{ position: 'absolute', top: 80, right: 0 }}>{formerrors.description}</span>
+                        )}
                         <Form.Label>Select category</Form.Label>
                         <Form.Select value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
                            <option value=''>Select</option>
@@ -109,6 +155,9 @@ export default function AddProduct() {
                               <option key={ele._id} value={ele._id}>{ele.name}</option>
                            ))}
                         </Form.Select>
+                        {formerrors.categoryId && (
+                           <span className="red" style={{ position: 'absolute', top: 170, right: 0 }}>{formerrors.categoryId}</span>
+                        )}
                      </Form.Group>
                      <InputGroup>
                         <Form.Control placeholder="Add category" value={categoryname} onChange={(e) => { setCategoryName(e.target.value) }} />
@@ -117,23 +166,49 @@ export default function AddProduct() {
                   </InputGroup>
                   <Form.Label>cost per unit</Form.Label><br />
                   <Form.Control style={{ width: '500px' }} type='Number' value={cost} onChange={(e) => { setCost(e.target.value) }} />
+                  {formerrors.cost && (
+                     <span className="red" style={{ position: 'absolute', top: 380, right: 360 }}>{formerrors.cost}</span>
+                  )}
                   <Form.Group controlId="formFileMultiple" className="mb-3" style={{ width: '500px' }}>
                      <Form.Label>upload product image</Form.Label>
                      <Form.Control type="file" name='image' value={undefined} onChange={handleFiles} multiple />
+                     {formerrors.files && (
+                        <span className="red" style={{ position: 'absolute', top: 450, right: 360 }}>{formerrors.files}</span>
+                     )}
                   </Form.Group>
                   <Form.Group>
                      <Form.Label>product Warrenty</Form.Label>
                      <Form.Control as='textarea' type="text" value={productWarrenty} onChange={(e) => { setProductWarrenty(e.target.value) }} />
+                     {formerrors.productWarrenty && (
+                        <span className="red" style={{ position: 'absolute', top: 530, right: 30 }}>{formerrors.productWarrenty}</span>
+                     )}
                      <Form.Label>pymanet terms</Form.Label>
                      <Form.Control as='textarea' type="text" value={paymentTerms} onChange={(e) => { setPaymentTerms(e.target.value) }} />
+                     {formerrors.paymentTerms && (
+                        <span className="red" style={{ position: 'absolute', top: 630, right: 30 }}>{formerrors.paymentTerms}</span>
+                     )}
                   </Form.Group>
                   <div variant="primary" type="submit" className="d-flex justify-content-center mt-5 ">
                      <Button style={{ width: '400px' }} type="submit">submit</Button>
                   </div>
                </Form>
-
             </Card.Body>
          </Card>
-      </div>
+         {serverErrors.length > 0 && (
+            <ToastContainer position='bottom-end'>
+               <Toast show={showToast} onClose={handleClose} animation={true} bg='warning'>
+                  <Toast.Header closeButton={true}>
+                     <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+                     <strong className="me-auto">Server Errors</strong>
+                     <small className="text-muted">just now</small>
+                  </Toast.Header>
+                  {serverErrors.map((ele, index) => (
+                     <Toast.Body key={index}>{ele.msg}</Toast.Body>
+                  ))}
+               </Toast>
+            </ToastContainer>
+         )
+         }
+      </div >
    )
 }

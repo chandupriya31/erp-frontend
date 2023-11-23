@@ -9,13 +9,14 @@ export const startAddProduct = (data) => {
             }
          })
          dispatch(addproduct(response.data))
-         console.log(response.data)
       } catch (e) {
-         console.log(e) 
+         dispatch(serverErrors(e.response.data.errors))
       }
    }
 }
-
+const serverErrors = (msg) => {
+   return ({ type: 'SET_SERVER_ERRORS', payload: msg })
+}
 const addproduct = (product) => {
    return ({ type: 'ADD_PRODUCT', payload: product })
 }

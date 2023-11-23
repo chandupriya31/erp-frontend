@@ -20,7 +20,6 @@ import AddEnquiry from './components/customer/AddEnquiry';
 // import Registration from './components/Auth/RegisterProvider';
 export const UserContext = createContext()
 
-
 function App() {
   const [userState, userDispatch] = useReducer(userReducer, { user: {} })
   const isLoggedIn = !!userState.user._id

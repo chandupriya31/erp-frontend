@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../App";
+
 export default function CompanyNavBar() {
    const { userDispatch } = useContext(UserContext)
    const handleLogout = () => {
