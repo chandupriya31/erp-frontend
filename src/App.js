@@ -59,9 +59,9 @@ function App() {
           <Route path='/companyDetails' element={<CompanyDetails />} />
           <Route path='/login' element={<Login />} />
           <Route path='/companyContainer' element={<CompanyContainer />} />
-          <Route path='/addproduct' element={ <AddProduct/>} />
+          <Route path='/addproduct' element={<AddProduct />} />
           <Route path='/customer' element={<Customer />} />
-          <Route path='/add-enquiry' element={<AddEnquiry/>}/>
+          <Route path='/add-enquiry' element={<AddEnquiry />} />
           {/* <Route path='/registration' element={<Registration/>}/> */}
         </Routes>
       </BrowserRouter>

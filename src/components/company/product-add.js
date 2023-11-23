@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { useState, useEffect } from "react";
 import { UseSelector, useDispatch } from "react-redux";
 import InputGroup from 'react-bootstrap/InputGroup';
+import { startAddProduct } from "../action/productactionCltr";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card'
 import axios from "../../config/axios";
@@ -18,21 +19,43 @@ export default function AddProduct() {
    const [productWarrenty, setProductWarrenty] = useState('')
    const [paymentTerms, setPaymentTerms] = useState('')
 
-   function handleSubmit(e) {
- 
-      // const data = {
-      //    productname,
-      //    description,
-      //    companyId
+   const dispatch = useDispatch()
 
-      // }
+   function handleSubmit(e) {
+      e.preventDefault()
+      const formData = new FormData()
+      formData.append('productname', productname)
+      formData.append('description', description)
+      formData.append('companyId', '655711893eba121f3032fa61')
+      formData.append('perUnitCost', Number(cost))
+      formData.append('categoryId', categoryId)
+      formData.append('productWarranty', productWarrenty)
+      formData.append('paymentTerms', paymentTerms)
+
+      files.forEach((obj) => {
+         formData.append('image', obj)
+      })
+      dispatch(startAddProduct(formData))
+         .then(() => {
+            // Reset form fields after successful submission
+            setProductName('');
+            setDescription('');
+            setCategoryId('');
+            setCost('');
+            setFiles([]);
+            setProductWarrenty('');
+            setPaymentTerms('');
+            setCategoryName('');
+         })
+         .catch((error) => {
+            console.log(error);
+            // Handle errors if necessary
+         });
    }
-   console.log(files)
    useEffect(() => {
       (async () => {
          try {
             const response = await axios.get('/api/categories/list')
-            console.log(response.data)
             setCategories(response.data)
          } catch (e) {
             alert(e.message)
@@ -42,7 +65,7 @@ export default function AddProduct() {
 
    function handleFiles(e) {
       const upload = e.target.files
-      setFiles([...files, upload])
+      setFiles(prevFiles => [...prevFiles, ...upload]);
    }
    console.log(files)
    const handleAdd = async () => {
@@ -72,7 +95,7 @@ export default function AddProduct() {
                <Card.Title>Add Product</Card.Title>
             </Card.Header>
             <Card.Body>
-               <Form onSubmit={handleSubmit}>
+               <Form onSubmit={handleSubmit} encType="multipart/form-data">
                   <InputGroup style={{ width: '500px' }}>
                      <Form.Group className="mb-3">
                         <Form.Label>Enter product name</Form.Label>
@@ -89,14 +112,14 @@ export default function AddProduct() {
                      </Form.Group>
                      <InputGroup>
                         <Form.Control placeholder="Add category" value={categoryname} onChange={(e) => { setCategoryName(e.target.value) }} />
-                        <Button variant="outline-secondary" onClick={handleAdd}>+</Button>
+                        <Button variant="outline-secondary" onClick={handleAdd} type='button'>+</Button>
                      </InputGroup>
                   </InputGroup>
                   <Form.Label>cost per unit</Form.Label><br />
                   <Form.Control style={{ width: '500px' }} type='Number' value={cost} onChange={(e) => { setCost(e.target.value) }} />
                   <Form.Group controlId="formFileMultiple" className="mb-3" style={{ width: '500px' }}>
                      <Form.Label>upload product image</Form.Label>
-                     <Form.Control type="file" value={undefined} onChange={handleFiles} multiple />
+                     <Form.Control type="file" name='image' value={undefined} onChange={handleFiles} multiple />
                   </Form.Group>
                   <Form.Group>
                      <Form.Label>product Warrenty</Form.Label>
@@ -105,7 +128,7 @@ export default function AddProduct() {
                      <Form.Control as='textarea' type="text" value={paymentTerms} onChange={(e) => { setPaymentTerms(e.target.value) }} />
                   </Form.Group>
                   <div variant="primary" type="submit" className="d-flex justify-content-center mt-5 ">
-                     <Button style={{ width: '400px' }} >submit</Button>
+                     <Button style={{ width: '400px' }} type="submit">submit</Button>
                   </div>
                </Form>
 
