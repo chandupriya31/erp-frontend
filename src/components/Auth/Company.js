@@ -1,6 +1,5 @@
-import { useContext, useState } from "react"
+import { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-// import { RegisterContext } from "./Register"
 
 const Company = (props)=>{
     // const {user,dispatch} = useContext(RegisterContext)
@@ -19,6 +18,19 @@ const Company = (props)=>{
         phone:'',
         email:''
     })
+
+    useEffect(() => {
+        const savedFormData = JSON.parse(localStorage.getItem('companyFormData')) || {};
+        setCompanyName(savedFormData.companyname || '');
+        setGst(savedFormData.GST || '');
+        setContactDetails(savedFormData.contactdetails || {
+           address: {
+              name: ''
+           },
+           phone: '',
+           email: ''
+        });
+     }, [])
 
     const handleAddressChange = (e) => {
         const { name, value } = e.target;
@@ -46,6 +58,7 @@ const Company = (props)=>{
             GST,
             contactdetails
         }
+        localStorage.setItem('companyFormData', JSON.stringify(formData))
         navigate('/register',{state:{...data,...formData}})
     }
 
@@ -58,6 +71,7 @@ const Company = (props)=>{
         }
         // console.log(formData)
         // console.log({...data,...formData},'2nd')
+        localStorage.setItem('companyFormData', JSON.stringify(formData))
         navigate('/companyDetails',{state:{...data,...formData}})
     }
 
