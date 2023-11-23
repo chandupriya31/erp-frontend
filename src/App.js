@@ -1,6 +1,8 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import NavBar from './components/NavBar';
+import CompanyNavBar from './components/companyNavBar';
+import CustomerNavBar from './components/CustomerNavBAr';
 import { useEffect, useState, useReducer, createContext, useContext } from 'react';
 import Register from './components/Auth/Register';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -19,7 +21,9 @@ export const UserContext = createContext()
 
 function App() {
   const [userState, userDispatch] = useReducer(userReducer, { user: {} })
-  console.log(userState,'state')
+  const isLoggedIn = !!userState.user._id
+  console.log(isLoggedIn, 'id')
+  console.log(userState, 'state')
   useEffect(() => {
     if (localStorage.getItem('token')) { // handling page reload
       (async () => {
@@ -43,12 +47,14 @@ function App() {
   return (
     <UserContext.Provider value={{ userState, userDispatch }}>
       <BrowserRouter>
-        <NavBar />
+
+        {!isLoggedIn ? <NavBar /> : userState.user.role == 'companyAdmin' && <CompanyNavBar /> || userState.user.role == 'customer' && <CustomerNavBar />}
+
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/company' element={<Company/>}/>
-          <Route path='/companyDetails' element={<CompanyDetails/>}/>
+          <Route path='/company' element={<Company />} />
+          <Route path='/companyDetails' element={<CompanyDetails />} />
           <Route path='/login' element={<Login />} />
           <Route path='/companyContainer' element={<CompanyContainer />} />
           <Route path='/customer' element={<Customer />} />
