@@ -36,6 +36,7 @@ export default function Login() {
                }
             });
             const user = profile.data;
+            console.log(user)
             const companyUser = profile.data.user;
 
             if (user.role === 'customer') {

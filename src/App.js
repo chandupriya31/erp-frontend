@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import { useEffect, useState, useReducer, createContext, useContext } from 'react';
 import Register from './components/Auth/Register';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'react-bootstrap'
 import axios from './config/axios'
 import Home from './components/Home';
 import CompanyContainer from './components/company/CompanyContainer';
