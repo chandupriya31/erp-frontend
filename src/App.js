@@ -1,8 +1,8 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import NavBar from './components/NavBar';
-import CompanyNavBar from './components/companyNavBar';
-import CustomerNavBar from './components/CustomerNavBAr';
+import NavBar from './components/NavBars/NavBar';
+import CompanyNavBar from './components/NavBars/CompanyNavBar';
+import CustomerNavBar from './components/NavBars/CustomerNavBAr';
 import { useEffect, useState, useReducer, createContext, useContext } from 'react';
 import Register from './components/Auth/Register';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -13,7 +13,7 @@ import CompanyContainer from './components/company/CompanyContainer';
 import Customer from './components/customer/customer';
 import Login from './components/Auth/Login';
 import userReducer from './reducer/UserReducer';
-
+import AddProduct from './components/company/product-add';
 import Company from './components/Auth/Company';
 import CompanyDetails from './components/Auth/CompanyDetails';
 // import Registration from './components/Auth/RegisterProvider';
@@ -59,6 +59,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/companyContainer' element={<CompanyContainer />} />
           <Route path='/customer' element={<Customer />} />
+          <Route path='/addproduct' element={<AddProduct />} />
           {/* <Route path='/registration' element={<Registration/>}/> */}
         </Routes>
       </BrowserRouter>
