@@ -21,7 +21,7 @@ const ExampleCarouselImage = ({ imageUrl, text }) => {
 
 function IndividualIntervalsExample() {
    // Define your image URLs
-   const imageUrls = [def6, def7, def3, def4, def5]
+   const imageUrls = [def1,def2,def6, def7, def3, def4, def5]
 
 
    const images = [
@@ -51,7 +51,19 @@ function IndividualIntervalsExample() {
          captionTitle: 'fourth slide label',
          captionText: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.',
          interval: 1000, // You can set the interval as needed
-      },
+      },{
+         imageUrl: imageUrls[4],
+         text: 'fifth slide',
+         captionTitle: 'fifth slide label',
+         captionText: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.',
+         interval: 1000,
+      },{
+         imageUrl: imageUrls[4],
+         text: 'sixth slide',
+         captionTitle: 'sixth slide label',
+         captionText: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.',
+         interval: 1000,
+      }
    ];
 
    return (

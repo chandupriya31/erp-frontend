@@ -54,14 +54,14 @@ function CompanyDetails(props){
                 value={details.aboutus}
                 onChange={handleDetails}
             ></textarea><br />
-            <label htmlFor="mission">About Company</label><br />
+            <label htmlFor="mission">Company Mission</label><br />
             <textarea
                 id="mission"
                 name="mission"
                 value={details.mission}
                 onChange={handleDetails}
             ></textarea><br />
-            <label htmlFor="vision">About Company</label><br />
+            <label htmlFor="vision">Company Vision</label><br />
             <textarea
                 id="vision"
                 name="vision"
