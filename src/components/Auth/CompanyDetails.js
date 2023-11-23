@@ -36,7 +36,7 @@ function CompanyDetails(props){
             contactdetails:state.contactdetails,
             details
         }
-        console.log(formData)
+        //console.log(formData)
         try{
             const companyData = await axios.post('/api/company/register',formData)
             console.log(companyData.data)

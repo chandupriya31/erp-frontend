@@ -38,7 +38,7 @@ export default function Login() {
                }
             });
             const user = profile.data;
-            console.log(user)
+            console.log(user,'user+company')
             const companyUser = profile.data.user;
 
             if (user.role === 'customer') {
