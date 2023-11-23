@@ -16,6 +16,7 @@ import userReducer from './reducer/UserReducer';
 import AddProduct from './components/company/product-add';
 import Company from './components/Auth/Company';
 import CompanyDetails from './components/Auth/CompanyDetails';
+import AddEnquiry from './components/customer/AddEnquiry';
 // import Registration from './components/Auth/RegisterProvider';
 export const UserContext = createContext()
 
@@ -59,7 +60,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/companyContainer' element={<CompanyContainer />} />
           <Route path='/customer' element={<Customer />} />
-          <Route path='/addproduct' element={<AddProduct />} />
+          <Route path='/add-enquiry' element={<AddEnquiry/>}/>
           {/* <Route path='/registration' element={<Registration/>}/> */}
         </Routes>
       </BrowserRouter>

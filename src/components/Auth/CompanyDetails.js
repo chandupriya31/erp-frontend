@@ -22,7 +22,7 @@ function CompanyDetails(props){
         const formData = {
             details
         }
-        navigate('/company')
+        navigate('/company',{state:formData})
     }
     const handleSubmit = async(e)=>{  
         e.preventDefault()
@@ -80,4 +80,5 @@ function CompanyDetails(props){
         </div>
     )
 }
+
 export default CompanyDetails
