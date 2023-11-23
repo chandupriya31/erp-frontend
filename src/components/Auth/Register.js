@@ -1,8 +1,6 @@
-import React, { useContext, useState } from "react"
+import React, { useEffect, useState } from "react"
 import axios from "../../config/axios";
 import {useNavigate} from 'react-router-dom'
-import { UserContext } from "../../App";
-import Company from "./Company";
 
 export default function Register(props) {
    const navigate = useNavigate()
@@ -10,8 +8,16 @@ export default function Register(props) {
    const [username, setUsername] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
-   const [role,setRole] = useState('customer'); // Default to 'customer'
+   const [role,setRole] = useState('')
    const [serverErrors,setServerErrors] = useState([])
+
+   useEffect(() => {
+      const savedFormData = JSON.parse(localStorage.getItem('registerFormData')) || {};
+      setUsername(savedFormData.username || '');
+      setEmail(savedFormData.email || '');
+      setPassword(savedFormData.password || '');
+      setRole(savedFormData.role || 'customer');
+   }, [])
 
    const handleUserTypeChange = (e) => {
       setRole(e.target.value);
@@ -30,12 +36,18 @@ export default function Register(props) {
          try{
             const response = await axios.post('/api/user/register',formData)
             const user = response.data
+            navigate('/login')
+            setUsername('')
+            setEmail('')
+            setPassword('')
+            setRole('')
             // console.log(user)
          }catch(e){
             console.log(e)
             setServerErrors(e.response.data.errors)
          }   
       }else {
+         localStorage.setItem('registerFormData', JSON.stringify(formData));
          navigate('/company',{state:{formData}})
       }
       // Here you can handle form submission based on user type

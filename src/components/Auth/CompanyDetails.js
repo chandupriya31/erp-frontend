@@ -1,15 +1,9 @@
 import { useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import axios from "../../config/axios"
-// import { RegisterContext } from "./Register"
 
 function CompanyDetails(props){
-    // const {username,email,password,companyname,GST,contactdetails} = props
     const {state} = useLocation()
-    // console.log(state,'data1')
-    // console.log(state.formData.username)
-    // const {user} = useContext(RegisterContext)
-    // console.log(user)
     const navigate = useNavigate()
     const [details,setDetails] = useState({
         vision:'',
