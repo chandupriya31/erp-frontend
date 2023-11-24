@@ -20,3 +20,18 @@ const serverErrors = (msg) => {
 const addproduct = (product) => {
    return ({ type: 'ADD_PRODUCT', payload: product })
 }
+export const startGetProduct = () => {
+   return async (dispatch) => {
+      try {
+         const response = await axios.get('/api/products/list')
+         dispatch(setProducts(response.data))
+         console.log(response.data)
+      } catch (e) {
+         console.log(e)
+      }
+   }
+}
+
+const setProducts = (data) => {
+   return ({ type: 'SET_PRODUCTS', payload: data })
+}

@@ -14,19 +14,19 @@ function AddEnquiry(){
     const [company,setCompany] = useState([])
     const [companyId,setCompanyId] = useState('')
 
-    useEffect(()=>{
-        (async()=>{
-            try{
+    useEffect(() => {
+        (async () => {
+            try {
                 const response = await axios.get('/api/products/list')
                 const companies = await axios.get('/api/companies/list')
                 setProducts(response.data)
                 setCompany(companies.data)
-            }catch(e){
+            } catch (e) {
                 console.log(e.response.data.errors)
             }
         })()
-    },[])
-    const handleEnquirySubmit = async(e)=>{
+    }, [])
+    const handleEnquirySubmit = async (e) => {
         e.preventDefault()
         const formData = {
             productId,
@@ -42,41 +42,41 @@ function AddEnquiry(){
     }
 
     // console.log(products)
-    
+
     return (
         <div>
             <h2>Add Enquiry</h2>
             <label id="product">Product</label>
-            <select value={productId} onChange={e=>setProductId(e.target.value)}>
+            <select value={productId} onChange={e => setProductId(e.target.value)}>
                 <option value="">Select product</option>
-                {products.map(ele =>{
+                {products.map(ele => {
                     return <option key={ele._id} value={ele._id}>{ele.productname}</option>
                 })}
-            </select><br/>
-            <label htmlFor="phNo">Mobile Number</label><br/>
-            <input 
+            </select><br />
+            <label htmlFor="phNo">Mobile Number</label><br />
+            <input
                 type="number"
                 id="phNo"
                 value={phNo}
-                onChange={e=>setphNo(e.target.value)}
-            /><br/>
-            <label htmlFor="quantity">Quantity</label><br/>
-            <input 
+                onChange={e => setphNo(e.target.value)}
+            /><br />
+            <label htmlFor="quantity">Quantity</label><br />
+            <input
                 type="number"
                 id="quantity"
                 value={quantity}
                 onChange={e => setQuantity(e.target.value)}
-            /><br/>
-            <label htmlFor="company">Company</label><br/>
-            <select 
-                id ="company" 
-                value={companyId} 
-                onChange={e=>setCompanyId(e.target.value)}>
+            /><br />
+            <label htmlFor="company">Company</label><br />
+            <select
+                id="company"
+                value={companyId}
+                onChange={e => setCompanyId(e.target.value)}>
                 <option value="">Select Company</option>
-                {company.map(ele =>{
+                {company.map(ele => {
                     return <option key={ele._id} value={ele._id}>{ele.companyname}</option>
                 })}
-            </select><br/>
+            </select><br />
             <button onClick={handleEnquirySubmit}>Submit Enquiry</button>
         </div>
     )

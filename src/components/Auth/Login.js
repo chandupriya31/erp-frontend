@@ -38,7 +38,8 @@ export default function Login() {
                }
             });
             const user = profile.data;
-            console.log(user,'user+company')
+            const company = user.company
+            console.log(user.company, 'user+company')
             const companyUser = profile.data.user;
 
             if (user.role === 'customer') {
@@ -47,11 +48,12 @@ export default function Login() {
             }
             if (user.user.role === 'companyAdmin') {
                userDispatch({ type: 'USER_LOGIN', payload: companyUser });
+               userDispatch({ type: 'USER_COMPANY', payload: company })
                navigate('/companyContainer');
             }
          } catch (e) {
             setServerError(e.response.data.errors);
-         }finally {
+         } finally {
             setIsSubmitting(false); // Reset submitting state after submission
          }
       }

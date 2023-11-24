@@ -10,7 +10,8 @@ function CompanyDetails(props){
         mission:'',
         aboutus:''
     })
-    const [serverErrors,setServerErrors] = useState([])
+    const [serverErrors, setServerErrors] = useState([])
+    console.log(serverErrors);
     const handleDetails = (e) => {
         const { name, value } = e.target
         setDetails((prev) => ({
