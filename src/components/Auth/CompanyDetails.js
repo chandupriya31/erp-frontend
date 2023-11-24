@@ -40,7 +40,8 @@ function CompanyDetails(props){
         //console.log(formData)
         try{
             const companyData = await axios.post('/api/company/register',formData)
-            console.log(companyData.data,'cd')
+            console.log(companyData.data)
+            localStorage.clear()
         }catch(e){
             setServerErrors(e.response.data.errors)
         }

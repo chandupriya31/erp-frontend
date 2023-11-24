@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react"
 import axios from "../../config/axios"
 import { useNavigate } from "react-router-dom"
-function AddEnquiry() {
+import {useDispatch} from 'react-redux'
+import { setAddEnquiry } from "../action/enquiry-action"
+
+function AddEnquiry(){
     const navigate = useNavigate()
-    const [products, setProducts] = useState([])
-    const [productId, setProductId] = useState('')
-    const [phNo, setphNo] = useState('')
-    const [quantity, setQuantity] = useState('')
-    const [company, setCompany] = useState([])
-    const [companyId, setCompanyId] = useState('')
-    console.log(products);
+    const dispatch = useDispatch()
+    const [products,setProducts] = useState([])
+    const [productId,setProductId] = useState('')
+    const [phNo,setphNo] = useState('')
+    const [quantity,setQuantity] = useState('')
+    const [company,setCompany] = useState([])
+    const [companyId,setCompanyId] = useState('')
 
     useEffect(() => {
         (async () => {
@@ -31,17 +34,11 @@ function AddEnquiry() {
             quantity,
             companyId
         }
-        try {
-            const response = await axios.post('/api/enquiry/create', formData, {
-                headers: {
-                    'Authorization': localStorage.getItem('token')
-                }
-            })
-            console.log(response.data)
-            navigate('/customer')
-        } catch (e) {
-            alert(e.response.data,'login to add enquiry')
-        }
+        dispatch(setAddEnquiry(({formData,navigate})))
+        setProductId('')
+        setphNo('')
+        setQuantity('')
+        setCompanyId('')
     }
 
     // console.log(products)
