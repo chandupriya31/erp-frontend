@@ -3,7 +3,11 @@ import axios from "../../config/axios"
 export const setAddEnquiry = ({formData,navigate})=>{
     return async(dispatch)=>{
         try{
-            const response = await axios.post('/api/enquiry/create',formData)
+            const response = await axios.post('/api/enquiry/create',formData,{
+                headers:{
+                    'Authorization':localStorage.getItem('token')
+                }
+            })
             dispatch(addEnquiry(response.data))
             navigate('/customer')
         }catch(e){
