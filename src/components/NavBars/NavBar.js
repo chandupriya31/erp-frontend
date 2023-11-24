@@ -32,6 +32,9 @@ export default function NavBar() {
                </ul>
                <ul className="navbar-nav ms-auto">
                   <li className="nav-item">
+                     <Link className="nav-link" to='add-enquiry'>Enquiry</Link>
+                  </li>
+                  <li className="nav-item">
                      <Link className="nav-link" to='/register'>Register</Link>
                   </li>
                   <li className="nav-item">

@@ -5,6 +5,9 @@ export const productReducer = (state = initialState, action) => {
       case 'ADD_PRODUCT': {
          return { ...state, data: [...state.data, action.payload] }
       }
+      case 'SET_PRODUCTS': {
+         return { ...state, data: action.payload }
+      }
       case 'SET_SERVER_ERRORS': {
          return { ...state, serverErrors: action.payload }
       }

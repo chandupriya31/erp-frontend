@@ -21,10 +21,11 @@ import AddEnquiry from './components/customer/AddEnquiry';
 export const UserContext = createContext()
 
 function App() {
-  const [userState, userDispatch] = useReducer(userReducer, { user: {} })
+  const [userState, userDispatch] = useReducer(userReducer, { user: {}, company: {} })
   const isLoggedIn = !!userState.user._id
-  console.log(isLoggedIn, 'id')
+  //console.log(isLoggedIn, 'id')
   console.log(userState, 'state')
+  console.log(userState.company, 'company')
   useEffect(() => {
     if (localStorage.getItem('token')) { // handling page reload
       (async () => {
@@ -38,6 +39,7 @@ function App() {
           const companyuser = profile.data.user
           userDispatch({ type: 'USER_LOGIN', payload: user })
           userDispatch({ type: 'USER_LOGIN', payload: companyuser })
+          userDispatch({ type: 'USER_COMPANY', payload: user.company })
         } catch (e) {
           console.log(e)
         }

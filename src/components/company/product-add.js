@@ -4,6 +4,8 @@ import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import InputGroup from 'react-bootstrap/InputGroup'
 import { startAddProduct } from "../action/productactionCltr"
+import { useContext } from "react"
+import { UserContext } from "../../App"
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import axios from "../../config/axios"
@@ -14,7 +16,7 @@ export default function AddProduct() {
    const [description, setDescription] = useState('')
    const [categories, setCategories] = useState([])
    const [categoryname, setCategoryName] = useState('')
-   const [companyId, setCompanyId] = useState('')
+   //const [companyId, setCompanyId] = useState('')
    const [cost, setCost] = useState('')
    const [files, setFiles] = useState([])
    const [categoryId, setCategoryId] = useState('')
@@ -23,8 +25,11 @@ export default function AddProduct() {
    const [formerrors, setFormErrors] = useState({})
    const [showToast, setShowToast] = useState(true)
    const errors = {}
-
+   const { userState } = useContext(UserContext)
    const dispatch = useDispatch()
+
+   const companyId = userState.company._id
+
 
    const handleClose = () => {
       setShowToast(false) // Set the state to hide the toast when the close button is clicked
@@ -65,7 +70,7 @@ export default function AddProduct() {
          const formData = new FormData()
          formData.append('productname', productname)
          formData.append('description', description)
-         formData.append('companyId', '655711893eba121f3032fa61')
+         formData.append('companyId', companyId)
          formData.append('perUnitCost', Number(cost))
          formData.append('categoryId', categoryId)
          formData.append('productWarranty', productWarrenty)
@@ -182,12 +187,13 @@ export default function AddProduct() {
                      {formerrors.productWarrenty && (
                         <span className="red" style={{ position: 'absolute', top: 530, right: 30 }}>{formerrors.productWarrenty}</span>
                      )}
-                     <Form.Label>pymanet terms</Form.Label>
+                     <Form.Label>paymanet terms</Form.Label>
                      <Form.Control as='textarea' type="text" value={paymentTerms} onChange={(e) => { setPaymentTerms(e.target.value) }} />
                      {formerrors.paymentTerms && (
                         <span className="red" style={{ position: 'absolute', top: 630, right: 30 }}>{formerrors.paymentTerms}</span>
                      )}
                   </Form.Group>
+                  <Form.Control type="hidden" name="companyId" value={companyId} />
                   <div variant="primary" type="submit" className="d-flex justify-content-center mt-5 ">
                      <Button style={{ width: '400px' }} type="submit">submit</Button>
                   </div>

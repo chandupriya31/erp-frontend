@@ -1,29 +1,29 @@
 import { useEffect, useState } from "react"
 import axios from "../../config/axios"
 import { useNavigate } from "react-router-dom"
-
-function AddEnquiry(){
+function AddEnquiry() {
     const navigate = useNavigate()
-    const [products,setProducts] = useState([])
-    const [productId,setProductId] = useState('')
-    const [phNo,setphNo] = useState('')
-    const [quantity,setQuantity] = useState('')
-    const [company,setCompany] = useState([])
-    const [companyId,setCompanyId] = useState('')
+    const [products, setProducts] = useState([])
+    const [productId, setProductId] = useState('')
+    const [phNo, setphNo] = useState('')
+    const [quantity, setQuantity] = useState('')
+    const [company, setCompany] = useState([])
+    const [companyId, setCompanyId] = useState('')
+    console.log(products);
 
-    useEffect(()=>{
-        (async()=>{
-            try{
+    useEffect(() => {
+        (async () => {
+            try {
                 const response = await axios.get('/api/products/list')
                 const companies = await axios.get('/api/companies/list')
                 setProducts(response.data)
                 setCompany(companies.data)
-            }catch(e){
+            } catch (e) {
                 console.log(e.response.data.errors)
             }
         })()
-    },[])
-    const handleEnquirySubmit = async(e)=>{
+    }, [])
+    const handleEnquirySubmit = async (e) => {
         e.preventDefault()
         const formData = {
             productId,
@@ -31,54 +31,55 @@ function AddEnquiry(){
             quantity,
             companyId
         }
-        try{
-            const response = await axios.post('/api/enquiry/create',formData,{
-                headers:{
-                    'Authorization':localStorage.getItem('token')
+        try {
+            const response = await axios.post('/api/enquiry/create', formData, {
+                headers: {
+                    'Authorization': localStorage.getItem('token')
                 }
             })
+            console.log(response.data)
             navigate('/customer')
-        }catch(e){
-            console.log(e)
+        } catch (e) {
+            alert(e.response.data,'login to add enquiry')
         }
     }
 
     // console.log(products)
-    
+
     return (
         <div>
             <h2>Add Enquiry</h2>
             <label id="product">Product</label>
-            <select value={productId} onChange={e=>setProductId(e.target.value)}>
+            <select value={productId} onChange={e => setProductId(e.target.value)}>
                 <option value="">Select product</option>
-                {products.map(ele =>{
+                {products.map(ele => {
                     return <option key={ele._id} value={ele._id}>{ele.productname}</option>
                 })}
-            </select><br/>
-            <label htmlFor="phNo">Mobile Number</label><br/>
-            <input 
+            </select><br />
+            <label htmlFor="phNo">Mobile Number</label><br />
+            <input
                 type="number"
                 id="phNo"
                 value={phNo}
-                onChange={e=>setphNo(e.target.value)}
-            /><br/>
-            <label htmlFor="quantity">Quantity</label><br/>
-            <input 
+                onChange={e => setphNo(e.target.value)}
+            /><br />
+            <label htmlFor="quantity">Quantity</label><br />
+            <input
                 type="number"
                 id="quantity"
                 value={quantity}
                 onChange={e => setQuantity(e.target.value)}
-            /><br/>
-            <label htmlFor="company">Company</label><br/>
-            <select 
-                id ="company" 
-                value={companyId} 
-                onChange={e=>setCompanyId(e.target.value)}>
+            /><br />
+            <label htmlFor="company">Company</label><br />
+            <select
+                id="company"
+                value={companyId}
+                onChange={e => setCompanyId(e.target.value)}>
                 <option value="">Select Company</option>
-                {company.map(ele =>{
+                {company.map(ele => {
                     return <option key={ele._id} value={ele._id}>{ele.companyname}</option>
                 })}
-            </select><br/>
+            </select><br />
             <button onClick={handleEnquirySubmit}>Submit Enquiry</button>
         </div>
     )

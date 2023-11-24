@@ -10,7 +10,8 @@ function CompanyDetails(props){
         mission:'',
         aboutus:''
     })
-    const [serverErrors,setServerErrors] = useState([])
+    const [serverErrors, setServerErrors] = useState([])
+    console.log(serverErrors);
     const handleDetails = (e) => {
         const { name, value } = e.target
         setDetails((prev) => ({
@@ -39,7 +40,7 @@ function CompanyDetails(props){
         //console.log(formData)
         try{
             const companyData = await axios.post('/api/company/register',formData)
-            console.log(companyData.data)
+            console.log(companyData.data,'cd')
         }catch(e){
             setServerErrors(e.response.data.errors)
         }
