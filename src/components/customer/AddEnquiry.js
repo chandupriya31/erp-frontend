@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react"
 import axios from "../../config/axios"
 import { useNavigate } from "react-router-dom"
+import {useDispatch} from 'react-redux'
+import { setAddEnquiry } from "../action/enquiry-action"
 
 function AddEnquiry(){
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [products,setProducts] = useState([])
     const [productId,setProductId] = useState('')
     const [phNo,setphNo] = useState('')
@@ -31,16 +34,11 @@ function AddEnquiry(){
             quantity,
             companyId
         }
-        try{
-            const response = await axios.post('/api/enquiry/create',formData,{
-                headers:{
-                    'Authorization':localStorage.getItem('token')
-                }
-            })
-            navigate('/customer')
-        }catch(e){
-            console.log(e)
-        }
+        dispatch(setAddEnquiry(({formData,navigate})))
+        setProductId('')
+        setphNo('')
+        setQuantity('')
+        setCompanyId('')
     }
 
     // console.log(products)

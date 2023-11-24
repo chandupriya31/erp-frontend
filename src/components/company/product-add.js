@@ -35,25 +35,25 @@ export default function AddProduct() {
    })
 
    function runValidation() {
-      if (productname.length == 0) {
+      if (productname.length === 0) {
          errors.productname = "*productname required"
       }
-      if (description.length == 0) {
+      if (description.length === 0) {
          errors.description = "*description required"
       }
-      if (categoryId.length == 0) {
+      if (categoryId.length === 0) {
          errors.categoryId = " *caterogy required"
       }
-      if (cost.length == 0) {
+      if (cost.length === 0) {
          errors.cost = '*per unit cost required'
       }
-      if (files.length == 0) {
+      if (files.length === 0) {
          errors.files = '*upload images'
       }
-      if (productWarrenty.length == 0) {
+      if (productWarrenty.length === 0) {
          errors.productWarrenty = '*required warrenty of product'
       }
-      if (paymentTerms.length == 0) {
+      if (paymentTerms.length === 0) {
          errors.paymentTerms = '*payment terms requires'
       }
       return errors
@@ -61,7 +61,7 @@ export default function AddProduct() {
    function handleSubmit(e) {
       e.preventDefault()
       runValidation()
-      if (Object.keys(errors).length == 0) {
+      if (Object.keys(errors).length === 0) {
          const formData = new FormData()
          formData.append('productname', productname)
          formData.append('description', description)
