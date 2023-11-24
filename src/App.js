@@ -16,16 +16,30 @@ import userReducer from './reducer/UserReducer';
 import AddProduct from './components/company/product-add';
 import Company from './components/Auth/Company';
 import CompanyDetails from './components/Auth/CompanyDetails';
+import CompanyList from './components/company/Company-list-home';
 import AddEnquiry from './components/customer/AddEnquiry';
 // import Registration from './components/Auth/RegisterProvider';
 export const UserContext = createContext()
 
 function App() {
-  const [userState, userDispatch] = useReducer(userReducer, { user: {}, company: {} })
+  const [userState, userDispatch] = useReducer(userReducer, { user: {}, company: {}, companylist: [] })
   const isLoggedIn = !!userState.user._id
   //console.log(isLoggedIn, 'id')
-  console.log(userState, 'state')
-  console.log(userState.company, 'company')
+  // console.log(userState, 'state')
+  // console.log(userState.company, 'company')
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get('/api/companies/list')
+        userDispatch({ type: 'COMAPNY_LIST', payload: response.data })
+      } catch (e) {
+        console.log(e)
+      }
+    })()
+  }, [])
+
+
   useEffect(() => {
     if (localStorage.getItem('token')) { // handling page reload
       (async () => {
@@ -63,6 +77,7 @@ function App() {
           <Route path='/addproduct' element={<AddProduct />} />
           <Route path='/customer' element={<Customer />} />
           <Route path='/add-enquiry' element={<AddEnquiry />} />
+          <Route path='company-list' element={<CompanyList />} />
           {/* <Route path='/registration' element={<Registration/>}/> */}
         </Routes>
       </BrowserRouter>
