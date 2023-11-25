@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { startGetProduct } from "./action/productactionCltr";
+import { startGetProduct } from "../actions/productactionCltr";
 export default function Productcar() {
    const dispatch = useDispatch()
    const product = useSelector((state) => {

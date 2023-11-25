@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form'
 import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import InputGroup from 'react-bootstrap/InputGroup'
-import { startAddProduct } from "../action/productactionCltr"
+import { startAddProduct } from "../../actions/productactionCltr"
 import { useContext } from "react"
 import { UserContext } from "../../App"
 import Button from 'react-bootstrap/Button'

@@ -51,7 +51,7 @@ function App() {
     <UserContext.Provider value={{ userState, userDispatch }}>
       <BrowserRouter>
 
-        {!isLoggedIn ? <NavBar /> : userState.user.role == 'companyAdmin' && <CompanyNavBar /> || userState.user.role == 'customer' && <CustomerNavBar />}
+        {!isLoggedIn ? <NavBar /> : userState.user.role === 'companyAdmin' && <CompanyNavBar /> || userState.user.role === 'customer' && <CustomerNavBar />}
 
         <Routes>
           <Route path='/' element={<Home />} />
