@@ -16,9 +16,9 @@ export default function NavBar() {
                   <li className="nav-item">
                      <Link className="nav-link" to="#">Products</Link>
                   </li>
-                  <li className="nav-item">
+                  <select className="nav-item">
                      <Link className="nav-link" to="/companies">Companies</Link>
-                  </li>
+                  </select>
                   <li className="nav-item dropdown">
                      <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Categories
