@@ -1,6 +1,6 @@
 import React from "react"
 import Form from 'react-bootstrap/Form'
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import InputGroup from 'react-bootstrap/InputGroup'
 import { startAddProduct } from "../../actions/productactionCltr"
@@ -26,6 +26,9 @@ export default function AddProduct() {
    const [showToast, setShowToast] = useState(true)
    const errors = {}
    const { userState } = useContext(UserContext)
+
+   const input = useRef()
+
    const dispatch = useDispatch()
 
    const companyId = userState.company._id
@@ -79,6 +82,7 @@ export default function AddProduct() {
          files.forEach((obj) => {
             formData.append('image', obj)
          })
+
          dispatch(startAddProduct(formData))
             .then(() => {
                // Reset form fields after successful submission
@@ -144,7 +148,7 @@ export default function AddProduct() {
                   <InputGroup style={{ width: '500px' }}>
                      <Form.Group className="mb-3">
                         <Form.Label>Enter product name</Form.Label>
-                        <Form.Control type="text" value={productname} onChange={(e) => setProductName(e.target.value)} style={{ width: '500px' }} />
+                        <Form.Control type="text" ref={input} value={productname} onChange={(e) => setProductName(e.target.value)} style={{ width: '500px' }} />
                         {formerrors.productname && (
                            <span className="red" style={{ position: 'absolute', top: 10, right: 0 }}>{formerrors.productname}</span>
                         )}
