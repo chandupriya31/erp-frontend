@@ -10,6 +10,7 @@ export default function Register(props) {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
   const [serverErrors, setServerErrors] = useState([]);
+  const [formErrors, setFormErrors] = useState({});
 
   useEffect(() => {
     const savedFormData = JSON.parse(localStorage.getItem('registerFormData')) || {};
@@ -19,35 +20,53 @@ export default function Register(props) {
     setRole(savedFormData.role || 'customer');
   }, [])
 
+  function runValidation() {
+    const errors = {};
+    if (username.length === 0) {
+      errors.username = '*Username required';
+    }
+    if (email.length === 0) {
+      errors.email = '*Email required';
+    }
+    if (password.length === 0) {
+      errors.password = '*Password required';
+    }
+    setFormErrors(errors);
+    return errors;
+  }
+
   const handleUserTypeChange = (e) => {
     setRole(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = {
-      username,
-      email,
-      password,
-      role
-    };
+    const errors = runValidation()
 
-    if (role === 'customer') {
-      try {
-        const response = await axios.post('/api/user/register', formData);
-        const user = response.data;
-        navigate('/login');
-        setUsername('');
-        setEmail('');
-        setPassword('');
-        setRole('');
-      } catch (e) {
-        console.log(e);
-        setServerErrors(e.response.data.errors);
+    if (Object.keys(errors).length === 0) {
+      const formData = {
+        username,
+        email,
+        password,
+        role
+      };
+
+      if (role === 'customer') {
+        try {
+          const response = await axios.post('/api/user/register', formData);
+          const user = response.data;
+          navigate('/login');
+          setUsername('');
+          setEmail('');
+          setPassword('');
+          setRole('');
+        } catch (e) {
+          setServerErrors(e.response.data.errors);
+        }
+      } else {
+        localStorage.setItem('registerFormData', JSON.stringify(formData));
+        navigate('/company', { state: { formData } });
       }
-    } else {
-      localStorage.setItem('registerFormData', JSON.stringify(formData));
-      navigate('/company', { state: { formData } });
     }
   }
 
@@ -69,31 +88,40 @@ export default function Register(props) {
               <label htmlFor="username" className="form-label">Username</label>
               <input
                 type="text"
-                className="form-control"
+                className={`form-control ${formErrors.username ? 'is-invalid' : ''}`}
                 id="username"
                 value={username}
                 onChange={e => setUsername(e.target.value)}
               />
+              {formErrors.username && (
+                <div className="invalid-feedback">{formErrors.username}</div>
+              )}
             </div>
             <div className="mb-3">
               <label htmlFor="email" className="form-label">Email</label>
               <input
                 type="email"
-                className="form-control"
+                className={`form-control ${formErrors.email ? 'is-invalid' : ''}`}
                 id="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
               />
+              {formErrors.email && (
+                <div className="invalid-feedback">{formErrors.email}</div>
+              )}
             </div>
             <div className="mb-3">
               <label htmlFor="password" className="form-label">Password</label>
               <input
                 type="password"
-                className="form-control"
+                className={`form-control ${formErrors.password ? 'is-invalid' : ''}`}
                 id="password"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
               />
+              {formErrors.password && (
+                <div className="invalid-feedback">{formErrors.password}</div>
+              )}
             </div>
             <div className="mb-3">
               <label className="form-check-label me-2">
