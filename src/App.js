@@ -81,6 +81,7 @@ function App() {
           <Route path='/customer' element={<Customer />} />
           <Route path='/add-enquiry' element={<AddEnquiry />} />
           <Route path='/company-list' element={<CompanyList />} />
+          <Route path='/enquires' element={<Enquires/>} />
           <Route path='/company-website/:id' element = {<IndividualCompany/>}/>
           {/* <Route path='/registration' element={<Registration/>}/> */}
         </Routes>
