@@ -26,6 +26,7 @@ export const UserContext = createContext()
 function App() {
   const [userState, userDispatch] = useReducer(userReducer, { user: {}, company: {}, companylist: [] })
   const isLoggedIn = !!userState.user._id
+  console.log(userState)
   //console.log(isLoggedIn, 'id')
   // console.log(userState, 'state')
   // console.log(userState.company, 'company')
@@ -79,9 +80,8 @@ function App() {
           <Route path='/addproduct' element={<AddProduct />} />
           <Route path='/customer' element={<Customer />} />
           <Route path='/add-enquiry' element={<AddEnquiry />} />
-          <Route path='company-list' element={<CompanyList />} />
-          <Route path='/enquires' element={<Enquires />} />
-          <Route path='/company-website/:id' element={<IndividualCompany />} />
+          <Route path='/company-list' element={<CompanyList />} />
+          <Route path='/company-website/:id' element = {<IndividualCompany/>}/>
           {/* <Route path='/registration' element={<Registration/>}/> */}
         </Routes>
       </BrowserRouter>

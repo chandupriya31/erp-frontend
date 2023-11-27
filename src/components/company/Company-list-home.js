@@ -6,8 +6,10 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Pagination from 'react-bootstrap/Pagination';
+import { useNavigate } from 'react-router-dom';
 
 export default function CompanyList() {
+   const navigate = useNavigate()
    const { userState } = useContext(UserContext);
    const companies = userState.companylist;
    console.log(companies);
@@ -25,7 +27,10 @@ export default function CompanyList() {
 
    const handlePaginationClick = (pageNumber) => {
       setCurrentPage(pageNumber);
-   };
+   }
+   const handleClick = (id)=>{
+      navigate(`/company-website/${id}`)
+   }
    useEffect(() => {
       localStorage.setItem('currentPage', currentPage);
    }, [currentPage]);
@@ -47,7 +52,7 @@ export default function CompanyList() {
                         <Card.Text >
                            <b>address</b>-{ele.contactdetails.address.name}
                         </Card.Text>
-                        <Button variant="primary" className="align-self-center" to={`/company-website/${ele._id}`}>view our website....</Button>
+                        <Button variant="primary" className="align-self-center" onClick={()=>handleClick(ele._id)}>view website....</Button>
                      </Card.Body>
                   </Card>
                </Col>
