@@ -26,6 +26,9 @@ export default function CompanyNavBar() {
                   <li className="nav-item">
                      <Link className="nav-link" to="/addproduct">Add Products</Link>
                   </li>
+                  <li className="nav-item">
+                     <Link className="nav-link" to="/enquires">enquires</Link>
+                  </li>
                   {/* <li className="nav-item dropdown">
                      <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Categories

@@ -1,25 +1,26 @@
 import axios from "../config/axios"
 
-export const setAddEnquiry = ({formData,navigate})=>{
-    return async(dispatch)=>{
-        try{
-            const response = await axios.post('/api/enquiry/create',formData,{
-                headers:{
-                    'Authorization':localStorage.getItem('token')
+export const setAddEnquiry = ({ formData, navigate }) => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.post('/api/enquiry/create', formData, {
+                headers: {
+                    'Authorization': localStorage.getItem('token')
                 }
             })
             dispatch(addEnquiry(response.data))
             navigate('/customer')
-        }catch(e){
+        } catch (e) {
             dispatch(setErrors(e.response.data.errors))
         }
     }
 }
 
-const addEnquiry = (formData)=>{
-    return {type:'SET_ADD_ENQUIRY',payload:formData}
+const addEnquiry = (formData) => {
+    return { type: 'SET_ADD_ENQUIRY', payload: formData }
 }
 
-const setErrors = (err)=>{
-    return {type:'SET_ERRORS',payload:err}
+
+const setErrors = (err) => {
+    return { type: 'SET_ERRORS', payload: err }
 }

@@ -1,10 +1,10 @@
-function regReducer(state,action){
-    switch(action.type){
-        case 'REGISTER':{
-            return {...state,reg:{...state.type,...action.payload}}
+function regReducer(state, action) {
+    switch (action.type) {
+        case 'REGISTER': {
+            return { ...state, reg: { ...state.type, ...action.payload } }
         }
-        default:{
-            return {...state}
+        default: {
+            return { ...state }
         }
     }
 }
