@@ -47,7 +47,7 @@ export default function CompanyList() {
                         <Card.Text >
                            <b>address</b>-{ele.contactdetails.address.name}
                         </Card.Text>
-                        <Button variant="primary" className="align-self-center">view our website....</Button>
+                        <Button variant="primary" className="align-self-center" to = {`/company-website/${ele._id}`}>view our website....</Button>
                      </Card.Body>
                   </Card>
                </Col>

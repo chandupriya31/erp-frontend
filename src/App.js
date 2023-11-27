@@ -18,6 +18,7 @@ import Company from './components/Auth/Company';
 import CompanyDetails from './components/Auth/CompanyDetails';
 import CompanyList from './components/company/Company-list-home';
 import AddEnquiry from './components/customer/AddEnquiry';
+import IndividualCompany from './components/company/IndividualCompany';
 // import Registration from './components/Auth/RegisterProvider';
 export const UserContext = createContext()
 
@@ -78,6 +79,7 @@ function App() {
           <Route path='/customer' element={<Customer />} />
           <Route path='/add-enquiry' element={<AddEnquiry />} />
           <Route path='company-list' element={<CompanyList />} />
+          <Route path='/company-website/:id' element = {<IndividualCompany/>}/>
           {/* <Route path='/registration' element={<Registration/>}/> */}
         </Routes>
       </BrowserRouter>

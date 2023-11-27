@@ -21,10 +21,10 @@ export default function CompanyNavBar() {
                      <Link className="nav-link" to="/">Home</Link>
                   </li> */}
                   <li className="nav-item">
-                     <Link className="nav-link" to="/addproduct">ADDProducts</Link>
+                     <Link className="nav-link" to="#">Dahsboard</Link>
                   </li>
                   <li className="nav-item">
-                     <Link className="nav-link" to="#">add Categories</Link>
+                     <Link className="nav-link" to="/addproduct">Add Products</Link>
                   </li>
                   {/* <li className="nav-item dropdown">
                      <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
