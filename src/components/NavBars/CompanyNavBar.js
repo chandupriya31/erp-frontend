@@ -17,11 +17,11 @@ export default function CompanyNavBar() {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                  {/* <li className="nav-item">
-                     <Link className="nav-link" to="/">Home</Link>
-                  </li> */}
                   <li className="nav-item">
-                     <Link className="nav-link" to="#">Dahsboard</Link>
+                     <Link className="nav-link" to="/">Enquiries</Link>
+                  </li>
+                  <li className="nav-item">
+                     <Link className="nav-link" to="#">Dashboard</Link>
                   </li>
                   <li className="nav-item">
                      <Link className="nav-link" to="/addproduct">Add Products</Link>

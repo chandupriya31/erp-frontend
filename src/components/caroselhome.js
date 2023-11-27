@@ -58,7 +58,7 @@ function IndividualIntervalsExample() {
          captionText: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.',
          interval: 1000,
       },{
-         imageUrl: imageUrls[4],
+         imageUrl: imageUrls[5],
          text: 'sixth slide',
          captionTitle: 'sixth slide label',
          captionText: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.',
@@ -69,7 +69,7 @@ function IndividualIntervalsExample() {
    return (
       <Carousel>
          {images.map((image, index) => (
-            <Carousel.Item key={index} interval={image.interval}>
+            <Carousel.Item key={index} interval={image.interval} >
                <ExampleCarouselImage imageUrl={image.imageUrl} text={image.text} />
                <Carousel.Caption>
                   <h3>{image.captionTitle}</h3>
