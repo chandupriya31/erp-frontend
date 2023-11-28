@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { UserContext } from "../../App";
 import IndividualIntervalsExample from "../caroselhome";
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { BsEnvelope } from "react-icons/bs";
-import { BiLocationPlus } from "react-icons/bi";
-import { BiPhone } from "react-icons/bi";
+import { BsEnvelope } from "react-icons/bs"
+import { BiLocationPlus } from "react-icons/bi"
+import { BiPhone } from "react-icons/bi"
 
 function IndividualCompany() {
   const { id } = useParams();
@@ -40,11 +40,13 @@ function IndividualCompany() {
     <div className="container mt-4">
       <div className="row justify-content-center">
         <div className="col-md-8">
-          <h4 className="text-primary mb-4">Welcome to our website</h4>
+          <h4 className="text-primary mb-4">Welcome to our website </h4>
           <IndividualIntervalsExample />
           <h2 className="text-dark">{company.companyname}</h2>
           <h4 className="text-primary mt-4">About Us</h4>
           <p className="text-muted"><strong>{company.details.aboutus}</strong></p>
+          <h5><Link style={{color:"green"}} to="/company/products" state={id}>Products</Link></h5>
+          <h5><Link style={{color:"green"}}>Categories</Link></h5>
           <h4 className="text-primary mt-4">Company's Vision</h4>
           <p className="text-muted"><strong>{company.details.vision}</strong></p>
           <h4 className="text-primary mt-4">Company's Mission</h4>

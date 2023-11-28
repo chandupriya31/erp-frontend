@@ -20,6 +20,7 @@ import CompanyList from './components/company/Company-list-home';
 import AddEnquiry from './components/customer/AddEnquiry';
 import IndividualCompany from './components/company/IndividualCompany';
 import Enquires from './components/company/EnquiriesContainer';
+import Products from './components/products-categories/Products';
 // import Registration from './components/Auth/RegisterProvider';
 export const UserContext = createContext()
 
@@ -83,7 +84,7 @@ function App() {
           <Route path='/company-list' element={<CompanyList />} />
           <Route path='/enquires' element={<Enquires/>} />
           <Route path='/company-website/:id' element = {<IndividualCompany/>}/>
-          {/* <Route path='/registration' element={<Registration/>}/> */}
+          <Route path='/company/products' element = {<Products/>}/>
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
