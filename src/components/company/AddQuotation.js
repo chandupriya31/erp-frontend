@@ -8,7 +8,7 @@ import ToastContainer from 'react-bootstrap/ToastContainer'
 import Button from 'react-bootstrap/Button'
 function AddQuotation(props) {
     const { ele } = props
-    const { _id, productId, quantity } = ele
+    const { _id, productId, quantity, customerId } = ele
     const dispatch = useDispatch()
     const [enquiryId, setEnquiryId] = useState(_id ? _id : '')
     const [product, setProductname] = useState(productId.productname ? productId.productname : '')
@@ -18,7 +18,7 @@ function AddQuotation(props) {
     const [quotationExpiry, setQuotationExpiry] = useState('')
     const [deliveryduration, setDeliveryDuration] = useState('')
     const [showToast, setShowToast] = useState(true)
-    //const [serverErrors, setServerErrors] = useState([])
+
     const serverErrors = useSelector((state) => {
         return state.quotation.quserverErrors
     })
@@ -40,6 +40,7 @@ function AddQuotation(props) {
     function handleSubmit() {
         const formData = {
             enquiry: enquiryId,
+            customer: customerId,
             product: productId._id,
             quantity: Quantity,
             unitPrice: Number(unitPrice),
@@ -48,7 +49,6 @@ function AddQuotation(props) {
             termsandconditions: {
                 delivery: deliveryduration
             },
-
         }
         dispatch(startAddQuotation(formData))
     }
@@ -95,9 +95,8 @@ function AddQuotation(props) {
                 </Button>
             </div>
             <div>
-                {/* Only display errors after form submission */}
-                {serverErrors.length > 0 && showToast && ( // Checking showToast state to control the display
-                    <ToastContainer position='top-end'>
+                {(serverErrors && serverErrors.length > 0) && showToast && (
+                    <ToastContainer position='top-center'>
                         <Toast show={showToast} onClose={handleClose} animation={true} bg='warning'>
                             {/* Toast header and body */}
                             <Toast.Header closeButton={true}>

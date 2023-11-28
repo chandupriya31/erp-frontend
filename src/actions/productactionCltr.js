@@ -31,7 +31,9 @@ export const startGetProduct = () => {
       }
    }
 }
-
+// export const clearserverError = ([]) => {
+//    return ({ type: 'CLEAR_ERROR', payload: [] })
+// }
 const setProducts = (data) => {
    return ({ type: 'SET_PRODUCTS', payload: data })
 }

@@ -29,11 +29,11 @@ export function EnquiresItem(props) {
                >
                   <Modal.Header closeButton>
                      <Modal.Title id="example-modal-sizes-title-lg">
-                        Large Modal
+                        Quotation
                      </Modal.Title>
                   </Modal.Header>
                   <Modal.Body>
-                     <AddQuotation ele={ele} onClose={() => setLgShow(false)} />
+                     <AddQuotation ele={ele} customerId={customerId._id} onClose={() => setLgShow(false)} />
                   </Modal.Body>
                </Modal>
             )}

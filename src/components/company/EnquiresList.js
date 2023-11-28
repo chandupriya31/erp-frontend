@@ -1,4 +1,3 @@
-
 import { EnquiresItem } from "./EnquiriesItem";
 import Table from 'react-bootstrap/Table'
 export function EnquiresList(props) {
