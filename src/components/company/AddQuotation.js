@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import Form from 'react-bootstrap/Form'
+import { startAddQuotation } from "../../actions/quotation-action"
+import { clearServer } from "../../actions/quotation-action"
+import Toast from 'react-bootstrap/Toast'
+import ToastContainer from 'react-bootstrap/ToastContainer'
 import Button from 'react-bootstrap/Button'
 function AddQuotation(props) {
     const { ele } = props
     const { _id, productId, quantity } = ele
+    const dispatch = useDispatch()
     const [enquiryId, setEnquiryId] = useState(_id ? _id : '')
     const [product, setProductname] = useState(productId.productname ? productId.productname : '')
     const [Quantity, setQuantity] = useState(quantity ? quantity : '')
@@ -11,12 +17,22 @@ function AddQuotation(props) {
     const [total, setTotal] = useState('')
     const [quotationExpiry, setQuotationExpiry] = useState('')
     const [deliveryduration, setDeliveryDuration] = useState('')
+    const [showToast, setShowToast] = useState(true)
+    //const [serverErrors, setServerErrors] = useState([])
+    const serverErrors = useSelector((state) => {
+        return state.quotation.quserverErrors
+    })
+
+    console.log(serverErrors, 'quo')
 
     const calculateTotal = () => {
         const totalCost = unitPrice * Quantity
         setTotal(totalCost)
     }
-
+    const handleClose = () => {
+        setShowToast(false)
+        dispatch(clearServer([]))
+    }
     useEffect(() => {
         calculateTotal()
     }, [unitPrice, Quantity])
@@ -32,8 +48,9 @@ function AddQuotation(props) {
             termsandconditions: {
                 delivery: deliveryduration
             },
-        }
 
+        }
+        dispatch(startAddQuotation(formData))
     }
     return (
         <div>
@@ -76,6 +93,24 @@ function AddQuotation(props) {
                 <Button className="ms-4" onClick={handleSubmit}>
                     Submit
                 </Button>
+            </div>
+            <div>
+                {/* Only display errors after form submission */}
+                {serverErrors.length > 0 && showToast && ( // Checking showToast state to control the display
+                    <ToastContainer position='top-end'>
+                        <Toast show={showToast} onClose={handleClose} animation={true} bg='warning'>
+                            {/* Toast header and body */}
+                            <Toast.Header closeButton={true}>
+                                <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+                                <strong className="me-auto">Server Errors</strong>
+                                <small className="text-muted">just now</small>
+                            </Toast.Header>
+                            {serverErrors.map((ele, index) => (
+                                <Toast.Body key={index}>{ele.msg}</Toast.Body>
+                            ))}
+                        </Toast>
+                    </ToastContainer>
+                )}
             </div>
         </div>
     )
