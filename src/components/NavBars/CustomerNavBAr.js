@@ -19,6 +19,9 @@ export default function CustomerNavBar() {
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                   <li className="nav-item">
+                     <Link className="nav-link" to='/' >Home</Link>
+                  </li>
+                  <li className="nav-item">
                      <Link className="nav-link" >DashBoard</Link>
                   </li>
                   <li className="nav-item">

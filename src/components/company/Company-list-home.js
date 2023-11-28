@@ -28,8 +28,10 @@ export default function CompanyList() {
    const handlePaginationClick = (pageNumber) => {
       setCurrentPage(pageNumber);
    }
-   const handleClick = (id)=>{
-      navigate(`/company-website/${id}`)
+   const handleClick = (id) => {
+      if (id) {
+         navigate(`/company-website/${id}`)
+      }
    }
    useEffect(() => {
       localStorage.setItem('currentPage', currentPage);
@@ -52,7 +54,7 @@ export default function CompanyList() {
                         <Card.Text >
                            <b>address</b>-{ele.contactdetails.address.name}
                         </Card.Text>
-                        <Button variant="primary" className="align-self-center" onClick={()=>handleClick(ele._id)}>view website....</Button>
+                        <Button variant="primary" className="align-self-center" onClick={() => handleClick(ele._id)}>view website....</Button>
                      </Card.Body>
                   </Card>
                </Col>

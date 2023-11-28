@@ -1,5 +1,6 @@
 
-const initialState = { quotation: [], quserverErrors: [] }
+const initialState = { quotation: [], List: [], quserverErrors: [] }
+
 export const quotationReducer = (state = initialState, action) => {
    switch (action.type) {
       case 'ADD_QUOTATION': {
@@ -7,6 +8,9 @@ export const quotationReducer = (state = initialState, action) => {
       }
       case 'SET_SERVER_ERRORS': {
          return { ...state, quserverErrors: action.payload }
+      }
+      case 'SET_QUOTATION': {
+         return { ...state, List: [...action.payload] }
       }
       case 'CLEAR': {
          return { ...state, quserverErrors: action.payload }

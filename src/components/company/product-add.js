@@ -7,6 +7,7 @@ import { startAddProduct } from "../../actions/productactionCltr"
 import { useContext } from "react"
 import { UserContext } from "../../App"
 import Button from 'react-bootstrap/Button'
+//import { clearserverError } from "../../actions/productactionCltr"
 import Card from 'react-bootstrap/Card'
 import axios from "../../config/axios"
 import Toast from 'react-bootstrap/Toast'
@@ -41,6 +42,8 @@ export default function AddProduct() {
    const serverErrors = useSelector((state) => {
       return state.product.serverErrors
    })
+   //dispatch(clearserverError([]))
+
 
    function runValidation() {
       if (productname.length === 0) {
