@@ -13,7 +13,7 @@ export const productReducer = (state = initialState, action) => {
       }
       case 'CAT_PRO': {
          return {
-            ...state, catpro: [...state.catpro, action.payload]}
+            ...state, catpro: action.payload}
       }
       case 'GET_PRODUCT':{
          return {...state,product:action.payload}

@@ -73,8 +73,8 @@ function CompanyDetails(props) {
     }
 
     return (
-        <div className="d-flex justify-content-center mt-5">
-            <Card className="rounded" style={{ width: '400px' }}>
+        <div className="d-flex justify-content-center mt-3">
+            <Card className="rounded  'shadow p-3 mb-5 bg-body-tertiary rounded'" style={{ width: '400px' }}>
                 <Card.Body>
                     <h2>Company Details</h2>
                     <Form>
@@ -120,8 +120,11 @@ function CompanyDetails(props) {
                                 <div className="invalid-feedback">{formErrors.vision}</div>
                             )}
                         </Form.Group>
-                        <Button variant="primary" onClick={handleBack}>Back</Button>
-                        <Button variant="success" onClick={handleSubmit}>Submit</Button>
+                        <div className="d-flex justify-content-between mt-3">
+                            <Button variant="primary" onClick={handleBack}>Back</Button>
+                            <Button variant="success" onClick={handleSubmit}>Next Details</Button>
+                        </div>
+
                         {serverErrors.length > 0 && (
                             <div className="mt-3">
                                 {serverErrors.map((ele, index) => (
