@@ -37,3 +37,18 @@ export const startGetProduct = () => {
 const setProducts = (data) => {
    return ({ type: 'SET_PRODUCTS', payload: data })
 }
+export const startGetCategory = () => {
+   return async (dispatch) => {
+      try {
+         const response = await axios.get('/api/categories/list')
+         dispatch(setcategory(response.data))
+      } catch (e) {
+         console.log(e)
+      }
+
+   }
+}
+
+const setcategory = (data) => {
+   return ({ type: 'SET_CATEGORY', payload: data })
+}

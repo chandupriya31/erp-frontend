@@ -21,6 +21,7 @@ import AddEnquiry from './components/customer/AddEnquiry';
 import IndividualCompany from './components/company/IndividualCompany';
 import Enquires from './components/company/EnquiriesContainer';
 import Products from './components/products-categories/Products';
+import Categories from './components/products-categories/categories';
 import { DashBoard } from './components/company/DashBoard';
 import { QuotationContainer } from './components/company/QuotationContainer';
 // import Registration from './components/Auth/RegisterProvider';
@@ -87,6 +88,7 @@ function App() {
           <Route path='/enquires' element={<Enquires />} />
           <Route path='/company-website/:id' element={<IndividualCompany />} />
           <Route path='/company/products' element={<Products />} />
+          <Route path='/company/categories' element={<Categories />} />
           <Route path='/dashboard' element={<DashBoard />} />
           <Route path='/quotation-list' element={<QuotationContainer />} />
         </Routes>
