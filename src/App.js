@@ -22,7 +22,7 @@ import Enquires from './components/enquiries/EnquiriesContainer';
 import Products from './components/products-categories/Products';
 import Categories from './components/products-categories/categories';
 import { DashBoard } from './components/company/DashBoard';
-import { QuotationContainer } from './components/company/QuotationContainer';
+import { QuotationContainer } from './components/quotations/QuotationContainer';
 // import Registration from './components/Auth/RegisterProvider';
 
 export const UserContext = createContext()
