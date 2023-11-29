@@ -2,29 +2,29 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import NavBar from './components/NavBars/NavBar';
 import CompanyNavBar from './components/NavBars/CompanyNavBar';
-import CustomerNavBar from './components/NavBars/CustomerNavBAr';
-import { useEffect, useState, useReducer, createContext, useContext } from 'react';
+import CustomerNavBar from './components/customer/CustomerNavBAr';
+import { useEffect, useReducer, createContext } from 'react';
 import Register from './components/Auth/Register';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-bootstrap'
 import axios from './config/axios'
-import Home from './components/Home';
-import CompanyContainer from './components/company/CompanyContainer';
+import Home from './components/Home'
 import Customer from './components/customer/customer';
 import Login from './components/Auth/Login';
 import userReducer from './reducer/UserReducer';
-import AddProduct from './components/company/product-add';
+import AddProduct from './components/products-categories/product-add';
 import Company from './components/Auth/Company';
 import CompanyDetails from './components/Auth/CompanyDetails';
 import CompanyList from './components/company/Company-list-home';
-import AddEnquiry from './components/customer/AddEnquiry';
+import AddEnquiry from './components/enquiries/AddEnquiry';
 import IndividualCompany from './components/company/IndividualCompany';
-import Enquires from './components/company/EnquiriesContainer';
+import Enquires from './components/enquiries/EnquiriesContainer';
 import Products from './components/products-categories/Products';
 import Categories from './components/products-categories/categories';
 import { DashBoard } from './components/company/DashBoard';
 import { QuotationContainer } from './components/company/QuotationContainer';
 // import Registration from './components/Auth/RegisterProvider';
+
 export const UserContext = createContext()
 
 function App() {
@@ -80,7 +80,7 @@ function App() {
           <Route path='/company' element={<Company />} />
           <Route path='/companyDetails' element={<CompanyDetails />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/companyContainer' element={<CompanyContainer />} />
+          <Route path='/companydashboard' element={<DashBoard/>}/>
           <Route path='/addproduct' element={<AddProduct />} />
           <Route path='/customer' element={<Customer />} />
           <Route path='/add-enquiry' element={<AddEnquiry />} />

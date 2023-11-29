@@ -49,7 +49,7 @@ export default function Login() {
             if (user.user.role === 'companyAdmin') {
                userDispatch({ type: 'USER_LOGIN', payload: companyUser });
                userDispatch({ type: 'USER_COMPANY', payload: company })
-               navigate('/companyContainer');
+               navigate('/companyDashboard');
             }
          } catch (e) {
             setServerError(e.response.data.errors);

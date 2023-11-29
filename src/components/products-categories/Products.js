@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../App";
-import { Card, Row, Col, Carousel,Button } from "react-bootstrap";
+import { Card, Row, Col, Carousel,Button } from "react-bootstrap"
+import _ from "lodash"
 import "../../index.css"
 
 function Products() {
@@ -13,8 +14,8 @@ function Products() {
     const company = userState.companylist.find((ele) => ele._id === state);
     console.log(company.products, "company data");
 
-    const handleClick = ()=>{
-        
+    const handleClick = (id)=>{
+        {_.isEmpty(userState.user) ? navigate('/login'):navigate(`/product/${id}`)}
     }
 
     return (
@@ -44,7 +45,7 @@ function Products() {
                         <Card.Text>
                             {ele.description}
                         </Card.Text>
-                        <Button variant="primary" onClick={handleClick}>About product</Button>
+                        <Button variant="primary" onClick={()=>handleClick(ele._id)}>About product</Button>
                         </Card.Body>
                     </Card>
                     </Col>

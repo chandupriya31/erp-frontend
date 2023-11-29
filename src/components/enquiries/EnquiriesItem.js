@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button'
 import { Modal } from 'react-bootstrap';
-import AddQuotation from './AddQuotation';
+import AddQuotation from '../quotations/AddQuotation';
 export function EnquiresItem(props) {
    const [lgShow, setLgShow] = useState(false)
    const { ele } = props;
