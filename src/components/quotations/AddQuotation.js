@@ -18,7 +18,8 @@ function AddQuotation(props) {
     const [quotationExpiry, setQuotationExpiry] = useState('')
     const [deliveryduration, setDeliveryDuration] = useState('')
     const [showToast, setShowToast] = useState(true)
-
+    const [formerrors, setformErrors] = useState({})
+    const errors = {}
     const serverErrors = useSelector((state) => {
         return state.quotation.quserverErrors
     })
@@ -37,20 +38,48 @@ function AddQuotation(props) {
         calculateTotal()
     }, [unitPrice, Quantity])
 
-    function handleSubmit() {
-        const formData = {
-            enquiry: enquiryId,
-            customer: customerId,
-            product: productId._id,
-            quantity: Quantity,
-            unitPrice: Number(unitPrice),
-            totalCost: total,
-            quotationExpiry,
-            termsandconditions: {
-                delivery: deliveryduration
-            },
+    const runValidation = () => {
+        if (unitPrice.length === 0) {
+            errors.unitPrice = '* enter unit price'
         }
-        dispatch(startAddQuotation(formData))
+        if (!total) {
+            errors.total = '* enter total amount'
+        }
+        if (quotationExpiry.length === 0) {
+            errors.quotationExpiry = '* enter quotation expiry date'
+        }
+        if (deliveryduration.length === 0) {
+            errors.deliveryduration = '* enter delivery duration'
+        }
+    }
+
+    function handleSubmit() {
+        runValidation()
+        if (Object.keys(errors).length === 0) {
+            const formData = {
+                enquiry: enquiryId,
+                customer: customerId,
+                product: productId._id,
+                quantity: Quantity,
+                unitPrice: Number(unitPrice),
+                totalCost: total,
+                quotationExpiry,
+                termsandconditions: {
+                    delivery: deliveryduration
+                },
+            }
+            dispatch(startAddQuotation(formData))
+                .then(() => {
+
+                    setUnitPrice('')
+                    setTotal('')
+                    setQuotationExpiry('')
+                    setDeliveryDuration('')
+                    setformErrors({})
+                })
+        } else {
+            setformErrors(errors)
+        }
     }
     return (
         <div>
@@ -73,10 +102,19 @@ function AddQuotation(props) {
                             calculateTotal()
                         }}
                     />
+                    {formerrors.unitPrice && (
+                        <span className="red" style={{ position: 'absolute', bottom: 395, right: 20 }}>{formerrors.unitPrice}</span>
+                    )}
                     <Form.Label>totalCost</Form.Label>
                     <Form.Control type="number" value={total} onChange={(e) => { setTotal(e.target.value) }} />
+                    {formerrors.total && (
+                        <span className="red" style={{ position: 'absolute', bottom: 325, right: 20 }}>{formerrors.total}</span>
+                    )}
                     <Form.Label>quotationExpiry</Form.Label>
                     <Form.Control type="date" value={quotationExpiry} onChange={(e) => { setQuotationExpiry(e.target.value) }} />
+                    {formerrors.quotationExpiry && (
+                        <span className="red" style={{ position: 'absolute', bottom: 259, right: 20 }}>{formerrors.quotationExpiry}</span>
+                    )}
                 </Form.Group>
                 <Form.Group>
                     <Form.Label><b>terms and conditions:</b></Form.Label>
@@ -84,6 +122,9 @@ function AddQuotation(props) {
                 <Form.Label>
                     <Form.Label>delivery duration</Form.Label>
                     <Form.Control as='textarea' value={deliveryduration} onChange={(e) => { setDeliveryDuration(e.target.value) }}> </Form.Control>
+                    {formerrors.deliveryduration && (
+                        <span className="red" style={{ position: 'absolute', bottom: 140, right: 450 }}>{formerrors.deliveryduration}</span>
+                    )}
                 </Form.Label>
             </Form>
             <div className="d-flex justify-content-end mt-3">

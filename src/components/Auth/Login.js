@@ -76,7 +76,7 @@ export default function Login() {
                   <div className="card-body d-flex flex-column justify-content-center">
                      <h5 className="card-title text-center mb-4">Login</h5>
                      <form onSubmit={formik.handleSubmit}>
-                        <div className="mb-3">
+                        <div className="mb-5">
                            <label htmlFor="email" className="form-label" style={{ color: 'blue' }}>Enter Email</label>
                            <input
                               type="email"
