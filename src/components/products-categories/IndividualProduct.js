@@ -1,16 +1,23 @@
 // IndividualProduct.js
 
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getIndividualProduct } from "../../actions/productactionCltr";
-import { Button, Carousel } from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
+import _ from 'lodash'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { UserContext } from "../../App";
 
 function IndividualProduct() {
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const { id } = useParams();
+    const {userState} = useContext(UserContext)
+    // console.log(userState.user,'user')
+    const user = userState.user.role
+    // console.log(user,'role')
+    console.log(id,'id')
     const product = useSelector((state) => {
         return state.product.product;
     });
@@ -25,7 +32,7 @@ function IndividualProduct() {
 
     return (
         <div className="container mt-4 product-page" style={{ maxWidth: "800px" }}>
-            <Link to="/company/products" className="btn btn-primary">
+            <Link to="/company/products"  className="btn btn-primary">
                 Back
             </Link>
             <h1 className="mt-3">About Product</h1>
@@ -50,7 +57,8 @@ function IndividualProduct() {
             <p>
                 <b>{product.description}</b>
             </p>
-            <button onClick={()=>handleClick(product)}>Add Enquiry</button>
+            {user === 'customer' ? <button onClick={()=>handleClick(product)}>Add Enquiry</button>:<button>Delete product</button>}
+            
         </div>
     );
 }

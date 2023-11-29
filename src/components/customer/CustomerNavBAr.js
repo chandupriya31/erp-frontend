@@ -30,9 +30,9 @@ export default function CustomerNavBar() {
                   <li className="nav-item">
                      <Link className="nav-link" to="/companies">MyEnquires</Link>
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                      <Link className="nav-link" to="/add-enquiry">Add Enquiry</Link>
-                  </li>
+                  </li> */}
                   <li className="nav-item">
                      <Link className="nav-link" to="/company-list">Companies</Link>
                   </li>

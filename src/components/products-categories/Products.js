@@ -4,15 +4,20 @@ import { UserContext } from "../../App";
 import { Card, Row, Col, Carousel,Button } from "react-bootstrap"
 import _ from "lodash"
 import "../../index.css"
+import { useSelector } from "react-redux";
 
 function Products() {
     const navigate = useNavigate()
     const { state } = useLocation();
-    console.log(state);
+    console.log(state,'state');
     const { userState } = useContext(UserContext);
     console.log(userState, "prod");
     const company = userState.companylist.find((ele) => ele._id === state);
-    console.log(company.products, "company data");
+    const products = useSelector(state =>{
+        return state.product.data
+    })
+    console.log(products,'products')
+    // console.log(company.products, "company data");
 
     const handleClick = (id)=>{
         {_.isEmpty(userState.user) ? navigate('/login'):navigate(`/product/${id}`)}

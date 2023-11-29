@@ -31,9 +31,9 @@ export default function NavBar() {
                   </li>
                </ul>
                <ul className="navbar-nav ms-auto">
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                      <Link className="nav-link" to='add-enquiry'>Enquiry</Link>
-                  </li>
+                  </li> */}
                   <li className="nav-item">
                      <Link className="nav-link" to='/register'>Register</Link>
                   </li>
