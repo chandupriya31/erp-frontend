@@ -52,3 +52,19 @@ export const startGetCategory = () => {
 const setcategory = (data) => {
    return ({ type: 'SET_CATEGORY', payload: data })
 }
+
+export const getIndividualProduct = (id)=>{
+   return async(dispatch) =>{
+      try {
+         const response = await axios.get(`/api/productdetails/${id}`)
+         dispatch(getProduct(response.data))
+         // console.log(response.data,'response')
+      }catch(e){
+         console.log(e)
+      }
+   }
+}
+
+const getProduct = (data)=>{
+   return {type: 'GET_PRODUCT',payload:data}
+}

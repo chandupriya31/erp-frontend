@@ -1,4 +1,4 @@
-const initialState = { data: [], serverErrors: [], categories: [] }
+const initialState = { data: [], product:{}, serverErrors: [], categories: [] }
 
 export const productReducer = (state = initialState, action) => {
    switch (action.type) {
@@ -10,6 +10,9 @@ export const productReducer = (state = initialState, action) => {
       }
       case 'SET_CATEGORY': {
          return { ...state, categories: action.payload }
+      }
+      case 'GET_PRODUCT':{
+         return {...state,product:action.payload}
       }
       case 'SET_SERVER_ERRORS': {
          return { ...state, serverErrors: action.payload }

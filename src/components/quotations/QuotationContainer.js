@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { startSetQuotation } from "../../actions/quotation-action"
 import { QuotationList } from "./QuotationList"
 import { useEffect } from "react"
-export function QuotationContainer() {
+export default function QuotationContainer() {
    const dispatch = useDispatch()
 
    const quotationList = useSelector((state) => {

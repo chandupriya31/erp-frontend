@@ -22,6 +22,7 @@ import Enquires from './components/enquiries/EnquiriesContainer';
 import Products from './components/products-categories/Products';
 import IndividualProduct from './components/products-categories/IndividualProduct'
 import { DashBoard } from './components/company/DashBoard';
+import QuotationContainer from './components/quotations/QuotationContainer'
 // import Registration from './components/Auth/RegisterProvider';
 
 export const UserContext = createContext()
@@ -89,6 +90,7 @@ function App() {
           <Route path='/company/products' element={<Products />} />
           <Route path='/dashboard' element={<DashBoard />} />
           <Route path='/quotation-list' element={<QuotationContainer />} />
+          <Route path='/product/:id' element={<IndividualProduct/>}/>
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
