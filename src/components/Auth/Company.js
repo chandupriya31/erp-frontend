@@ -116,8 +116,8 @@ const Company = (props) => {
         <div className="container mt-5">
             <div className="row justify-content-center">
                 <div className="col-md-4">
-                    <Card>
-                        <Card.Body>
+                    <Card style={{ width: '400px' }} >
+                        <Card.Body class='shadow p-3 mb-5 bg-body-tertiary rounded'>
                             <Form>
                                 <h1>Company Details</h1>
                                 <Form.Group controlId="companyName">
@@ -179,8 +179,10 @@ const Company = (props) => {
                                         <div className="error-message">{formErrors.contactdetails.email}</div>
                                     )}
                                 </Form.Group>
-                                <Button variant="primary" onClick={handleBack}>Back</Button>
-                                <Button variant="primary" onClick={handleClick}>Next Details</Button>
+                                <div className="d-flex justify-content-between mt-4">
+                                    <Button variant="primary" onClick={handleBack}>Back</Button>
+                                    <Button variant="success" onClick={handleClick}>Next Details</Button>
+                                </div>
                             </Form>
                         </Card.Body>
                     </Card>

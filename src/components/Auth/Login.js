@@ -72,7 +72,7 @@ export default function Login() {
          )}
          <div className="row w-50 justify-content-end ">
             <div className="col-md-6  w-75">
-               <div className="card">
+               <div className="card shadow p-3 mb-5 bg-body-tertiary rounded">
                   <div className="card-body d-flex flex-column justify-content-center">
                      <h5 className="card-title text-center mb-4">Login</h5>
                      <form onSubmit={formik.handleSubmit}>
