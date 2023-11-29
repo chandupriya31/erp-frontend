@@ -22,12 +22,8 @@ import Enquires from './components/enquiries/EnquiriesContainer';
 import Products from './components/products-categories/Products';
 import IndividualProduct from './components/products-categories/IndividualProduct'
 import { DashBoard } from './components/company/DashBoard';
-<<<<<<< HEAD
 import  QuotationContainer  from './components/quotations/QuotationContainer';
 import Categories from './components/products-categories/categories';
-=======
-import QuotationContainer from './components/quotations/QuotationContainer'
->>>>>>> 2ffc76fc790111ad9efcd937b58d97cdb2159551
 // import Registration from './components/Auth/RegisterProvider';
 
 export const UserContext = createContext()
@@ -95,11 +91,8 @@ function App() {
           <Route path='/company/products' element={<Products />} />
           <Route path='/dashboard' element={<DashBoard />} />
           <Route path='/quotation-list' element={<QuotationContainer />} />
-<<<<<<< HEAD
           <Route path='/company/categories' element={<Categories/>} />
-=======
           <Route path='/product/:id' element={<IndividualProduct/>}/>
->>>>>>> 2ffc76fc790111ad9efcd937b58d97cdb2159551
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
