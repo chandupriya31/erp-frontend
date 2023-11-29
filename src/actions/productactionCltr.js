@@ -52,3 +52,19 @@ export const startGetCategory = () => {
 const setcategory = (data) => {
    return ({ type: 'SET_CATEGORY', payload: data })
 }
+
+export const startGetCatProduct = (id) => {
+   return async (dispatch) => {
+      try {
+         const response = await axios.get(`/api/${id}/products`)
+         console.log(response.data)
+         dispatch(catpro(response.data))
+      } catch (e) {
+         console.log(e)
+      }
+   }
+}
+
+const catpro = (data) => {
+   return ({ type: 'CAT_PRO', payload: data })
+}
