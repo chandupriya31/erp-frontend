@@ -60,6 +60,17 @@ export const startGetCatProduct = (id) => {
          console.log(response.data)
          dispatch(catpro(response.data))
       } catch (e) {
+         console.log(e);
+      }
+   }
+}
+export const getIndividualProduct = (id)=>{
+   return async(dispatch) =>{
+      try {
+         const response = await axios.get(`/api/productdetails/${id}`)
+         dispatch(getProduct(response.data))
+         // console.log(response.data,'response')
+      }catch(e){
          console.log(e)
       }
    }
@@ -67,4 +78,7 @@ export const startGetCatProduct = (id) => {
 
 const catpro = (data) => {
    return ({ type: 'CAT_PRO', payload: data })
+}
+const getProduct = (data)=>{
+   return {type: 'GET_PRODUCT',payload:data}
 }

@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "../../config/axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { setAddEnquiry } from "../../actions/enquiry-action";
 
 function AddEnquiry() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const {state} = useLocation()
+  // console.log(state,"prod")
   const [products, setProducts] = useState([]);
-  const [productId, setProductId] = useState('');
+  const [productId, setProductId] = useState(state.prod ? state.prod._id:'');
   const [phNo, setPhNo] = useState('');
   const [quantity, setQuantity] = useState('');
   const [companies, setCompanies] = useState([]);
