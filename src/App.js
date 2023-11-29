@@ -21,6 +21,8 @@ import AddEnquiry from './components/customer/AddEnquiry';
 import IndividualCompany from './components/company/IndividualCompany';
 import Enquires from './components/company/EnquiriesContainer';
 import Products from './components/products-categories/Products';
+import { DashBoard } from './components/company/DashBoard';
+import { QuotationContainer } from './components/company/QuotationContainer';
 // import Registration from './components/Auth/RegisterProvider';
 export const UserContext = createContext()
 
@@ -82,9 +84,11 @@ function App() {
           <Route path='/customer' element={<Customer />} />
           <Route path='/add-enquiry' element={<AddEnquiry />} />
           <Route path='/company-list' element={<CompanyList />} />
-          <Route path='/enquires' element={<Enquires/>} />
-          <Route path='/company-website/:id' element = {<IndividualCompany/>}/>
-          <Route path='/company/products' element = {<Products/>}/>
+          <Route path='/enquires' element={<Enquires />} />
+          <Route path='/company-website/:id' element={<IndividualCompany />} />
+          <Route path='/company/products' element={<Products />} />
+          <Route path='/dashboard' element={<DashBoard />} />
+          <Route path='/quotation-list' element={<QuotationContainer />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

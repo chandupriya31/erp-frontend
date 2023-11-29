@@ -21,10 +21,15 @@ function IndividualCompany() {
           [company.contactdetails.address.lattitude, company.contactdetails.address.longitude],
           13
         );
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", 
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         ).addTo(mapcomponent)
-        
-        L.marker([company.contactdetails.address.lattitude, company.contactdetails.address.longitude]).addTo(mapcomponent);
+
+        L.circle([company.contactdetails.address.lattitude, company.contactdetails.address.longitude], {
+          color: 'red',
+          fillColor: '#f03',
+          fillOpacity: 0.5,
+          radius: 500
+        }).addTo(mapcomponent);
         setMapInit(true);
       } catch (error) {
         console.error('Error creating map or marker:', error);
@@ -45,8 +50,8 @@ function IndividualCompany() {
           <h2 className="text-dark">{company.companyname}</h2>
           <h4 className="text-primary mt-4">About Us</h4>
           <p className="text-muted"><strong>{company.details.aboutus}</strong></p>
-          <h5><Link style={{color:"green"}} to="/company/products" state={id}>Products</Link></h5>
-          <h5><Link style={{color:"green"}}>Categories</Link></h5>
+          <h5><Link style={{ color: "green" }} to="/company/products" state={id}>Products</Link></h5>
+          <h5><Link style={{ color: "green" }}>Categories</Link></h5>
           <h4 className="text-primary mt-4">Company's Vision</h4>
           <p className="text-muted"><strong>{company.details.vision}</strong></p>
           <h4 className="text-primary mt-4">Company's Mission</h4>

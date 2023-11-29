@@ -37,17 +37,17 @@ export function QuotationList(props) {
    }
    return (
       <div>
-         <h1>Quotationlist-{QuotationList.length}</h1>
-         <Table>
+         <h1>Quotationlist-{quotationList.length}</h1>
+         <Table striped bordered hover>
             <thead>
                <tr>
-                  <th>Date-{<select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
+                  <th>Date {<select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
                      <option value=''>select</option>
                      <option value="asc">Ascending</option>
                      <option value="desc">Descending</option>
                   </select>}</th>
                   <th>EnquiryId</th>
-                  <th>Quotation Exipry Date-{<select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
+                  <th>Quotation Exipry Date {<select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
                      <option value="asc">Ascending</option>
                      <option value="desc">Descending</option>
                   </select>}</th>
