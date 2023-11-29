@@ -33,6 +33,9 @@ export default function CustomerNavBar() {
                   <li className="nav-item">
                      <Link className="nav-link" to="/add-enquiry">Add Enquiry</Link>
                   </li>
+                  <li className="nav-item">
+                     <Link className="nav-link" to="/company-list">Companies</Link>
+                  </li>
                </ul>
                <ul className="navbar-nav ms-auto">
                   <li className="nav-item">
