@@ -51,7 +51,7 @@ function IndividualCompany() {
           <h4 className="text-primary mt-4">About Us</h4>
           <p className="text-muted"><strong>{company.details.aboutus}</strong></p>
           <h5><Link style={{ color: "green" }} to="/company/products" state={id}>Products</Link></h5>
-          <h5><Link style={{ color: "green" }} to='/company/categories'>Categories</Link></h5>
+          <h5><Link style={{ color: "green" }} to='/company/categories' state={id}>Categories</Link></h5>
           <h4 className="text-primary mt-4">Company's Vision</h4>
           <p className="text-muted"><strong>{company.details.vision}</strong></p>
           <h4 className="text-primary mt-4">Company's Mission</h4>

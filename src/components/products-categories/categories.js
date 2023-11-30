@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
@@ -7,6 +7,8 @@ import { startGetCategory, startGetCatProduct } from "../../actions/productactio
 import { Button, Row, Col } from "react-bootstrap"
 
 export default function Categories() {
+   const { state } = useLocation()
+   console.log(state)
    const navigate = useNavigate()
    const dispatch = useDispatch()
 
@@ -27,10 +29,13 @@ export default function Categories() {
    function handleClick(id) {
       dispatch(startGetCatProduct(id))
 
-
+   }
+   const handleBack = ()=>{
+      navigate(`/company-website/${state}`)
    }
    return (
       <div>
+         <button onClick={handleBack}>Back to Company</button>
          <h1 className="mt-5 mb-4 text-center ">Products Based on category</h1>
          <Accordion defaultActiveKey="0">
             {categories.map((ele) => (
