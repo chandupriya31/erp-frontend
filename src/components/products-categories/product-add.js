@@ -25,6 +25,7 @@ export default function AddProduct() {
    const [paymentTerms, setPaymentTerms] = useState('')
    const [formerrors, setFormErrors] = useState({})
    const [showToast, setShowToast] = useState(true)
+   const [bestSeller,setBestSeller] = useState(false)
    const errors = {}
    const { userState } = useContext(UserContext)
 
@@ -188,12 +189,28 @@ export default function AddProduct() {
                         <span className="red" style={{ position: 'absolute', top: 450, right: 360 }}>{formerrors.files}</span>
                      )}
                   </Form.Group>
+                  <Form.Label>Best Seller</Form.Label>
+                  <div className="form-check">
+                     <input
+                        type="radio"
+                        id="bestSeller"
+                        className="form-check-input"
+                        checked={bestSeller}
+                        onChange={() => setBestSeller(!bestSeller)}
+                     />
+                     <label htmlFor="bestSeller" className="form-check-label">Mark as Best Seller</label>
+                  </div>
+                  {bestSeller && (
+                     <p className="text-danger small mt-1">You can only add 3 best seller products.</p>
+                  )}
                   <Form.Group>
                      <Form.Label>product Warrenty</Form.Label>
                      <Form.Control as='textarea' type="text" value={productWarrenty} onChange={(e) => { setProductWarrenty(e.target.value) }} />
                      {formerrors.productWarrenty && (
                         <span className="red" style={{ position: 'absolute', top: 530, right: 30 }}>{formerrors.productWarrenty}</span>
                      )}
+                     {/* <Form.Label>Best Seller</Form.Label> *you can only add 3 Best Seller products
+                     <Form.Control type="radio" name="bestSeller" checked={bestSeller} onChange={() => setBestSeller(!bestSeller)}/> */}
                      <Form.Label>paymanet terms</Form.Label>
                      <Form.Control as='textarea' type="text" value={paymentTerms} onChange={(e) => { setPaymentTerms(e.target.value) }} />
                      {formerrors.paymentTerms && (

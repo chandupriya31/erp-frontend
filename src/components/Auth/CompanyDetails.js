@@ -66,6 +66,7 @@ function CompanyDetails(props) {
                 const companyData = await axios.post('/api/company/register', formData);
                 console.log(companyData.data);
                 localStorage.clear();
+                navigate('/login')
             } catch (e) {
                 setServerErrors(e.response.data.errors);
             }
@@ -122,7 +123,7 @@ function CompanyDetails(props) {
                         </Form.Group>
                         <div className="d-flex justify-content-between mt-3">
                             <Button variant="primary" onClick={handleBack}>Back</Button>
-                            <Button variant="success" onClick={handleSubmit}>Next Details</Button>
+                            <Button variant="success" onClick={handleSubmit}>Submit</Button>
                         </div>
 
                         {serverErrors.length > 0 && (
