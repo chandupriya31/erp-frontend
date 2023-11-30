@@ -3,14 +3,16 @@ import { useParams } from "react-router-dom"
 import { UserContext } from "../../App"
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup'
-
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 export default function Enquirylist({ enquiries }) {
    const { userState } = useContext(UserContext)
    const { id } = useParams()
 
    const enquiry = userState.user?.myenquiries?.find((ele) => ele.productId.companyId === id
    )
-
+   const eid = enquiry && enquiry._id
+   console.log(eid)
    console.log(enquiry, 'enquiry')
    //console.log(enquiry?.productId, 'product')
    return (
@@ -27,6 +29,7 @@ export default function Enquirylist({ enquiries }) {
                   <ListGroup.Item>Quantity - <b>{enquiry && enquiry.quantity}</b></ListGroup.Item>
                </ListGroup>
             </Card>
+            <Link to={`/quotationview/${eid}`}><Button>view quotation</Button></Link>
          </div>
       </div>
    )
