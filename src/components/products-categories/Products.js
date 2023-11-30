@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 function Products() {
     const navigate = useNavigate()
     const { state } = useLocation();
-    console.log(state,'state');
+    const stateid =state
     const { userState } = useContext(UserContext);
     console.log(userState, "prod");
     const company = userState.companylist.find((ele) => ele._id === state);
