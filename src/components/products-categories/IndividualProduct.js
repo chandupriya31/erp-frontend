@@ -1,5 +1,3 @@
-// IndividualProduct.js
-
 import React, { useContext, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,14 +12,19 @@ function IndividualProduct() {
     const dispatch = useDispatch();
     const { id } = useParams();
     const {userState} = useContext(UserContext)
-    // console.log(userState.user,'user')
+    console.log(userState.companylist,'user')
     const user = userState.user.role
     // console.log(user,'role')
     console.log(id,'id')
     const product = useSelector((state) => {
         return state.product.product;
     });
-
+    const page = userState.companylist.map(ele =>ele.products.find(ele1=>ele1._id === id))
+    console.log(page,'page')
+    const company = userState.companylist.find(ele => ele.products._id === page._id)
+    // console.log(company,'hl')
+    const web = company._id
+    console.log(web)
     useEffect(() => {
         dispatch(getIndividualProduct(id));
     }, [dispatch, id])
@@ -29,14 +32,14 @@ function IndividualProduct() {
     const handleClick = (prod)=>{
         navigate('/add-enquiry',{state:{prod}})
     }
+    const navigateBack = () => {
+        navigate(`/company-website/${web}`);
+    }
 
     return (
         <div className="container mt-4 product-page" style={{ maxWidth: "800px" }}>
-            <Link to="/company/products"  className="btn btn-primary">
-                Back
-            </Link>
+        {company && <button onClick={navigateBack}>Back to company</button>}
             <h1 className="mt-3">About Product</h1>
-
             <div className="carousel-container">
                 <Carousel className="mt-3">
                     {product.image &&
