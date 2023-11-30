@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-
+import Image from 'react-bootstrap/Image'
 export default function NavBar() {
    return (
       <nav className="navbar navbar-expand-lg bg-body-tertiary" style={{ marginTop: "10px" }}>
          <div className="container-fluid">
-            <Link className="navbar-brand" to="/">Navbar</Link>
+            <Link className="navbar-brand" ><Image style={{ height: '50px', width: '50px' }} src="https://erp-project.s3.ap-south-1.amazonaws.com/S.png" rounded /></Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                <span className="navbar-toggler-icon"></span>
             </button>
