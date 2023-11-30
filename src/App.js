@@ -22,8 +22,10 @@ import Enquires from './components/enquiries/EnquiriesContainer';
 import Products from './components/products-categories/Products';
 import IndividualProduct from './components/products-categories/IndividualProduct'
 import { DashBoard } from './components/company/DashBoard';
-import  QuotationContainer  from './components/quotations/QuotationContainer';
+import QuotationContainer from './components/quotations/QuotationContainer';
 import Categories from './components/products-categories/categories';
+import Customercontainer from './components/customer/enquiry-quo-container';
+import Enquirylist from './components/customer/Enquirylist';
 // import Registration from './components/Auth/RegisterProvider';
 
 export const UserContext = createContext()
@@ -34,6 +36,7 @@ function App() {
   console.log(userState)
   //console.log(isLoggedIn, 'id')
   // console.log(userState, 'state')
+  console.log(userState.user, 'cu')
   // console.log(userState.company, 'company')
 
   useEffect(() => {
@@ -58,6 +61,7 @@ function App() {
             }
           })
           const user = profile.data
+          //console.log(user)
           const companyuser = profile.data.user
           userDispatch({ type: 'USER_LOGIN', payload: user })
           userDispatch({ type: 'USER_LOGIN', payload: companyuser })
@@ -81,7 +85,7 @@ function App() {
           <Route path='/company' element={<Company />} />
           <Route path='/companyDetails' element={<CompanyDetails />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/companydashboard' element={<DashBoard/>}/>
+          <Route path='/companydashboard' element={<DashBoard />} />
           <Route path='/addproduct' element={<AddProduct />} />
           <Route path='/customer' element={<Customer />} />
           <Route path='/add-enquiry' element={<AddEnquiry />} />
@@ -91,8 +95,10 @@ function App() {
           <Route path='/company/products' element={<Products />} />
           <Route path='/dashboard' element={<DashBoard />} />
           <Route path='/quotation-list' element={<QuotationContainer />} />
-          <Route path='/company/categories' element={<Categories/>} />
-          <Route path='/product/:id' element={<IndividualProduct/>}/>
+          <Route path='/company/categories' element={<Categories />} />
+          <Route path='/product/:id' element={<IndividualProduct />} />
+          <Route path='/customer/enquiries' element={<Customercontainer />} />
+          <Route path='/enquirylist/:id' element={<Enquirylist />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

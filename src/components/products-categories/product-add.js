@@ -34,7 +34,6 @@ export default function AddProduct() {
 
    const companyId = userState.company._id
 
-
    const handleClose = () => {
       setShowToast(false) // Set the state to hide the toast when the close button is clicked
    }

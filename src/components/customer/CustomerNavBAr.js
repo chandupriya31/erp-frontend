@@ -28,7 +28,7 @@ export default function CustomerNavBar() {
                      <Link className="nav-link" to="#">MyQuotation</Link>
                   </li>
                   <li className="nav-item">
-                     <Link className="nav-link" to="/companies">MyEnquires</Link>
+                     <Link className="nav-link" to='/customer/enquiries'>MyEnquires</Link>
                   </li>
                   {/* <li className="nav-item">
                      <Link className="nav-link" to="/add-enquiry">Add Enquiry</Link>
