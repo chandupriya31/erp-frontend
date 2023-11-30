@@ -4,7 +4,7 @@ export function QuotationItem(props) {
    return (
       <tr>
          <td>{new Date(ele.date).toLocaleDateString()}</td>
-         <td>{ele.enquiry._id}</td>
+         <td>{ele.enquiry}</td>
          <td>{new Date(ele.quotationExpiry).toLocaleDateString()}</td>
          <td>{ele.customer && ele.customer.username}</td>
          <td>{ele.product && ele.product.productname}</td>

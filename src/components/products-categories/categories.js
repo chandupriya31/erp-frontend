@@ -55,8 +55,8 @@ export default function Categories() {
                                     <div>
                                        <b>Product Name:</b> {item.productname}<br />
                                        <b>Description:</b> {item.description}<br />
-                                       <Link to={`/product/${item._id}`}>                                       <Button variant="outline-info" className="mt-2"
-                                       >More...</Button></Link>
+                                       <Link to={`/product/${item._id}`}>                                       
+                                       <Button variant="outline-info" className="mt-2">More...</Button></Link>
                                     </div>
                                  </div>
                               </Col>
