@@ -45,3 +45,6 @@ export const setQuotation = (data) => {
 const serverErrors = (msg) => {
    return ({ type: 'SET_SERVER_ERRORS', payload: msg })
 }
+export const quotationLogout = () => {
+   return ({ type: 'QUOTATION_LOG_OUT' })
+}

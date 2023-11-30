@@ -1,5 +1,6 @@
 import ListGroup from 'react-bootstrap/ListGroup'
 import { Link } from 'react-router-dom'
+
 export default function Myenquires(props) {
    const { enquiries } = props
    const enquiry = enquiries.myenquiries
@@ -7,18 +8,23 @@ export default function Myenquires(props) {
    return (
       <div>
          <h2>Enquiries based on Companies</h2>
-         <ListGroup>
+         <ListGroup style={{ width: '400px' }}>
             {enquiry && enquiry.length > 0 ? (
                enquiry.map((ele) => (
-                  <ListGroup.Item action key={ele._id}>
-                     <Link to={`/enquirylist/${ele.company._id}`}>{ele.company && ele.company.companyname}</Link>
-                  </ListGroup.Item>
+                  <Link to={`/enquirylist/${ele.company._id}`} class='text-decoration-none'>
+                     <div class="rounded ">
+                        <ListGroup.Item action key={ele._id}>
+                           <div class='fw-semibold fs-5'>
+                              {ele.company && ele.company.companyname} - {ele.productId.productname}
+                           </div>
+                        </ListGroup.Item>
+                     </div>
+                  </Link>
                ))
             ) : (
                <ListGroup.Item>No enquiries available</ListGroup.Item>
             )}
          </ListGroup>
-
-      </div>
+      </div >
    )
 }

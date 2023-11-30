@@ -15,6 +15,10 @@ export const quotationReducer = (state = initialState, action) => {
       case 'CLEAR': {
          return { ...state, quserverErrors: action.payload }
       }
+      case 'QUOTATION_LOG_OUT': {
+         console.log(action)
+         return { ...state, quotation: [], List: [], quserverErrors: [] }
+      }
       default: {
          return { ...state }
       }

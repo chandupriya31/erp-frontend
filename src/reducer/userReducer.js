@@ -10,7 +10,7 @@ function userReducer(state, action) {
          return { ...state, company: { ...state.company, ...action.payload } }
       }
       case 'LOGOUT_USER': {
-         return { ...state, user: {} }
+         return { ...state, user: {}, company: {} }
       }
       default: {
          return { ...state }

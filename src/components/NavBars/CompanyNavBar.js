@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../App";
-
+import { useDispatch } from "react-redux";
+import { quotationLogout } from "../../actions/quotation-action";
 export default function CompanyNavBar() {
+   const dispatch = useDispatch()
    const { userDispatch } = useContext(UserContext)
    const handleLogout = () => {
       localStorage.removeItem('token')
       userDispatch({ type: 'LOGOUT_USER' })
+      dispatch(quotationLogout())
    }
    return (
       <nav className="navbar navbar-expand-lg bg-body-tertiary" style={{ marginTop: "10px" }}>
