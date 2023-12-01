@@ -9,6 +9,9 @@ function userReducer(state, action) {
       case 'USER_COMPANY': {
          return { ...state, company: { ...state.company, ...action.payload } }
       }
+      case 'UPDATE_USER':{
+         return {...state,user:{...state.user,...action.payload}}
+      }
       case 'LOGOUT_USER': {
          return { ...state, user: {}, company: {} }
       }

@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { UserContext } from "../../App";
 import { useDispatch } from "react-redux";
 import { quotationLogout } from "../../actions/quotation-action";
+import { BsPersonCircle } from "react-icons/bs";
 export default function CompanyNavBar() {
    const dispatch = useDispatch()
    const { userDispatch } = useContext(UserContext)
@@ -49,6 +50,9 @@ export default function CompanyNavBar() {
                   </li> */}
                   <li className="nav-item">
                      <Link className="nav-link" to="/" onClick={handleLogout}>Logout</Link>
+                  </li>
+                  <li className="nav-item">
+                     <Link className="nav-link" to=''><BsPersonCircle style={{ fontSize: '25px' }}/></Link>
                   </li>
                </ul>
             </div>

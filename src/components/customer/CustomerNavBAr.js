@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../App";
+import { BsPersonCircle } from "react-icons/bs"
 
 export default function CustomerNavBar() {
 
@@ -40,6 +41,9 @@ export default function CustomerNavBar() {
                <ul className="navbar-nav ms-auto">
                   <li className="nav-item">
                      <Link className="nav-link" to="/" onClick={handleLogout}>Logout</Link>
+                  </li>
+                  <li className="nav-item">
+                     <Link className="nav-link" to='/customerprofile'><BsPersonCircle style={{ fontSize: '25px' }}/></Link>
                   </li>
                </ul>
             </div>
