@@ -97,6 +97,7 @@ export default function AddProduct() {
                setProductWarrenty('')
                setPaymentTerms('')
                setCategoryName('')
+               setBestSeller(false)
                setFormErrors({})
             })
       } else {

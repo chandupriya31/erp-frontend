@@ -28,6 +28,7 @@ import Customercontainer from './components/customer/enquiry-quo-container';
 import Enquirylist from './components/customer/Enquirylist';
 import Myenquires from './components/customer/Myenquiries';
 import Quotationview from './components/customer/Quotation-view';
+import CustomerProfile from './components/customer/CustomerProfile';
 // import Registration from './components/Auth/RegisterProvider';
 
 export const UserContext = createContext()
@@ -103,6 +104,7 @@ function App() {
           <Route path='/enquirylist/:id' element={<Enquirylist />} />
           <Route path="/my-enquiries" element={<Myenquires />} />
           <Route path='/quotationview/:id' element={<Quotationview />} />
+          <Route path='/customerprofile' element={<CustomerProfile/>}/>
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
