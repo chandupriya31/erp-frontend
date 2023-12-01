@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { UserContext } from "../../App"
 import Button from 'react-bootstrap/Button'
 import axios from "../../config/axios"
@@ -7,6 +7,7 @@ import Card from 'react-bootstrap/Card'
 import Table from 'react-bootstrap/Table'
 
 export default function Quotationview() {
+   const navigate = useNavigate()
    const params = useParams()
    const { id } = params
    const { userState } = useContext(UserContext)
@@ -27,6 +28,10 @@ export default function Quotationview() {
       } catch (error) {
          console.error('Error updating isApproved:', error)
       }
+   }
+
+   const handleClick = ()=>{
+      navigate('/payment-details',{state:quotation._id})
    }
 
 
@@ -103,7 +108,7 @@ export default function Quotationview() {
                         onChange={handleChange}
                         id="flexCheckChecked" />
                   </div>
-                  <Button variant="primary">Go somewhere</Button>
+                  <Button variant="primary" onClick={handleClick}>Move to payment</Button>
                </Card.Body>
             </Card>
          ) : (
