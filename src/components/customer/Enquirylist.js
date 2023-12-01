@@ -9,8 +9,7 @@ export default function Enquirylist({ enquiries }) {
    const { userState } = useContext(UserContext)
    const { id } = useParams()
 
-   const enquiry = userState.user?.myenquiries?.find((ele) => ele.productId.companyId === id
-   )
+   const enquiry = userState.user?.myenquiries?.find((ele) => ele.productId.companyId === id)
    const eid = enquiry && enquiry._id
    console.log(eid)
    console.log(enquiry, 'enquiry')
