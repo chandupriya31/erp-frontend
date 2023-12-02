@@ -18,7 +18,7 @@ export default function Quotationview() {
 
    const [isApproved, setIsApproved] = useState(quotation?.termsandconditions?.isApproved)
 
-   console.log(isApproved, 'app')
+   console.log(isApproved, 'isapprove')
 
    const handleChange = async (event) => {
       const newValue = event.target.checked

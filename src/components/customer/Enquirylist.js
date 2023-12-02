@@ -8,8 +8,10 @@ import { Link } from "react-router-dom";
 export default function Enquirylist({ enquiries }) {
    const { userState } = useContext(UserContext)
    const { id } = useParams()
+   console.log(id)
+   console.log(userState.user.myenquiries)
+   const enquiry = userState.user?.myenquiries?.find((ele) => ele._id === id)
 
-   const enquiry = userState.user?.myenquiries?.find((ele) => ele.productId.companyId === id)
    const eid = enquiry && enquiry._id
    console.log(eid)
    console.log(enquiry, 'enquiry')

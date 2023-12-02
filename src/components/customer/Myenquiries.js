@@ -11,7 +11,7 @@ export default function Myenquires(props) {
          <ListGroup style={{ width: '400px' }}>
             {enquiry && enquiry.length > 0 ? (
                enquiry.map((ele) => (
-                  <Link to={`/enquirylist/${ele.company._id}`} class='text-decoration-none'>
+                  <Link to={`/enquirylist/${ele._id}`} class='text-decoration-none'>
                      <div class="rounded ">
                         <ListGroup.Item action key={ele._id}>
                            <div class='fw-semibold fs-5'>

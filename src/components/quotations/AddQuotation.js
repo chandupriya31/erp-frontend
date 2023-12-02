@@ -84,7 +84,7 @@ function AddQuotation(props) {
     }
 
     function handleswal() {
-        if (quotationExpiry || deliveryduration ) {
+        if (quotationExpiry || deliveryduration) {
             swal({
                 title: "quotation sent successfully!",
                 icon: "success",
