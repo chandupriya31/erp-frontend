@@ -9,8 +9,6 @@ export function EnquiresItem(props) {
    console.log(props.ele)
    console.log(productId, 'item');
 
-
-
    return (
       <tr>
          <td>{productId.productname}</td>
