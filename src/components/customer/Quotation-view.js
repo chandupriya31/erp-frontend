@@ -17,7 +17,7 @@ export default function Quotationview() {
 
    const [isApproved, setIsApproved] = useState(quotation?.termsandconditions?.isApproved)
 
-   console.log(isApproved,'app')
+   console.log(isApproved, 'app')
 
    const handleChange = async (event) => {
       const newValue = event.target.checked
@@ -31,9 +31,9 @@ export default function Quotationview() {
 
 
    return (
-      <div>
+      <div className="d-flex justify-content-center pt-5">
          {quotation && quotation._id ? (
-            <Card className="text-center">
+            <Card className="text-center w-75 p-2 shadow-lg p-3 mb-5 bg-body-tertiary rounded" >
                <Card.Header className="fs-2">Quotation</Card.Header>
                <Card.Body>
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -44,54 +44,53 @@ export default function Quotationview() {
                         </colgroup>
                         <tbody>
                            <tr>
-                              <td>company name <br />address</td>
+                              <td class="fw-normal">company name <br />address</td>
                               <td className="fw-bold">{quotation.enquiry?.company?.companyname}<br />
                                  address-{quotation.enquiry?.company?.contactdetails?.address?.name}
                               </td>
                            </tr>
                            <tr>
-                              <td>quotationId</td>
+                              <td class="fw-normal">quotationId</td>
                               <td className="fw-bold">{quotation && quotation._id}</td>
                            </tr>
                            <tr>
-                              <td>enquiryId</td>
+                              <td class="fw-normal">enquiryId</td>
                               <td className="fw-bold">{quotation.enquiry && quotation.enquiry._id}</td>
                            </tr>
                            <tr>
-                              <td>quotation Date</td>
+                              <td class="fw-normal">quotation Date</td>
                               <td className="fw-bold">{new Date(quotation.date).toLocaleDateString()}</td>
                            </tr>
                            <tr>
-                              <td>quotationExpiry</td>
+                              <td class="fw-normal">quotationExpiry</td>
                               <td className="fw-bold">{new Date(quotation.quotationExpiry).toLocaleDateString()}</td>
                            </tr>
                            <tr>
-                              <td>product name</td>
+                              <td class="fw-normal">product name</td>
                               <td className="fw-bold">{quotation.enquiry?.productId?.productname}</td>
-
                            </tr>
                            <tr>
-                              <td>quantity</td>
+                              <td class="fw-normal">quantity</td>
                               <td className="fw-bold">{quotation?.quantity}</td>
                            </tr>
                            <tr>
-                              <td>per unit cost</td>
+                              <td class="fw-normal">per unit cost</td>
                               <td className="fw-bold">{quotation?.unitPrice}</td>
                            </tr>
                            <tr>
-                              <td>total price</td>
+                              <td class="fw-normal">total price</td>
                               <td className="fw-bold">{quotation?.totalCost}</td>
                            </tr>
                            <tr>
-                              <td>product warrenty</td>
+                              <td class="fw-normal">product warrenty</td>
                               <td className="fw-bold">{quotation.enquiry?.productId?.productWarranty}</td>
                            </tr>
                            <tr>
-                              <td>delivery duration</td>
+                              <td class="fw-normal">delivery duration</td>
                               <td className="fw-bold">{quotation.termsandconditions?.delivery}</td>
                            </tr>
                            <tr>
-                              <td>payment terms</td>
+                              <td class="fw-normal">payment terms</td>
                               <td className="fw-bold">{quotation.enquiry?.productId?.paymentTerms}</td>
                            </tr>
                         </tbody>

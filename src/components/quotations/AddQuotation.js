@@ -6,6 +6,7 @@ import { clearServer } from "../../actions/quotation-action"
 import Toast from 'react-bootstrap/Toast'
 import ToastContainer from 'react-bootstrap/ToastContainer'
 import Button from 'react-bootstrap/Button'
+import swal from 'sweetalert'
 function AddQuotation(props) {
     const { ele } = props
     const { _id, productId, quantity, customerId } = ele
@@ -81,6 +82,17 @@ function AddQuotation(props) {
             setformErrors(errors)
         }
     }
+
+    function handleswal() {
+        if (quotationExpiry || deliveryduration ) {
+            swal({
+                title: "quotation sent successfully!",
+                icon: "success",
+                button: "Ok",
+                closeModal: true,
+            })
+        }
+    }
     return (
         <div>
             <Form>
@@ -131,7 +143,7 @@ function AddQuotation(props) {
                 <Button variant="secondary" onClick={props.onClose}>
                     Close
                 </Button>
-                <Button className="ms-4" onClick={handleSubmit}>
+                <Button className="ms-4" onClick={() => { handleSubmit(); handleswal() }}>
                     Submit
                 </Button>
             </div>

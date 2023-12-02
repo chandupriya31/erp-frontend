@@ -104,7 +104,7 @@ function App() {
           <Route path='/enquirylist/:id' element={<Enquirylist />} />
           <Route path="/my-enquiries" element={<Myenquires />} />
           <Route path='/quotationview/:id' element={<Quotationview />} />
-          <Route path='/customerprofile' element={<CustomerProfile/>}/>
+          <Route path='/customerprofile' element={<CustomerProfile />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
