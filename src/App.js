@@ -29,6 +29,8 @@ import Enquirylist from './components/customer/Enquirylist';
 import Myenquires from './components/customer/Myenquiries';
 import Quotationview from './components/customer/Quotation-view';
 import CustomerProfile from './components/customer/CustomerProfile';
+import PaymentDetails from './components/payment/PaymentDetails';
+import PaymentSuccess from './components/payment/Payment';
 // import Registration from './components/Auth/RegisterProvider';
 
 export const UserContext = createContext()
@@ -104,7 +106,14 @@ function App() {
           <Route path='/enquirylist/:id' element={<Enquirylist />} />
           <Route path="/my-enquiries" element={<Myenquires />} />
           <Route path='/quotationview/:id' element={<Quotationview />} />
+<<<<<<< HEAD
           <Route path='/customerprofile' element={<CustomerProfile />} />
+=======
+          <Route path='/customerprofile' element={<CustomerProfile/>}/>
+          <Route path='/payment-details' element={<PaymentDetails/>}/>
+          <Route path='/quotation/:id' element={<PaymentSuccess/>}/>
+          {/* <Route path='/cancel' element={<PaymentCancel/>}/> */}
+>>>>>>> 72b35f274f8110a6d861fff9110994ab8772aa69
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
