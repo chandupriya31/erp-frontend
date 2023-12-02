@@ -57,6 +57,7 @@ export function QuotationList(props) {
                   <th>unitCost</th>
                   <th>Total Cost</th>
                   <th>terms and conditions</th>
+                  <th>approved</th>
                </tr>
             </thead>
             <tbody>

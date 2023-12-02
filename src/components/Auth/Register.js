@@ -77,7 +77,7 @@ export default function Register(props) {
           <div className="card bg-light p-4 rounded shadow p-3 mb-5 bg-body-tertiary rounded">
             <h2 className="mb-4">Register</h2>
 
-            {serverErrors.length > 0 && (
+            {serverErrors && serverErrors.length > 0 && (
               <div className="alert alert-danger">
                 {serverErrors.map(ele => (
                   <li key={ele.msg}>{ele.msg}</li>

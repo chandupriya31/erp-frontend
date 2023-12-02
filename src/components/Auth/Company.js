@@ -7,6 +7,7 @@ import { Card, Form, Button } from 'react-bootstrap';
 const Company = (props) => {
     const { state } = useLocation()
     const data = state
+    console.log(data)
     const navigate = useNavigate()
     const [companyname, setCompanyName] = useState('')
     const [GST, setGst] = useState('')

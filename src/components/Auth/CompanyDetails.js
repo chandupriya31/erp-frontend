@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 
 function CompanyDetails(props) {
     const { state } = useLocation();
+    console.log(state)
     const navigate = useNavigate();
     const [details, setDetails] = useState({
         vision: '',
@@ -67,8 +68,8 @@ function CompanyDetails(props) {
                 console.log(companyData.data);
                 localStorage.clear();
                 navigate('/login')
-            } catch (e) {
-                setServerErrors(e.response.data.errors);
+            } catch (e) {   
+                setServerErrors(e.response.data.errors)
             }
         }
     }
@@ -126,7 +127,7 @@ function CompanyDetails(props) {
                             <Button variant="success" onClick={handleSubmit}>Submit</Button>
                         </div>
 
-                        {serverErrors.length > 0 && (
+                        {serverErrors && serverErrors.length > 0 && (
                             <div className="mt-3">
                                 {serverErrors.map((ele, index) => (
                                     <li key={index}>{ele.msg}</li>

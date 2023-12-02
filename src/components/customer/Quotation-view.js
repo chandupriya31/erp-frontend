@@ -30,8 +30,8 @@ export default function Quotationview() {
       }
    }
 
-   const handleClick = ()=>{
-      navigate('/payment-details',{state:quotation._id})
+   const handleClick = () => {
+      navigate('/payment-details', { state: quotation._id })
    }
 
 
@@ -107,7 +107,7 @@ export default function Quotationview() {
                         onChange={handleChange}
                         id="flexCheckChecked" />
                   </div>
-                  <Button variant="primary" onClick={handleClick}>Move to payment</Button>
+                  <Button variant="primary" disabled={!isApproved} onClick={handleClick}>Move to payment</Button>
                </Card.Body>
             </Card>
          ) : (
