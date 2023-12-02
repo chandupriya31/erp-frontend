@@ -15,6 +15,7 @@ function PaymentDetails(){
             quotation:quote,
             type
         }
+        localStorage.setItem('quotation',formData.quotation)
         dispatch(startPayment(formData))
     }
     return (
