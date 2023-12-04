@@ -10,7 +10,7 @@ export default function Orderview() {
    console.log(order)
    return (
       <div>
-         <h1>order view</h1>
+         
       </div>
    )
 }
