@@ -24,7 +24,7 @@ export function EnquiresItem(props) {
    // console.log(id)
    // // console.log(productId, 'item');
    const handleViewQuotation = (id)=>{
-      // console.log(id)
+      console.log(id)
       navigate(`/quotationview/${id}`)
    }
 

@@ -7,6 +7,9 @@ import { UserContext } from '../../App';
 import Spinner from 'react-bootstrap/Spinner'
 import { useDispatch } from 'react-redux';
 import { startGetEnquiries } from '../../actions/enquiry-action';
+import { startSetQuotation } from '../../actions/quotation-action';
+import { getOrderList } from '../../actions/order-action';
+import { startGetCategory, startGetProduct } from '../../actions/productactionCltr';
 export default function Login() {
    const dispatch = useDispatch()
    const { userDispatch } = useContext(UserContext);
@@ -17,11 +20,13 @@ export default function Login() {
    useEffect(() => {
       (async () => {
         try {
-          const response = await axios.get('/api/companies/list')
-          userDispatch({ type: 'COMAPNY_LIST', payload: response.data })
-        } catch (e) {
-          console.log(e)
-        }
+         dispatch(startGetProduct())
+         dispatch(startGetCategory())
+         const response = await axios.get('/api/companies/list')
+         userDispatch({ type: 'COMAPNY_LIST', payload: response.data })
+         } catch (e) {
+            console.log(e)
+         }
       })()
     }, [])
    useEffect(() => {
@@ -41,6 +46,8 @@ export default function Login() {
                userDispatch({ type: 'USER_COMPANY', payload: user.company })
                if(user.role === 'companyAdmin' || user.role === 'customer'){
                   dispatch(startGetEnquiries())
+                  dispatch(startSetQuotation())
+                  dispatch(getOrderList())
                 }
             } catch (e) {
                console.log(e)
