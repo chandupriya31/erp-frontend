@@ -23,10 +23,10 @@ export default function CustomerNavBar() {
                      <Link className="nav-link" to='/' >Home</Link>
                   </li>
                   <li className="nav-item">
-                     <Link className="nav-link" >DashBoard</Link>
+                     <Link className="nav-link" to="/customer">DashBoard</Link>
                   </li>
                   <li className="nav-item">
-                     <Link className="nav-link" to="#">MyQuotation</Link>
+                     <Link className="nav-link" to="">MyOrders</Link>
                   </li>
                   <li className="nav-item">
                      <Link className="nav-link" to='/customer/enquiries'>MyEnquires</Link>

@@ -32,6 +32,8 @@ import CustomerProfile from './components/customer/CustomerProfile';
 import PaymentDetails from './components/payment/PaymentDetails';
 // import Payment from './components/payment/Payment';
 import Payment from './components/payment/Payment';
+import { useDispatch } from 'react-redux';
+import { startGetEnquiries } from './actions/enquiry-action';
 import Orderview from './components/order/OrderView';
 import Stats from './components/company/Stats';
 // import Registration from './components/Auth/RegisterProvider';
@@ -41,6 +43,7 @@ export const UserContext = createContext()
 function App() {
   const [userState, userDispatch] = useReducer(userReducer, { user: {}, company: {}, companylist: [] })
   const isLoggedIn = !!userState.user._id
+  const dispatch = useDispatch()
   console.log(userState)
   //console.log(isLoggedIn, 'id')
   // console.log(userState, 'state')
@@ -69,11 +72,14 @@ function App() {
             }
           })
           const user = profile.data
-          //console.log(user)
+          console.log(user,'user data')
           const companyuser = profile.data.user
           userDispatch({ type: 'USER_LOGIN', payload: user })
           userDispatch({ type: 'USER_LOGIN', payload: companyuser })
           userDispatch({ type: 'USER_COMPANY', payload: user.company })
+          if(user.role === 'companyAdmin' || user.role === 'customer'){
+            dispatch(startGetEnquiries())
+          }
         } catch (e) {
           console.log(e)
         }

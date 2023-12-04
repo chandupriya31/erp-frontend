@@ -1,5 +1,5 @@
 
-const initialState = { quotation: [], List: [], quserverErrors: [] }
+const initialState = { quotation: {}, List: [], quserverErrors: [] }
 
 export const quotationReducer = (state = initialState, action) => {
    switch (action.type) {

@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import axios from "../../config/axios"
 import Card from 'react-bootstrap/Card'
 import Table from 'react-bootstrap/Table'
+import _ from 'lodash'
 
 export default function Quotationview() {
    const navigate = useNavigate()
@@ -16,10 +17,14 @@ export default function Quotationview() {
    const quotation = userState.user?.myQuotations
       ?.find((ele) => ele.enquiry._id === id)
    console.log(quotation, 'qv')
+<<<<<<< HEAD
+   localStorage.setItem('enquiry',quotation?.enquiry._id)
+=======
 
 
    localStorage.setItem('enquiry', quotation?.enquiry?._id)
 
+>>>>>>> 49fde8d104707e34ca4dda8b56c285a9398e1574
 
    const [isApproved, setIsApproved] = useState(quotation?.termsandconditions?.isApproved)
 
@@ -106,13 +111,15 @@ export default function Quotationview() {
                         </tbody>
                      </Table>
                   </div>
-                  <div>
-                     <label>agreed</label>
-                     <input class="form-check-input" type="checkbox" checked={isApproved}
-                        onChange={handleChange}
-                        id="flexCheckChecked" />
-                  </div>
-                  <Button variant="primary" disabled={!isApproved} onClick={handleClick}>Move to payment</Button>
+                  {userState.user.role==='customer' ? 
+                     <div>
+                        <label>agreed</label>
+                        <input class="form-check-input" type="checkbox" checked={isApproved}
+                           onChange={handleChange}
+                           id="flexCheckChecked" />
+                           <Button variant="primary" disabled={!isApproved} onClick={handleClick}>Move to payment</Button>
+                     </div>
+                  :<Button>Edit</Button>}
                </Card.Body>
             </Card>
          ) : (

@@ -24,18 +24,22 @@ function Payment(props){
     }
 
     const home = () =>{
-        navigate('/dashboard')
+        navigate('/customer')
+        localStorage.removeItem('enquiry')
+        localStorage.removeItem('quotation')
+        localStorage.removeItem('transactionId')
     }
 
     useEffect(()=>{
         if(success){
             (async()=>{
                 dispatch(startUpdatePayment(localStorage.getItem('quotation')))
-                back()
+                // back()
             })()
         }else{
             (async()=>{
                 dispatch(deletePayment(localStorage.getItem('transactionId')))
+                // home()
             })()
         }
     })
