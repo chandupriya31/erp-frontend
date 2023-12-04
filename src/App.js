@@ -26,14 +26,13 @@ import QuotationContainer from './components/quotations/QuotationContainer';
 import Categories from './components/products-categories/categories';
 import Customercontainer from './components/customer/enquiry-quo-container';
 import Enquirylist from './components/customer/Enquirylist';
-import Addorder from './components/orderacceptance.js/Order-accpt';
+import Addorder from './components/orderacceptance/Order-accpt';
 import Myenquires from './components/customer/Myenquiries';
 import Quotationview from './components/customer/Quotation-view';
 import CustomerProfile from './components/customer/CustomerProfile';
 import PaymentDetails from './components/payment/PaymentDetails';
 // import Payment from './components/payment/Payment';
 import Payment from './components/payment/Payment';
-import Orderview from './components/order/OrderView';
 // import Registration from './components/Auth/RegisterProvider';
 
 export const UserContext = createContext()
@@ -69,7 +68,7 @@ function App() {
             }
           })
           const user = profile.data
-          //console.log(user)
+          console.log(user,'user data')
           const companyuser = profile.data.user
           userDispatch({ type: 'USER_LOGIN', payload: user })
           userDispatch({ type: 'USER_LOGIN', payload: companyuser })
@@ -114,7 +113,6 @@ function App() {
           {/* <Route path='/quotation/payment' element={<Payment/>}/> */}
           <Route path='/quotation/payment' element={<Payment />} />
           <Route path='/order/:id' element={<Addorder />} />
-          <Route path='/orderview/:id' element={<Orderview />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
