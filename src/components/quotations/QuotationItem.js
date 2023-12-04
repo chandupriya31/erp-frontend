@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import { startGetorder, getOrderList } from '../../actions/order-action';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export function QuotationItem(props) {
    const { ele } = props
@@ -19,11 +20,12 @@ export function QuotationItem(props) {
    const order = useSelector((state) => {
       return state.order.order.find(e => e.quotationId === ele._id)
    })
-   console.log(order,'')
+   console.log(order, 'order._id')
 
    useEffect(() => {
       dispatch(getOrderList())
    }, [])
+
    function handleClick() {
       const formData = {
          quotationId: ele._id,
@@ -47,7 +49,7 @@ export function QuotationItem(props) {
          <td>{ele.termsandconditions.isApproved ? (
             <div>
                <Checkmark size='25px' />
-               {order ? <Button>view</Button> : <Button variant="primary" onClick={handleShow}>create order</Button>}
+               {order && order.quotationId === ele._id ? <Link to={`/orderview/${order._id}`} ><Button>view</Button></Link> : <Button variant="primary" onClick={handleShow}>create order</Button>}
                <Modal show={show} onHide={handleClose}>
                   <Modal.Header closeButton>
                      <Modal.Title>Modal heading</Modal.Title>
