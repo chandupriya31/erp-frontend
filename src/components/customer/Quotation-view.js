@@ -11,6 +11,7 @@ export default function Quotationview() {
    const params = useParams()
    const { id } = params
    const { userState } = useContext(UserContext)
+   console.log(userState,'user')
 
    const quotation = userState.user?.myQuotations
       ?.find((ele) => ele.enquiry._id === id)

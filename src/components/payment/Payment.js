@@ -15,7 +15,7 @@ function Payment(props){
     console.log('query string',search);
     console.log('search',queryString.parse(search))
     const {success,cancel} = queryString.parse(search)
-    console.log(cancel,'cancel')
+    console.log(success,'success')
     const back = ()=>{
         navigate(`/quotationview/${localStorage.getItem('enquiry')}`)
         localStorage.removeItem('enquiry')
