@@ -14,13 +14,19 @@ function Payment(props){
     const {search} = location
     console.log('query string',search);
     console.log('search',queryString.parse(search))
-    const {success,cancel} = search
+    const {success,cancel} = queryString.parse(search)
+    console.log(success,'success')
     const back = ()=>{
         navigate(`/quotationview/${localStorage.getItem('enquiry')}`)
         localStorage.removeItem('enquiry')
         localStorage.removeItem('quotation')
         localStorage.removeItem('transactionId')
     }
+
+    const home = () =>{
+        navigate('/dashboard')
+    }
+
     useEffect(()=>{
         if(success){
             (async()=>{
@@ -36,7 +42,7 @@ function Payment(props){
 
     return (
         <div>
-            <Button onClick={back}>Go Back to quotation</Button>
+            {success ? <Button onClick={home}>Get back to orders</Button>:<Button onClick={back}>Go Back to quotation</Button>}    
         </div>
     )
 }
