@@ -35,3 +35,18 @@ const getorder = (data) => {
 const addorder = (data) => {
    return ({ type: 'SET_ORDER', payload: data })
 }
+
+export const startEdit = async (id, status) => {
+   return async (dispatch) => {
+      try {
+         const response = await axios.put(`/api/order/${id}`, { status }, {
+            headers: {
+               Authorization: localStorage.getItem('token')
+            }
+         })
+         console.log(response.data)
+      } catch (e) {
+         console.log(e)
+      }
+   }
+}

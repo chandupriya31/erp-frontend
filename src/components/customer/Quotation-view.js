@@ -11,12 +11,15 @@ export default function Quotationview() {
    const params = useParams()
    const { id } = params
    const { userState } = useContext(UserContext)
-   console.log(userState,'user')
+   console.log(userState, 'user')
 
    const quotation = userState.user?.myQuotations
       ?.find((ele) => ele.enquiry._id === id)
    console.log(quotation, 'qv')
-   localStorage.setItem('enquiry',quotation.enquiry._id)
+
+
+   localStorage.setItem('enquiry', quotation?.enquiry?._id)
+
 
    const [isApproved, setIsApproved] = useState(quotation?.termsandconditions?.isApproved)
 
