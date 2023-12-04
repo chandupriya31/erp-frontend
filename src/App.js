@@ -34,6 +34,8 @@ import PaymentDetails from './components/payment/PaymentDetails';
 import Payment from './components/payment/Payment';
 import { useDispatch } from 'react-redux';
 import { startGetEnquiries } from './actions/enquiry-action';
+import Orderview from './components/order/OrderView';
+import Stats from './components/company/Stats';
 // import Registration from './components/Auth/RegisterProvider';
 
 export const UserContext = createContext()
@@ -117,6 +119,8 @@ function App() {
           <Route path='/payment-details' element={<PaymentDetails />} />
           {/* <Route path='/quotation/payment' element={<Payment/>}/> */}
           <Route path='/quotation/payment' element={<Payment />} />
+          <Route path='/orderview/:id' element={<Orderview />} />
+          <Route path='/stats' element={<Stats />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
