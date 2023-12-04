@@ -2,30 +2,45 @@ import { useSelector } from "react-redux/es/hooks/useSelector"
 import { useParams } from "react-router-dom"
 import Card from 'react-bootstrap/Card'
 import Table from "react-bootstrap/Table"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "react-bootstrap"
 import { useDispatch } from "react-redux"
 import { startEdit } from "../../actions/order-action"
 export default function Orderview() {
    const [status, setstatus] = useState('')
+   const dispatch = useDispatch()
    const params = useParams()
    const { id } = params
    console.log(id, 'id')
-   const dispatch = useDispatch()
+
    const order = useSelector((state) => {
       return state.order.order.find(ele => ele._id === id)
    })
    console.log(order)
 
-   const product = order?.customerId?.myQuotations.find(ele => ele._id == order.quotationId
+   const product = order?.customerId?.myQuotations?.find(ele => ele._id == order.quotationId
    )
    console.log(product)
 
-   function handleClick() {
-      dispatch(startEdit(order._id, status))
+   const handleClick = async () => {
+      try {
+         dispatch(startEdit(order?._id, status))
+         localStorage.setItem('status', status) // Save 'status' in localStorage
+         setstatus('')
+      } catch (error) {
+         console.error('Error updating status:', error)
+      }
    }
+
+   useEffect(() => {
+      const storedStatus = localStorage.getItem('status')
+      if (storedStatus) {
+         setstatus(storedStatus)
+      }
+   }, [])
+
    return (
-      <div>
+      <div className="d-flex justify-content-center mt-5">
          <Card className="text-center w-75 p-2 shadow-lg p-3 mb-5 bg-body-tertiary rounded" >
             <Card.Header className="fs-2">OrderAcceptance</Card.Header>
             <Card.Body>
@@ -84,7 +99,7 @@ export default function Orderview() {
                         <tr>
                            <td class="fw-normal">status of Product</td>
                            <td className="fw-bold">{order?.statusofProduct}<br /><input type="text" value={status} onChange={(e) => { setstatus(e.target.value) }} />
-                              <Button onClick={() => { handleClick() }}>update</Button></td>
+                              <Button onClick={handleClick}>update</Button></td>
                         </tr>
                      </tbody>
                   </Table>

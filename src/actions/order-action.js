@@ -36,17 +36,22 @@ const addorder = (data) => {
    return ({ type: 'SET_ORDER', payload: data })
 }
 
-export const startEdit = async (id, status) => {
+export const startEdit = (id, status) => {
    return async (dispatch) => {
       try {
-         const response = await axios.put(`/api/order/${id}`, { status }, {
+         const response = await axios.put(`/api/order/${id}`, { statusofProduct: status }, {
             headers: {
-               Authorization: localStorage.getItem('token')
+               'Authorization': localStorage.getItem('token')
             }
          })
+         dispatch((editOrder(response.data)))
          console.log(response.data)
-      } catch (e) {
-         console.log(e)
+      } catch (error) {
+         console.error('Error updating status:', error)
       }
    }
+}
+
+const editOrder = (data) => {
+   return ({ type: 'EDIT', payload: data })
 }
