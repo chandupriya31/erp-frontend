@@ -60,7 +60,7 @@ export default function Login() {
    });
    return (
       <div className="container d-flex justify-content-center mt-5 ">
-         {serverError?.length > 0 && (
+         {serverError.length > 0 && (
             <div className="server-errors mt-3 ">
                {serverError.map((ele, index) => (
                   <div key={index} className="alert alert-danger" style={{ width: '200px' }} role="alert">
