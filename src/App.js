@@ -33,6 +33,7 @@ import CustomerProfile from './components/customer/CustomerProfile';
 import PaymentDetails from './components/payment/PaymentDetails';
 // import Payment from './components/payment/Payment';
 import Payment from './components/payment/Payment';
+import Orderview from './components/order/OrderView';
 // import Registration from './components/Auth/RegisterProvider';
 
 export const UserContext = createContext()
@@ -113,6 +114,7 @@ function App() {
           {/* <Route path='/quotation/payment' element={<Payment/>}/> */}
           <Route path='/quotation/payment' element={<Payment />} />
           <Route path='/order/:id' element={<Addorder />} />
+          <Route path='/orderview/:id' element={<Orderview />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
