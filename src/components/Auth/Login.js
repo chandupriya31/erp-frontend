@@ -1,15 +1,53 @@
 import { useFormik } from 'formik';
 import axios from '../../config/axios';
 import { useNavigate, Link } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useContext, useState,useEffect } from 'react';
 import * as Yup from 'yup';
 import { UserContext } from '../../App';
 import Spinner from 'react-bootstrap/Spinner'
+import { useDispatch } from 'react-redux';
+import { startGetEnquiries } from '../../actions/enquiry-action';
 export default function Login() {
+   const dispatch = useDispatch()
    const { userDispatch } = useContext(UserContext);
    const [serverError, setServerError] = useState([]);
    const [isSubmitting, setIsSubmitting] = useState(false)
    const navigate = useNavigate();
+
+   useEffect(() => {
+      (async () => {
+        try {
+          const response = await axios.get('/api/companies/list')
+          userDispatch({ type: 'COMAPNY_LIST', payload: response.data })
+        } catch (e) {
+          console.log(e)
+        }
+      })()
+    }, [])
+   useEffect(() => {
+      if (localStorage.getItem('token')) { // handling page reload
+        (async () => {
+            try {
+               const profile = await axios.get('/api/getprofile', {
+                  headers: {
+                  'Authorization': localStorage.getItem('token')
+                  }
+               })
+               const user = profile.data
+               console.log(user,'user data')
+               const companyuser = profile.data.user
+               userDispatch({ type: 'USER_LOGIN', payload: user })
+               userDispatch({ type: 'USER_LOGIN', payload: companyuser })
+               userDispatch({ type: 'USER_COMPANY', payload: user.company })
+               if(user.role === 'companyAdmin' || user.role === 'customer'){
+                  dispatch(startGetEnquiries())
+                }
+            } catch (e) {
+               console.log(e)
+            }
+        })()
+      }
+   }, [])
 
    const registerValidation = Yup.object().shape({
       email: Yup.string()
