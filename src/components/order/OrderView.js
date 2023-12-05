@@ -2,10 +2,12 @@ import { useSelector } from "react-redux/es/hooks/useSelector"
 import { useParams } from "react-router-dom"
 import Card from 'react-bootstrap/Card'
 import Table from "react-bootstrap/Table"
-import { useState, useEffect } from "react"
+import { useEffect, useContext, useState } from "react"
 import { Button } from "react-bootstrap"
 import { useDispatch } from "react-redux"
 import { startEdit } from "../../actions/order-action"
+import { getOrderList } from "../../actions/order-action"
+
 export default function Orderview() {
    const [status, setstatus] = useState('')
    const dispatch = useDispatch()
@@ -18,14 +20,13 @@ export default function Orderview() {
    })
    console.log(order)
 
-   const product = order?.customerId?.myQuotations?.find(ele => ele._id == order.quotationId
-   )
+   const product = order?.customerId?.myQuotations?.find(ele => ele._id == order.quotationId)
    console.log(product)
 
    const handleClick = async () => {
       try {
          dispatch(startEdit(order?._id, status))
-         localStorage.setItem('status', status) // Save 'status' in localStorage
+         // localStorage.setItem('status', status) // Save 'status' in localStorage
          setstatus('')
       } catch (error) {
          console.error('Error updating status:', error)
@@ -33,10 +34,11 @@ export default function Orderview() {
    }
 
    useEffect(() => {
-      const storedStatus = localStorage.getItem('status')
-      if (storedStatus) {
-         setstatus(storedStatus)
-      }
+      // const storedStatus = localStorage.getItem('status')
+      // if (storedStatus) {
+      //    setstatus(storedStatus)
+      // }
+      dispatch(getOrderList())
    }, [])
 
    return (

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { UserContext } from "../../App"
 import Button from 'react-bootstrap/Button'
@@ -6,9 +6,12 @@ import axios from "../../config/axios"
 import Card from 'react-bootstrap/Card'
 import Table from 'react-bootstrap/Table'
 import _ from 'lodash'
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { startEditQuote,startSetQuotation } from "../../actions/quotation-action"
 
 export default function Quotationview() {
+   const dispatch = useDispatch()
+   const [totalCost,setTotalCost] = useState('')
    const navigate = useNavigate()
    const params = useParams()
    const { id } = params
@@ -19,15 +22,25 @@ export default function Quotationview() {
       return state.quotation.list
    })
 
+   useEffect(()=>{
+      dispatch(startSetQuotation())
+   })
+
    console.log('quote1',quote)
 
    const quotation = quote.find((ele)=>{
       return ele.enquiry._id === id
    })
-
+   const handleCostChange = (id)=>{
+      const formData = {
+         totalCost: Number(totalCost)
+      }
+      dispatch(startEditQuote(id,formData))
+      setTotalCost('')
+   }
    // const quotation = userState.user?.myQuotations
    //    ?.find((ele) => ele.enquiry._id === id)
-   console.log(quotation, 'qv')
+   console.log(quotation.product, 'qv')
 
    localStorage.setItem('enquiry', quotation?.enquiry?._id)
 
@@ -65,8 +78,8 @@ export default function Quotationview() {
                         <tbody>
                            <tr>
                               <td class="fw-normal">company name <br />address</td>
-                              <td className="fw-bold">{quotation.enquiry?.company?.companyname}<br />
-                                 address-{quotation.enquiry?.company?.contactdetails?.address?.name}
+                              <td className="fw-bold">{quotation.company?.companyname}<br />
+                                 address-{quotation.company?.contactdetails?.address?.name}
                               </td>
                            </tr>
                            <tr>
@@ -87,7 +100,7 @@ export default function Quotationview() {
                            </tr>
                            <tr>
                               <td class="fw-normal">product name</td>
-                              <td className="fw-bold">{quotation.enquiry?.productId?.productname}</td>
+                              <td className="fw-bold">{quotation.product?.productname}</td>
                            </tr>
                            <tr>
                               <td class="fw-normal">quantity</td>
@@ -99,11 +112,17 @@ export default function Quotationview() {
                            </tr>
                            <tr>
                               <td class="fw-normal">total price</td>
-                              <td className="fw-bold">{quotation?.totalCost}</td>
+                              <td className="fw-bold">{quotation?.totalCost}<br/>{userState.user.role === 'companyAdmin' && (<div>
+                              <input 
+                                 type="number"
+                                 value = {totalCost}
+                                 onChange={e => setTotalCost(e.target.value)}
+                              /><Button onClick={()=>handleCostChange(quotation._id)}>Update cost</Button>
+                           </div>)}</td>
                            </tr>
                            <tr>
                               <td class="fw-normal">product warrenty</td>
-                              <td className="fw-bold">{quotation.enquiry?.productId?.productWarranty}</td>
+                              <td className="fw-bold">{quotation.product?.productWarranty}</td>
                            </tr>
                            <tr>
                               <td class="fw-normal">delivery duration</td>
@@ -111,7 +130,7 @@ export default function Quotationview() {
                            </tr>
                            <tr>
                               <td class="fw-normal">payment terms</td>
-                              <td className="fw-bold">{quotation.enquiry?.productId?.paymentTerms}</td>
+                              <td className="fw-bold">{quotation.product?.paymentTerms}</td>
                            </tr>
                         </tbody>
                      </Table>

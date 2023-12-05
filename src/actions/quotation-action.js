@@ -49,3 +49,22 @@ const serverErrors = (msg) => {
 export const quotationLogout = () => {
    return ({ type: 'QUOTATION_LOG_OUT' })
 }
+
+export const startEditQuote = (id,formData)=>{
+   return async(dispatch)=>{
+      try{
+         const response = await axios.put(`/api/quotation/${id}`,formData,{
+            headers:{
+               'Authorization':localStorage.getItem('token')
+            }
+         })
+         dispatch(editQuote(response.data))
+      }catch(e){
+         console.log(e)
+      }
+   }
+}
+
+const editQuote = (data)=>{
+   return {type:'EDIT_QUOTE',payload:data}
+}

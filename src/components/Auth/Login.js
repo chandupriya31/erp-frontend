@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import axios from '../../config/axios';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useContext, useState,useEffect } from 'react';
 import * as Yup from 'yup';
 import { UserContext } from '../../App';
@@ -12,10 +12,13 @@ import { getOrderList } from '../../actions/order-action';
 import { startGetCategory, startGetProduct } from '../../actions/productactionCltr';
 export default function Login() {
    const dispatch = useDispatch()
+   const location = useLocation()
    const { userDispatch } = useContext(UserContext);
    const [serverError, setServerError] = useState([]);
    const [isSubmitting, setIsSubmitting] = useState(false)
    const navigate = useNavigate();
+   const prevPage = location?location.state:''
+   console.log('prev',prevPage)
 
    useEffect(() => {
       (async () => {
@@ -89,7 +92,11 @@ export default function Login() {
 
             if (user.role === 'customer') {
                userDispatch({ type: 'USER_LOGIN', payload: user });
-               navigate('/customer');
+               if(prevPage){
+                  navigate(prevPage)
+               }else{
+                  navigate('/customer');
+               }
             }
             if (user.user.role === 'companyAdmin') {
                userDispatch({ type: 'USER_LOGIN', payload: companyUser });

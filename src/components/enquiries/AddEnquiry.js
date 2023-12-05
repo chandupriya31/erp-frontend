@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "../../config/axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { setAddEnquiry } from "../../actions/enquiry-action";
+import { setAddEnquiry, startGetEnquiries } from "../../actions/enquiry-action";
 
 function AddEnquiry() {
   const navigate = useNavigate();
@@ -20,6 +20,7 @@ function AddEnquiry() {
   useEffect(() => {
     (async () => {
       try {
+        dispatch(startGetEnquiries())
         const response = await axios.get('/api/products/list');
         const companies = await axios.get('/api/companies/list');
         setProducts(response.data);

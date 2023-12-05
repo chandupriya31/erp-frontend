@@ -10,8 +10,11 @@ export const quotationReducer = (state = initialState, action) => {
          return { ...state, quserverErrors: action.payload }
       }
       case 'SET_QUOTATION': {
-         console.log(action.payload,'action')
+         // console.log(action.payload,'action')
          return { ...state, list: action.payload}
+      }
+      case 'EDIT_QUOTE':{
+         return {...state,quotation:{...state.quotation,...action.payload}}
       }
       case 'CLEAR': {
          return { ...state, quserverErrors: action.payload }
