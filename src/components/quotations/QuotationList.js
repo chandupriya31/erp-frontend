@@ -61,8 +61,8 @@ export function QuotationList(props) {
                </tr>
             </thead>
             <tbody>
-               {sortedList.map((ele, i) => {
-                  return <QuotationItem key={i} ele={ele} />;
+               {sortedList.map((ele) => {
+                  return <QuotationItem key={ele._id} ele={ele} />;
                })}
             </tbody>
          </Table>

@@ -33,12 +33,13 @@ export const startSetQuotation = () => {
             }
          })
          dispatch(setQuotation(response.data))
-         console.log(response.data)
+         // console.log(response.data,'response from dispatch')
       } catch (e) {
          console.log(e)
       }
    }
 }
+
 export const setQuotation = (data) => {
    return ({ type: 'SET_QUOTATION', payload: data })
 }

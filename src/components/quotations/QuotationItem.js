@@ -20,7 +20,7 @@ export function QuotationItem(props) {
    const order = useSelector((state) => {
       return state.order.order.find(e => e.quotationId === ele._id)
    })
-   console.log(order, 'order._id')
+   console.log(order,'order')
 
    useEffect(() => {
       dispatch(getOrderList())
@@ -38,7 +38,7 @@ export function QuotationItem(props) {
    return (
       <tr className='text-center mt-3'>
          <td>{new Date(ele.date).toLocaleDateString()}</td>
-         <td>{ele.enquiry}</td>
+         <td>{ele.enquiry._id}</td>
          <td>{new Date(ele.quotationExpiry).toLocaleDateString()}</td>
          <td>{ele.customer && ele.customer.username}</td>
          <td>{ele.product && ele.product.productname}</td>

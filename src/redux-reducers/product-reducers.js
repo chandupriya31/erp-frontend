@@ -21,9 +21,6 @@ export const productReducer = (state = initialState, action) => {
       case 'SET_SERVER_ERRORS': {
          return { ...state, serverErrors: action.payload }
       }
-      // case 'CLEAR_ERROR': {
-      //    return { ...state, serverErrors: action.payload }
-      // }
       default: {
          return { ...state }
       }

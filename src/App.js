@@ -34,8 +34,11 @@ import PaymentDetails from './components/payment/PaymentDetails';
 import Payment from './components/payment/Payment';
 import { useDispatch } from 'react-redux';
 import { startGetEnquiries } from './actions/enquiry-action';
+import { startSetQuotation } from './actions/quotation-action';
 import Orderview from './components/order/OrderView';
 import Stats from './components/company/Stats';
+import { startGetCatProduct, startGetCategory, startGetProduct } from './actions/productactionCltr';
+import { getOrderList } from './actions/order-action';
 // import Registration from './components/Auth/RegisterProvider';
 
 export const UserContext = createContext()
@@ -53,6 +56,8 @@ function App() {
   useEffect(() => {
     (async () => {
       try {
+        dispatch(startGetProduct())
+        dispatch(startGetCategory())
         const response = await axios.get('/api/companies/list')
         userDispatch({ type: 'COMAPNY_LIST', payload: response.data })
       } catch (e) {
@@ -79,6 +84,8 @@ function App() {
           userDispatch({ type: 'USER_COMPANY', payload: user.company })
           if(user.role === 'companyAdmin' || user.role === 'customer'){
             dispatch(startGetEnquiries())
+            dispatch(startSetQuotation())
+            dispatch(getOrderList())
           }
         } catch (e) {
           console.log(e)

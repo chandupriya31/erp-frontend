@@ -6,6 +6,7 @@ import axios from "../../config/axios"
 import Card from 'react-bootstrap/Card'
 import Table from 'react-bootstrap/Table'
 import _ from 'lodash'
+import { useSelector } from "react-redux"
 
 export default function Quotationview() {
    const navigate = useNavigate()
@@ -14,11 +15,21 @@ export default function Quotationview() {
    const { userState } = useContext(UserContext)
    console.log(userState, 'user')
 
-   const quotation = userState.user?.myQuotations
-      ?.find((ele) => ele.enquiry._id === id)
-   console.log(quotation, 'qv')
-   localStorage.setItem('enquiry',quotation?.enquiry._id)
+   const quote = useSelector((state)=>{
+      return state.quotation.list
+   })
 
+   console.log('quote1',quote)
+
+   const quotation = quote.find((ele)=>{
+      return ele.enquiry._id === id
+   })
+
+   // const quotation = userState.user?.myQuotations
+   //    ?.find((ele) => ele.enquiry._id === id)
+   console.log(quotation, 'qv')
+
+   localStorage.setItem('enquiry', quotation?.enquiry?._id)
 
    const [isApproved, setIsApproved] = useState(quotation?.termsandconditions?.isApproved)
 

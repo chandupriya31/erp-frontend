@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import { EnquiresItem } from "./EnquiriesItem";
 import Table from 'react-bootstrap/Table'
 // import { useEffect } from "react";
@@ -23,7 +23,7 @@ export function EnquiresList(props) {
                      <th>customer name</th>
                      <th>Quantity</th>
                      <th>enquiry Date</th>
-                     <th>send quotataion</th>
+                     <th>quotataion</th>
                   </tr>
                </thead>
                <tbody>
