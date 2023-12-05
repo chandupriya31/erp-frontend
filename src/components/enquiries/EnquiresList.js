@@ -23,7 +23,7 @@ export function EnquiresList(props) {
                      <th>customer name</th>
                      <th>Quantity</th>
                      <th>enquiry Date</th>
-                     <th>send quotataion</th>
+                     <th>quotataion</th>
                   </tr>
                </thead>
                <tbody>

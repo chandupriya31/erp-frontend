@@ -20,6 +20,7 @@ export function QuotationItem(props) {
    const order = useSelector((state) => {
       return state.order.order.find(e => e.quotationId === ele._id)
    })
+   console.log(order,'order')
 
    useEffect(() => {
       dispatch(getOrderList())
