@@ -9,21 +9,21 @@ const CompanyProfile = ()=>{
     const [isEdit,setIsEdit] = useState(false)
     const {userState,userDispatch} = useContext(UserContext)
     console.log(userState,'user')
-    const [username, setUsername] = useState(userState.user.username)
-    const [email, setEmail] = useState(userState.user.email)
-    const [companyname,setCompanyname] = useState(userState.company.companyname)
-    const [GST,setGST] = useState(userState.company.GST)
+    const [username, setUsername] = useState(userState.user?.username)
+    const [email, setEmail] = useState(userState.user?.email)
+    const [companyname,setCompanyname] = useState(userState.company?.companyname)
+    const [GST,setGST] = useState(userState.company?.GST)
     const [contactdetails, setContactDetails] = useState({
         address: {
-            name: userState.company.contactdetails.address.name
+            name: userState.company?.contactdetails?.address.name
         },
-        phone: userState.company.contactdetails.phone,
-        email: userState.company.contactdetails.email
+        phone: userState.company?.contactdetails?.phone,
+        email: userState.company?.contactdetails?.email
     })
     const [details, setDetails] = useState({
-        vision: userState.company.details.vision,
-        mission: userState.company.details.mission,
-        aboutus: userState.company.details.aboutus
+        vision: userState.company?.details?.vision,
+        mission: userState.company?.details?.mission,
+        aboutus: userState.company?.details?.aboutus
     })
     console.log(details)
     const handleAddressChange = (e) => {
@@ -59,18 +59,20 @@ const CompanyProfile = ()=>{
             contactdetails,
             details
         }
+        // console.log(formData)
         const response = await axios.put('/api/company/update',formData,{
             headers:{
                 'Authorization':localStorage.getItem('token')
             }
         })
-        userDispatch({type:'UPDATE_COMPANY_DETAILS',payload:formData})
+        userDispatch({type:'UPDATE_COMPANY_DETAILS',payload:response.data})
+        // userDispatch({ type: 'USER_COMPANY', payload: response.data})
     }
 
     // console.log(contactdetails)
 
 return (
-    <div className="container mt-3" style={{ width: '700px' }}>
+    <div className="container mt-3" style={{ width: '800px' }}>
         <div className="container mt-4 d-flex justify-content-center">
         <div className="card" style={{ width: '500px' }}>
             <div className="card-header">
