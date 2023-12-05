@@ -10,11 +10,13 @@ import { ListGroup } from "react-bootstrap";
 function CustomerProfile() {
     const { userState, userDispatch } = useContext(UserContext)
     console.log('user', userState.user)
+    const [edit,setEdit] = useState(false)
     const user = userState.user
     console.log(user)
     const [username, setUsername] = useState(user.username)
     const [email, setEmail] = useState(user.email)
     const handleChange = async (e) => {
+        setEdit(!edit)
         e.preventDefault()
         const formData = {
             username,
@@ -34,7 +36,7 @@ function CustomerProfile() {
     return (
         <div style={{ width: '600px' }} className="mx-auto p-5">
             <Card>
-                <Card.Header as="h5">Customer profile</Card.Header>
+                <Card.Header as="h5">Profile</Card.Header>
                 <Card.Body>
                     <Form>
                         <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
@@ -42,7 +44,7 @@ function CustomerProfile() {
                                 Username
                             </Form.Label>
                             <Col sm="10">
-                                <Form.Control type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                                <Form.Control type="text" value={username} onChange={(e) => setUsername(e.target.value)} disabled={edit===false}/>
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -50,7 +52,7 @@ function CustomerProfile() {
                                 Email
                             </Form.Label>
                             <Col sm="10">
-                                <Form.Control type="email" value={email} onChange={e => setEmail(e.target.value)} />
+                                <Form.Control type="email" value={email} onChange={e => setEmail(e.target.value)} disabled={edit===false}/>
                             </Col>
                         </Form.Group>
                     </Form>
@@ -61,7 +63,7 @@ function CustomerProfile() {
                     </ListGroup>
                 </Card.Body>
                 <div class="mx-auto p-2">
-                    <Button variant="primary" onClick={handleChange}>save</Button>
+                    <Button variant="primary" onClick={handleChange}>{edit ? 'save' : 'edit'}</Button>
                 </div>
             </Card>
         </div>

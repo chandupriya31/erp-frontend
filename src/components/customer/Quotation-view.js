@@ -7,9 +7,11 @@ import Card from 'react-bootstrap/Card'
 import Table from 'react-bootstrap/Table'
 import _ from 'lodash'
 import { useDispatch, useSelector } from "react-redux"
-import { startEditQuote,startSetQuotation } from "../../actions/quotation-action"
+import { startEditQuote,startGetComments,startSetQuotation } from "../../actions/quotation-action"
+import Comment from "../company/Comment"
 
 export default function Quotationview() {
+   const [commentView,setCommentView] = useState(false)
    const dispatch = useDispatch()
    const [totalCost,setTotalCost] = useState('')
    const navigate = useNavigate()
@@ -19,18 +21,26 @@ export default function Quotationview() {
    console.log(userState, 'user')
 
    const quote = useSelector((state)=>{
-      return state.quotation.list
+      return state?.quotation?.list
    })
 
-   useEffect(()=>{
-      dispatch(startSetQuotation())
+   const comments = useSelector((state)=>{
+      return state?.quotation?.commentsList
    })
+   console.log(comments,'com')
+   const quotation = quote.find((ele)=>{
+      return ele?.enquiry?._id === id
+   })
+   
+   useEffect(()=>{
+      (async()=>{
+         dispatch(startSetQuotation())
+         // dispatch(startGetComments(quotation?._id))
+      })()
+   },[])
 
    console.log('quote1',quote)
 
-   const quotation = quote.find((ele)=>{
-      return ele.enquiry._id === id
-   })
    const handleCostChange = (id)=>{
       const formData = {
          totalCost: Number(totalCost)
@@ -38,9 +48,13 @@ export default function Quotationview() {
       dispatch(startEditQuote(id,formData))
       setTotalCost('')
    }
+   const handleViewComments = (id)=>{
+      setCommentView(!commentView)
+      dispatch(startGetComments(id))
+   }
    // const quotation = userState.user?.myQuotations
    //    ?.find((ele) => ele.enquiry._id === id)
-   console.log(quotation.product, 'qv')
+   // console.log(quotation.product, 'qv')
 
    localStorage.setItem('enquiry', quotation?.enquiry?._id)
 
@@ -117,7 +131,7 @@ export default function Quotationview() {
                                  type="number"
                                  value = {totalCost}
                                  onChange={e => setTotalCost(e.target.value)}
-                              /><Button onClick={()=>handleCostChange(quotation._id)}>Update cost</Button>
+                              /><Button onClick={()=>handleCostChange(quotation._id)} disabled={isApproved===true}>Update cost</Button>
                            </div>)}</td>
                            </tr>
                            <tr>
@@ -135,7 +149,22 @@ export default function Quotationview() {
                         </tbody>
                      </Table>
                   </div>
-                  {userState.user.role==='customer' ? 
+                  <Button onClick={() => handleViewComments(quotation._id)}>
+                     {commentView ? 'Hide messages' : 'View messages'}
+                  </Button>
+                  {commentView && (comments ? (
+                     <div className="mt-3">
+                        {comments.map(ele => (
+                           <div key={ele._id} className="mb-2">
+                           <strong>{ele?.userId?.username}:</strong> {ele.content}
+                           </div>
+                        ))}
+                     </div>
+                  ) : (
+                     <p className="mt-3">No messages yet... begin your chat</p>
+                  ))}
+                  {isApproved ? '':<Comment quotation = {quotation._id}/>}
+                  {userState.user.role==='customer' && 
                      <div>
                         <label>agreed</label>
                         <input class="form-check-input" type="checkbox" checked={isApproved}
@@ -143,7 +172,7 @@ export default function Quotationview() {
                            id="flexCheckChecked" />
                            <Button variant="primary" disabled={!isApproved} onClick={handleClick}>Move to payment</Button>
                      </div>
-                  :<Button>Edit</Button>}
+                  }
                </Card.Body>
             </Card>
          ) : (

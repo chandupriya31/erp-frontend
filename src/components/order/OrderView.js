@@ -7,9 +7,11 @@ import { Button } from "react-bootstrap"
 import { useDispatch } from "react-redux"
 import { startEdit } from "../../actions/order-action"
 import { getOrderList } from "../../actions/order-action"
+import { UserContext } from "../../App"
 
 export default function Orderview() {
    const [status, setstatus] = useState('')
+   const {userState} = useContext(UserContext)
    const dispatch = useDispatch()
    const params = useParams()
    const { id } = params
@@ -83,8 +85,8 @@ export default function Orderview() {
                            <td className="fw-bold">{product?.totalCost}</td>
                         </tr>
                         <tr>
-                           <td class="fw-normal">deliverydate and duration</td>
-                           <td className="fw-bold">{new Date(order?.deliveryDate).toLocaleDateString()}-{product?.termsandconditions.delivery}</td>
+                           <td class="fw-normal">deliverydate</td>
+                           <td className="fw-bold">{new Date(order?.deliveryDate).toLocaleDateString()}</td>
                         </tr>
                         <tr>
                            <td class="fw-normal">product warrenty</td>
@@ -100,8 +102,12 @@ export default function Orderview() {
                         </tr>
                         <tr>
                            <td class="fw-normal">status of Product</td>
-                           <td className="fw-bold">{order?.statusofProduct}<br /><input type="text" value={status} onChange={(e) => { setstatus(e.target.value) }} />
-                              <Button onClick={handleClick}>update</Button></td>
+                           <td className="fw-bold">{order?.statusofProduct}<br />{userState.user.role=== 'companyAdmin' &&
+                              <div>
+                                 <input type="text" value={status} onChange={(e) => { setstatus(e.target.value) }} />
+                                 <Button onClick={handleClick} disabled={order?.statusofProduct == 'delivered'}>update</Button>
+                              </div>}
+                           </td>
                         </tr>
                      </tbody>
                   </Table>

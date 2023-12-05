@@ -33,26 +33,13 @@ export default function CompanyNavBar() {
                   <li className="nav-item">
                      <Link className="nav-link" to="/enquires">enquires</Link>
                   </li>
-                  {/* <li className="nav-item dropdown">
-                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Categories
-                     </a>
-                     <ul className="dropdown-menu">
-                        <li><a className="dropdown-item" href="#">Action</a></li>
-                        <li><a className="dropdown-item" href="#">Another action</a></li>
-                        <li><a className="dropdown-item" href="#">Something else here</a></li>
-                     </ul>
-                  </li> */}
                </ul>
                <ul className="navbar-nav ms-auto">
-                  {/* <li className="nav-item">
-                     <Link className="nav-link" to='/register'>Register</Link>
-                  </li> */}
                   <li className="nav-item">
                      <Link className="nav-link" to="/" onClick={handleLogout}>Logout</Link>
                   </li>
                   <li className="nav-item">
-                     <Link className="nav-link" to=''><BsPersonCircle style={{ fontSize: '25px' }}/></Link>
+                     <Link className="nav-link" to='/companyprofile'><BsPersonCircle style={{ fontSize: '25px' }}/></Link>
                   </li>
                </ul>
             </div>

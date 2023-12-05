@@ -68,3 +68,42 @@ export const startEditQuote = (id,formData)=>{
 const editQuote = (data)=>{
    return {type:'EDIT_QUOTE',payload:data}
 }
+
+export const startAddComment = (formData)=>{
+   return async(dispatch)=>{
+      try{
+         const response = await axios.post('/api/quotation/comments',formData,{
+            headers:{
+               'Authorization':localStorage.getItem('token')
+            }
+         })
+         dispatch(addComment(response.data))
+      }catch(e){
+         console.log(e)
+      }
+   }
+}
+
+const addComment = data =>{
+   return {type:'ADD_COMMENT',payload:data}
+}
+
+export const startGetComments = (id)=>{
+   return async(dispatch)=>{
+      try{
+         const response = await axios.get(`/api/quotation/comments/${id}`,{
+            headers:{
+               'Authorization':localStorage.getItem('token')
+            }
+         })
+         dispatch(getComments(response.data))
+         // console.log(response.data)
+      }catch(e){
+         console.log(e);
+      }
+   }
+}
+
+const getComments = data =>{
+   return {type:'GET_COMMENTS',payload:data}
+}

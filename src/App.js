@@ -39,6 +39,7 @@ import Orderview from './components/order/OrderView';
 import Stats from './components/company/Stats';
 import { startGetCatProduct, startGetCategory, startGetProduct } from './actions/productactionCltr';
 import { getOrderList } from './actions/order-action';
+import CompanyProfile from './components/company/CompanyProfile';
 // import Registration from './components/Auth/RegisterProvider';
 
 export const UserContext = createContext()
@@ -128,6 +129,7 @@ function App() {
           <Route path='/quotation/payment' element={<Payment />} />
           <Route path='/orderview/:id' element={<Orderview />} />
           <Route path='/stats' element={<Stats />} />
+          <Route path='/companyprofile' element={<CompanyProfile/>}/>
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

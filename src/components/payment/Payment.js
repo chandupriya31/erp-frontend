@@ -42,7 +42,7 @@ function Payment(props){
                 // home()
             })()
         }
-    })
+    },[])
 
     return (
         <div>
