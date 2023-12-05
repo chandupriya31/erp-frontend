@@ -6,9 +6,9 @@ export default function QuotationContainer() {
    const dispatch = useDispatch()
 
    const quotationList = useSelector((state) => {
-      return state?.quotation?.List
+      return state?.quotation?.list
    })
-   //console.log(quotataionList,'q-c-list')
+   console.log(quotationList,'q-c-list')
    useEffect(() => {
       dispatch(startSetQuotation())
    }, [])
