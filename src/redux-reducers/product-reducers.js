@@ -21,6 +21,9 @@ export const productReducer = (state = initialState, action) => {
       case 'SET_SERVER_ERRORS': {
          return { ...state, serverErrors: action.payload }
       }
+      case 'DELETE_PRODUCT':{
+         return {...state,data:state.data.filter(ele => ele._id !== action.payload._id)}
+      }
       default: {
          return { ...state }
       }

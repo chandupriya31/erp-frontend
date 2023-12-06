@@ -40,6 +40,7 @@ import Stats from './components/company/Stats';
 import { startGetCatProduct, startGetCategory, startGetProduct } from './actions/productactionCltr';
 import { getOrderList } from './actions/order-action';
 import CompanyProfile from './components/company/CompanyProfile';
+import CompanyProducts from './components/company/CompanyProducts';
 // import Registration from './components/Auth/RegisterProvider';
 
 export const UserContext = createContext()
@@ -114,7 +115,7 @@ function App() {
           <Route path='/company-list' element={<CompanyList />} />
           <Route path='/enquires' element={<Enquires />} />
           <Route path='/company-website/:id' element={<IndividualCompany />} />
-          <Route path='/company/products' element={<Products />} />
+          <Route path='/company/products/:id' element={<Products />} />
           <Route path='/dashboard' element={<DashBoard />} />
           <Route path='/quotation-list' element={<QuotationContainer />} />
           <Route path='/company/categories' element={<Categories />} />
@@ -130,6 +131,7 @@ function App() {
           <Route path='/orderview/:id' element={<Orderview />} />
           <Route path='/stats' element={<Stats />} />
           <Route path='/companyprofile' element={<CompanyProfile/>}/>
+          <Route path='/company/products' element={<CompanyProducts/>}/>
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
