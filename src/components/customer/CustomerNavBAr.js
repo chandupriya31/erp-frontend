@@ -26,7 +26,7 @@ export default function CustomerNavBar() {
                      <Link className="nav-link" to="/customer">DashBoard</Link>
                   </li>
                   <li className="nav-item">
-                     <Link className="nav-link" to="">MyOrders</Link>
+                     <Link className="nav-link" to="customer-order">MyOrders</Link>
                   </li>
                   <li className="nav-item">
                      <Link className="nav-link" to='/customer/enquiries'>MyEnquires</Link>

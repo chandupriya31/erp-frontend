@@ -12,7 +12,7 @@ export const startPayment = (formData) => {
             localStorage.setItem('transactionId', response.data.id)
             window.location = response.data.url
         } catch (e) {
-            console.log(e)
+            alert(e.response.data.raw.code)
         }
     }
 }

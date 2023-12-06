@@ -1,46 +1,48 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import NavBar from './components/NavBars/NavBar';
-import CompanyNavBar from './components/NavBars/CompanyNavBar';
-import CustomerNavBar from './components/customer/CustomerNavBAr';
-import { useEffect, useReducer, createContext } from 'react';
-import Register from './components/Auth/Register';
+import NavBar from './components/NavBars/NavBar'
+import CompanyNavBar from './components/NavBars/CompanyNavBar'
+import CustomerNavBar from './components/customer/CustomerNavBAr'
+import { useEffect, useReducer, createContext } from 'react'
+import Register from './components/Auth/Register'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-bootstrap'
 import axios from './config/axios'
 import Home from './components/Home'
-import Customer from './components/customer/customer';
-import Login from './components/Auth/Login';
-import userReducer from './reducer/UserReducer';
-import AddProduct from './components/products-categories/product-add';
-import Company from './components/Auth/Company';
-import CompanyDetails from './components/Auth/CompanyDetails';
-import CompanyList from './components/company/Company-list-home';
-import AddEnquiry from './components/enquiries/AddEnquiry';
-import IndividualCompany from './components/company/IndividualCompany';
-import Enquires from './components/enquiries/EnquiriesContainer';
-import Products from './components/products-categories/Products';
+import Customer from './components/customer/customer'
+import Login from './components/Auth/Login'
+import userReducer from './reducer/UserReducer'
+import AddProduct from './components/products-categories/product-add'
+import Company from './components/Auth/Company'
+import CompanyDetails from './components/Auth/CompanyDetails'
+import CompanyList from './components/company/Company-list-home'
+import AddEnquiry from './components/enquiries/AddEnquiry'
+import IndividualCompany from './components/company/IndividualCompany'
+import Enquires from './components/enquiries/EnquiriesContainer'
+import Products from './components/products-categories/Products'
 import IndividualProduct from './components/products-categories/IndividualProduct'
-import { DashBoard } from './components/company/DashBoard';
-import QuotationContainer from './components/quotations/QuotationContainer';
-import Categories from './components/products-categories/categories';
-import Customercontainer from './components/customer/enquiry-quo-container';
-import Enquirylist from './components/customer/Enquirylist';
-import Myenquires from './components/customer/Myenquiries';
-import Quotationview from './components/customer/Quotation-view';
-import CustomerProfile from './components/customer/CustomerProfile';
-import PaymentDetails from './components/payment/PaymentDetails';
-// import Payment from './components/payment/Payment';
-import Payment from './components/payment/Payment';
-import { useDispatch } from 'react-redux';
-import { startGetEnquiries } from './actions/enquiry-action';
-import { startSetQuotation } from './actions/quotation-action';
-import Orderview from './components/order/OrderView';
-import Stats from './components/company/Stats';
-import { startGetCatProduct, startGetCategory, startGetProduct } from './actions/productactionCltr';
-import { getOrderList } from './actions/order-action';
-import CompanyProfile from './components/company/CompanyProfile';
-// import Registration from './components/Auth/RegisterProvider';
+import { DashBoard } from './components/company/DashBoard'
+import QuotationContainer from './components/quotations/QuotationContainer'
+import Categories from './components/products-categories/categories'
+import Customercontainer from './components/customer/enquiry-quo-container'
+import Enquirylist from './components/customer/Enquirylist'
+import Myenquires from './components/customer/Myenquiries'
+import Quotationview from './components/customer/Quotation-view'
+import CustomerProfile from './components/customer/CustomerProfile'
+import PaymentDetails from './components/payment/PaymentDetails'
+import MyorderItem from './components/customer/Myorderitem'
+// import Payment from './components/payment/Payment'
+import Payment from './components/payment/Payment'
+import { useDispatch } from 'react-redux'
+import { startGetEnquiries } from './actions/enquiry-action'
+import { startSetQuotation } from './actions/quotation-action'
+import Orderview from './components/order/OrderView'
+import Stats from './components/company/Stats'
+import { startGetCatProduct, startGetCategory, startGetProduct } from './actions/productactionCltr'
+import { getOrderList } from './actions/order-action'
+import CompanyProfile from './components/company/CompanyProfile'
+import Myorders from './components/customer/Myorders'
+// import Registration from './components/Auth/RegisterProvider'
 
 export const UserContext = createContext()
 
@@ -78,12 +80,12 @@ function App() {
             }
           })
           const user = profile.data
-          console.log(user,'user data')
+          console.log(user, 'user data')
           const companyuser = profile.data.user
           userDispatch({ type: 'USER_LOGIN', payload: user })
           userDispatch({ type: 'USER_LOGIN', payload: companyuser })
           userDispatch({ type: 'USER_COMPANY', payload: user.company })
-          if(user.role === 'companyAdmin' || user.role === 'customer'){
+          if (user.role === 'companyAdmin' || user.role === 'customer') {
             dispatch(startGetEnquiries())
             dispatch(startSetQuotation())
             dispatch(getOrderList())
@@ -129,10 +131,12 @@ function App() {
           <Route path='/quotation/payment' element={<Payment />} />
           <Route path='/orderview/:id' element={<Orderview />} />
           <Route path='/stats' element={<Stats />} />
-          <Route path='/companyprofile' element={<CompanyProfile/>}/>
+          <Route path='/companyprofile' element={<CompanyProfile />} />
+          <Route path='customer-order' element={<Myorders />} />
+          <Route path='/order/:id' element={<MyorderItem />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
-  );
+  )
 }
-export default App;
+export default App

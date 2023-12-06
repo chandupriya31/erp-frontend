@@ -61,7 +61,7 @@ export default function Register(props) {
           setPassword('');
           setRole('');
         } catch (e) {
-          setServerErrors(e.response.data.errors);
+          setServerErrors(e.response?.data.errors);
         }
       } else {
         localStorage.setItem('registerFormData', JSON.stringify(formData));

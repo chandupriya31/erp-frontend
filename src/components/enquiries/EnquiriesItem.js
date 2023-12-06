@@ -41,7 +41,7 @@ export function EnquiresItem(props) {
          <td>{customerId.username}</td>
          <td>{quantity}</td>
          <td>{new Date(date).toLocaleDateString()}</td>
-         <td>{present ? <Button  variant="primary" onClick={()=>handleViewQuotation(present.enquiry._id)}>View quotation</Button>:<Button variant="primary" onClick={() => setLgShow(true)} >send quotation</Button>}</td>
+         <td>{present ? <Button  variant="success" onClick={()=>handleViewQuotation(present.enquiry._id)}>View quotation</Button>:<Button variant="primary" onClick={() => setLgShow(true)} >send quotation</Button>}</td>
          {/* <td><Button variant="primary" onClick={() => setLgShow(true)} >send quotation</Button></td> */}
       <tr />
          <div>
