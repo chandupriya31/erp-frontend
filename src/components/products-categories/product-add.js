@@ -211,7 +211,7 @@ export default function AddProduct() {
                      )}
                      {/* <Form.Label>Best Seller</Form.Label> *you can only add 3 Best Seller products
                      <Form.Control type="radio" name="bestSeller" checked={bestSeller} onChange={() => setBestSeller(!bestSeller)}/> */}
-                     <Form.Label>paymanet terms</Form.Label>
+                     <Form.Label>payment terms</Form.Label>
                      <Form.Control as='textarea' type="text" value={paymentTerms} onChange={(e) => { setPaymentTerms(e.target.value) }} />
                      {formerrors.paymentTerms && (
                         <span className="red" style={{ position: 'absolute', top: 630, right: 30 }}>{formerrors.paymentTerms}</span>

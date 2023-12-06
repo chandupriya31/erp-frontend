@@ -6,7 +6,8 @@ import { quotationLogout } from "../../actions/quotation-action";
 import { BsPersonCircle } from "react-icons/bs";
 export default function CompanyNavBar() {
    const dispatch = useDispatch()
-   const { userDispatch } = useContext(UserContext)
+   const { userDispatch,userState } = useContext(UserContext)
+   console.log('company',userState.company._id)
    const handleLogout = () => {
       localStorage.removeItem('token')
       userDispatch({ type: 'LOGOUT_USER' })
@@ -21,9 +22,9 @@ export default function CompanyNavBar() {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                  {/* <li className="nav-item">
-                     <Link className="nav-link" to="/">Enquiries</Link>
-                  </li> */}
+                  <li className="nav-item">
+                     <Link className="nav-link" to='/company/products'>Products</Link>
+                  </li>
                   <li className="nav-item">
                      <Link className="nav-link" to='/companydashboard'>Dashboard</Link>
                   </li>

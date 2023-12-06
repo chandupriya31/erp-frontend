@@ -82,3 +82,18 @@ const catpro = (data) => {
 const getProduct = (data)=>{
    return {type: 'GET_PRODUCT',payload:data}
 }
+
+export const startDeleteProduct =(id)=>{
+   return async(dispatch)=>{
+      const response = await axios.delete(`api/products/${id}`,{
+         headers:{
+            'Authorization':localStorage.getItem('token')
+         }
+      })
+      dispatch(deleteProduct(response.data))
+   }
+}
+
+const deleteProduct = data =>{
+   return {type:'DELETE_PRODUCT',payload:data}
+}

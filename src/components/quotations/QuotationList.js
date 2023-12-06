@@ -17,7 +17,6 @@ export function QuotationList(props) {
       setSortOrder(order);
    }
    useEffect(() => {
-      // Sort the list initially based on sortOrder and expiration date
       sortQuotationsByDate(sortOrder);
    }, [quotationList, sortOrder])
 
@@ -37,35 +36,39 @@ export function QuotationList(props) {
    }
    return (
       <div>
-         <h1>Quotationlist-{quotationList.length}</h1>
-         <Table striped bordered hover>
-            <thead>
-               <tr>
-                  <th>Date {<select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
-                     <option value=''>select</option>
-                     <option value="asc">Ascending</option>
-                     <option value="desc">Descending</option>
-                  </select>}</th>
-                  <th>EnquiryId</th>
-                  <th>Quotation Exipry Date {<select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
-                     <option value="asc">Ascending</option>
-                     <option value="desc">Descending</option>
-                  </select>}</th>
-                  <th>Customer name</th>
-                  <th>Product name</th>
-                  <th>Quantity</th>
-                  <th>unitCost</th>
-                  <th>Total Cost</th>
-                  <th>terms and conditions</th>
-                  <th>approved</th>
-               </tr>
-            </thead>
-            <tbody>
-               {sortedList.map((ele) => {
-                  return <QuotationItem key={ele._id} ele={ele} />;
-               })}
-            </tbody>
-         </Table>
+         {quotationList.length===0 ? 'No quotations yet':
+         <div>
+            <h1>Quotationlist-{quotationList.length}</h1>
+            <Table striped bordered hover>
+               <thead>
+                  <tr>
+                     <th>Date {<select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
+                        <option value=''>select</option>
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                     </select>}</th>
+                     <th>EnquiryId</th>
+                     <th>Quotation Exipry Date {<select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                     </select>}</th>
+                     <th>Customer name</th>
+                     <th>Product name</th>
+                     <th>Quantity</th>
+                     <th>unitCost</th>
+                     <th>Total Cost</th>
+                     <th>terms and conditions</th>
+                     <th>approved</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {sortedList.map((ele) => {
+                     return <QuotationItem key={ele._id} ele={ele} />;
+                  })}
+               </tbody>
+            </Table>
+         </div>
+         }
       </div>
    )
 }
