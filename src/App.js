@@ -39,7 +39,7 @@ import { startSetQuotation } from './actions/quotation-action';
 import Orderview from './components/order/OrderView';
 import Stats from './components/company/Stats';
 import MyorderItem from './components/customer/Myorderitem'
-import { startGetCatProduct, startGetCategory, startGetProduct } from './actions/productactionCltr';
+import { startGetCategory, startGetProduct } from './actions/productactionCltr';
 import { getOrderList } from './actions/order-action';
 import CompanyProfile from './components/company/CompanyProfile';
 import CompanyProducts from './components/company/CompanyProducts';

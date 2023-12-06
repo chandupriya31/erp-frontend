@@ -8,7 +8,7 @@ export default function MyorderItem() {
    const { userState } = useContext(UserContext)
    const params = useParams()
    const { id } = params
-   const order = userState.user?.myOrders?.find(ele => ele._id == id)
+   const order = userState.user?.myOrders?.find(ele => ele._id === id)
    console.log(order)
 
    return (

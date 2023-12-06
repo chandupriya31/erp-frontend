@@ -54,7 +54,7 @@ export default function Register(props) {
       if (role === 'customer') {
         try {
           const response = await axios.post('/api/user/register', formData);
-          const user = response.data;
+          // const user = response.data;
           navigate('/login');
           setUsername('');
           setEmail('');

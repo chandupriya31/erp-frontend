@@ -1,16 +1,25 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { UserContext } from "../../App"
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup'
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { startGetEnquiries } from "../../actions/enquiry-action";
 export default function Enquirylist({ enquiries }) {
+   const dispatch = useDispatch()
    const { userState } = useContext(UserContext)
    const { id } = useParams()
    console.log(id)
    console.log(userState.user.myenquiries)
    const enquiry = userState.user?.myenquiries?.find((ele) => ele._id === id)
+
+   useEffect(()=>{
+      (async()=>{
+         dispatch(startGetEnquiries())
+      })()
+   },[])
 
    const eid = enquiry && enquiry._id
    console.log(eid)

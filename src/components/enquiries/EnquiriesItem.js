@@ -24,7 +24,7 @@ export function EnquiresItem(props) {
    console.log(enquiry,'ele')
    const { customerId, productId, date, quantity } = enquiry
    // console.log(props.ele,'enquiry')
-   const present = quotation?.find(ele1 => ele1.enquiry._id == enquiry._id)
+   const present = quotation?.find(ele1 => ele1.enquiry._id === enquiry._id)
    console.log(present?.enquiry._id,'present')
    // // console.log(present.enquiry)
    // const id = present.enquiry

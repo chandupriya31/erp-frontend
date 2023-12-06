@@ -25,7 +25,7 @@ export const startUpdatePayment = (id) => {
                     'Authorization': localStorage.getItem('token')
                 }
             })
-
+            console.log(response.data)
         } catch (e) {
             console.log(e)
         }

@@ -12,6 +12,7 @@ import Card from 'react-bootstrap/Card'
 import axios from "../../config/axios"
 import Toast from 'react-bootstrap/Toast'
 import ToastContainer from 'react-bootstrap/ToastContainer'
+import { useNavigate } from "react-router-dom"
 export default function AddProduct() {
    const [productname, setProductName] = useState('')
    const [description, setDescription] = useState('')
@@ -30,7 +31,7 @@ export default function AddProduct() {
    const { userState } = useContext(UserContext)
 
    const input = useRef()
-
+   const navigate = useNavigate()
    const dispatch = useDispatch()
 
    const companyId = userState.company._id
@@ -99,6 +100,7 @@ export default function AddProduct() {
                setCategoryName('')
                setBestSeller(false)
                setFormErrors({})
+               navigate('/company/products')
             })
       } else {
          setFormErrors(errors)
