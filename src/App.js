@@ -38,6 +38,7 @@ import { startGetEnquiries } from './actions/enquiry-action';
 import { startSetQuotation } from './actions/quotation-action';
 import Orderview from './components/order/OrderView';
 import Stats from './components/company/Stats';
+import MyorderItem from './components/customer/Myorderitem'
 import { startGetCatProduct, startGetCategory, startGetProduct } from './actions/productactionCltr';
 import { getOrderList } from './actions/order-action';
 import CompanyProfile from './components/company/CompanyProfile';
@@ -134,6 +135,7 @@ function App() {
           <Route path='/stats' element={<Stats />} />
           <Route path='/companyprofile' element={<CompanyProfile />} />
           <Route path='/company/products' element={<CompanyProducts />} />
+          <Route path='/myorder/:id' element={<MyorderItem />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

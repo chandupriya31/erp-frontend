@@ -14,7 +14,7 @@ export default function Myorders() {
          <h1>MyOrders-{userState.user.myOrders?.length}</h1>
          <Card style={{ width: '30rem' }} className='p-3 mb-2 bg-primary-subtle text-emphasis-primary' >
             {orders?.map((ele, i) => {
-               return <Link className="text-decoration-none" to={`/order/${ele._id}`}>
+               return <Link className="text-decoration-none" to={`/myorder/${ele._id}`}>
                   <Card.Body>
                      <ListGroup style={{ width: '400px', fontSize: '20px' }}>
                         <div className='d-flex center'>
