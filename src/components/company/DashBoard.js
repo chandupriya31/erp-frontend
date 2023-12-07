@@ -6,8 +6,6 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { useSelector } from 'react-redux';
 
 function getRandomColor() {
-  // Implement logic to generate a random color
-  // For example, you can use Math.random() to generate random RGB values
   const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
   return randomColor;
 }
@@ -17,13 +15,13 @@ export function DashBoard() {
     return state.order?.order;
   });
 
-  console.log('orders', orders);
+  console.log('orders', orders)
 
   const calendarData = orders?.map((order) => ({
     title: `${order.customerId?.username} - ${order.productId?.productname} - ${order.delivery}`,
     date: order.deliveryDate,
-    hasData: true, // Add a flag to indicate the presence of data
-  }));
+    hasData: true
+  }))
 
   console.log(calendarData);
 
@@ -47,5 +45,5 @@ export function DashBoard() {
         />
       )}
     </div>
-  );
+  )
 }
