@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-bootstrap'
 import axios from './config/axios'
 import Home from './components/Home'
-import Customer from './components/customer/customer'
+// import Customer from './components/customer/customer'
 import Login from './components/Auth/Login'
 import userReducer from './reducer/UserReducer'
 import AddProduct from './components/products-categories/product-add'
@@ -112,7 +112,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/companydashboard' element={<DashBoard />} />
           <Route path='/addproduct' element={<AddProduct />} />
-          <Route path='/customer' element={<Customer />} />
+          {/* <Route path='/customer' element={<Customer />} /> */}
           <Route path='/add-enquiry' element={<AddEnquiry />} />
           <Route path='/company-list' element={<CompanyList />} />
           <Route path='/enquires' element={<Enquires />} />

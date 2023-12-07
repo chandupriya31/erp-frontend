@@ -22,9 +22,9 @@ export default function CustomerNavBar() {
                   <li className="nav-item">
                      <Link className="nav-link" to='/' >Home</Link>
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                      <Link className="nav-link" to="/customer">DashBoard</Link>
-                  </li>
+                  </li> */}
                   <li className="nav-item">
                      <Link className="nav-link" to="customer-order">MyOrders</Link>
                   </li>
