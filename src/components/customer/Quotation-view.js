@@ -169,6 +169,7 @@ export default function Quotationview() {
                         <label>agreed</label>
                         <input class="form-check-input" type="checkbox" checked={isApproved}
                            onChange={handleChange}
+                           disabled={isApproved===true}
                            id="flexCheckChecked" />
                            <Button variant="primary" disabled={!isApproved} onClick={handleClick}>Move to payment</Button>
                      </div>
