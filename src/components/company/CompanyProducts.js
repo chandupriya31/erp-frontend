@@ -2,15 +2,22 @@ import { useDispatch, useSelector } from "react-redux"
 import { Card, Row, Col, Carousel,Button } from "react-bootstrap"
 import { startDeleteProduct } from "../../actions/productactionCltr"
 import {Link} from 'react-router-dom'
+import { useContext } from "react"
+import { UserContext } from "../../App"
 
 function CompanyProducts(){
+    const {userState} = useContext(UserContext)
+    console.log(userState);
+    const company = userState?.user?.company
     const dispatch = useDispatch()
-    const products = useSelector((state)=>{
+    const product = useSelector((state)=>{
         return state.product?.data
     })
     const handleDelete = (id)=>{
         dispatch(startDeleteProduct(id))
     }
+
+    const products = product.filter(ele  => ele?.companyId == company?._id)
 
     console.log(products)
     return (
