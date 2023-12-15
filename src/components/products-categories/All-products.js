@@ -44,9 +44,9 @@ function AllProducts(){
                                 </Carousel>
                                 <Card.Body>
                                 <Card.Title>{ele.productname}</Card.Title>
-                                <Card.Text>
+                                {/* <Card.Text>
                                     {ele.description}
-                                </Card.Text>
+                                </Card.Text> */}
                                 <Button variant="success" onClick={()=>handleView(ele._id)}>About product</Button>
                                 </Card.Body>
                             </Card>

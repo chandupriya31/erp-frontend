@@ -95,7 +95,7 @@ export default function Login() {
                if(prevPage){
                   navigate(prevPage)
                }else{
-                  navigate('/customer');
+                  navigate('/');
                }
             }
             if (user.user.role === 'companyAdmin') {
