@@ -43,6 +43,7 @@ import { startGetCategory, startGetProduct } from './actions/productactionCltr';
 import { getOrderList } from './actions/order-action';
 import CompanyProfile from './components/company/CompanyProfile';
 import CompanyProducts from './components/company/CompanyProducts';
+import AllProducts from './components/products-categories/All-products'
 // import Registration from './components/Auth/RegisterProvider';
 
 export const UserContext = createContext()
@@ -136,6 +137,7 @@ function App() {
           <Route path='/companyprofile' element={<CompanyProfile />} />
           <Route path='/company/products' element={<CompanyProducts />} />
           <Route path='/myorder/:id' element={<MyorderItem />} />
+          <Route path='/allproducts' element={<AllProducts/>}/>
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
