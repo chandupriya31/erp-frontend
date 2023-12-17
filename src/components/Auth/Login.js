@@ -94,8 +94,8 @@ export default function Login() {
                userDispatch({ type: 'USER_LOGIN', payload: user });
                if (prevPage) {
                   navigate(prevPage)
-               } else {
-                  navigate('/customer');
+               }else{
+                  navigate('/');
                }
             }
             if (user.user.role === 'companyAdmin') {
