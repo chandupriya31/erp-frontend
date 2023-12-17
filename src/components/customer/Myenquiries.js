@@ -15,7 +15,7 @@ export default function Myenquires(props) {
                      <div class="rounded ">
                         <ListGroup.Item action key={ele._id}>
                            <div class='fw-semibold fs-5'>
-                              {ele.company && ele.company.companyname} - {ele.productId.productname}
+                              {ele.company && ele.company.companyname} - {ele.productId?.productname}
                            </div>
                         </ListGroup.Item>
                      </div>

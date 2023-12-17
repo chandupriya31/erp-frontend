@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import axios from '../../config/axios';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
-import { useContext, useState,useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import * as Yup from 'yup';
 import { UserContext } from '../../App';
 import Spinner from 'react-bootstrap/Spinner'
@@ -17,45 +17,45 @@ export default function Login() {
    const [serverError, setServerError] = useState([]);
    const [isSubmitting, setIsSubmitting] = useState(false)
    const navigate = useNavigate();
-   const prevPage = location?location.state:''
-   console.log('prev',prevPage)
+   const prevPage = location ? location.state : ''
+   console.log('prev', prevPage)
 
    useEffect(() => {
       (async () => {
-        try {
-         dispatch(startGetProduct())
-         dispatch(startGetCategory())
-         const response = await axios.get('/api/companies/list')
-         userDispatch({ type: 'COMAPNY_LIST', payload: response.data })
+         try {
+            dispatch(startGetProduct())
+            dispatch(startGetCategory())
+            const response = await axios.get('/api/companies/list')
+            userDispatch({ type: 'COMAPNY_LIST', payload: response.data })
          } catch (e) {
             console.log(e)
          }
       })()
-    }, [])
+   }, [])
    useEffect(() => {
       if (localStorage.getItem('token')) { // handling page reload
-        (async () => {
+         (async () => {
             try {
                const profile = await axios.get('/api/getprofile', {
                   headers: {
-                  'Authorization': localStorage.getItem('token')
+                     'Authorization': localStorage.getItem('token')
                   }
                })
                const user = profile.data
-               console.log(user,'user data')
+               console.log(user, 'user data')
                const companyuser = profile.data.user
                userDispatch({ type: 'USER_LOGIN', payload: user })
                userDispatch({ type: 'USER_LOGIN', payload: companyuser })
                userDispatch({ type: 'USER_COMPANY', payload: user.company })
-               if(user.role === 'companyAdmin' || user.role === 'customer'){
+               if (user.role === 'companyAdmin' || user.role === 'customer') {
                   dispatch(startGetEnquiries())
                   dispatch(startSetQuotation())
                   dispatch(getOrderList())
-                }
+               }
             } catch (e) {
                console.log(e)
             }
-        })()
+         })()
       }
    }, [])
 
@@ -92,9 +92,9 @@ export default function Login() {
 
             if (user.role === 'customer') {
                userDispatch({ type: 'USER_LOGIN', payload: user });
-               if(prevPage){
+               if (prevPage) {
                   navigate(prevPage)
-               }else{
+               } else {
                   navigate('/customer');
                }
             }
@@ -133,6 +133,7 @@ export default function Login() {
                            <input
                               type="email"
                               className="form-control"
+                              placeholder='name@gmail.com'
                               id="email"
                               value={formik.values.email}
                               onChange={formik.handleChange}
@@ -145,6 +146,7 @@ export default function Login() {
                            <input
                               type="password"
                               className="form-control"
+                              placeholder='password'
                               id="password"
                               value={formik.values.password}
                               onChange={formik.handleChange}

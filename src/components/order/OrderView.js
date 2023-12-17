@@ -70,7 +70,7 @@ export default function Orderview() {
                         </tr>
                         <tr>
                            <td class="fw-normal">productname</td>
-                           <td className="fw-bold">{order?.productId.productname}</td>
+                           <td className="fw-bold">{order?.productId?.productname}</td>
                         </tr>
                         <tr>
                            <td class="fw-normal">quantity</td>

@@ -23,7 +23,7 @@ export function DashBoard() {
     hasData: true
   }))
 
-  console.log(calendarData);
+  console.log(calendarData, 'data');
 
   return (
     <div>
@@ -38,7 +38,7 @@ export function DashBoard() {
           initialView="dayGridMonth"
           events={calendarData}
           eventContent={(eventInfo) => ({
-            html: `<div style="background-color: ${getRandomColor()}">${eventInfo.event.title}</div>`,
+            html: `<div style="color: ${getRandomColor()}">${eventInfo.event.title}</div>`,
           })}
           contentWidth="auto"
           aspectRatio={1.5}

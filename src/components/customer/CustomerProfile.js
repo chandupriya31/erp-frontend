@@ -10,7 +10,7 @@ import { ListGroup } from "react-bootstrap";
 function CustomerProfile() {
     const { userState, userDispatch } = useContext(UserContext)
     console.log('user', userState.user)
-    const [edit,setEdit] = useState(false)
+    const [edit, setEdit] = useState(false)
     const user = userState.user
     console.log(user)
     const [username, setUsername] = useState(user.username)
@@ -44,7 +44,7 @@ function CustomerProfile() {
                                 Username
                             </Form.Label>
                             <Col sm="10">
-                                <Form.Control type="text" value={username} onChange={(e) => setUsername(e.target.value)} disabled={edit===false}/>
+                                <Form.Control type="text" value={username} onChange={(e) => setUsername(e.target.value)} disabled={edit === false} />
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -52,7 +52,7 @@ function CustomerProfile() {
                                 Email
                             </Form.Label>
                             <Col sm="10">
-                                <Form.Control type="email" value={email} onChange={e => setEmail(e.target.value)} disabled={edit===false}/>
+                                <Form.Control type="email" value={email} onChange={e => setEmail(e.target.value)} disabled={edit === false} />
                             </Col>
                         </Form.Group>
                     </Form>
@@ -60,13 +60,14 @@ function CustomerProfile() {
                         <ListGroup.Item>Your role - <b>{user.role}</b></ListGroup.Item>
                         <ListGroup.Item>Total Enquiries - <b>{user.myenquiries && user.myenquiries.length}</b></ListGroup.Item>
                         <ListGroup.Item>Total Quotations - <b>{user.myQuotations && user.myQuotations.length}</b></ListGroup.Item>
+                        <ListGroup.Item>Total Orders - <b>{user.myOrders && user.myOrders.length}</b></ListGroup.Item>
                     </ListGroup>
                 </Card.Body>
                 <div class="mx-auto p-2">
                     <Button variant="primary" onClick={handleChange}>{edit ? 'save' : 'edit'}</Button>
                 </div>
             </Card>
-        </div>
+        </div >
     )
 }
 
