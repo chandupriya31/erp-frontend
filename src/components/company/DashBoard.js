@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { useSelector } from 'react-redux';
+import { UserContext } from '../../App';
 
 function getRandomColor() {
   const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
@@ -11,9 +12,12 @@ function getRandomColor() {
 }
 
 export function DashBoard() {
+  const {userState} = useContext(UserContext)
   const orders = useSelector((state) => {
     return state.order?.order;
   });
+
+  // const orders = userState.find(ele => ele.company = )
 
   console.log('orders', orders)
 

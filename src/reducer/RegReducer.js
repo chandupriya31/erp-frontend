@@ -3,6 +3,9 @@ function regReducer(state, action) {
         case 'REGISTER': {
             return { ...state, reg: { ...state.type, ...action.payload } }
         }
+        case "REG_COMPANY":{
+            return {...state,reg:{...state.type,...action.payload}}
+        }
         default: {
             return { ...state }
         }

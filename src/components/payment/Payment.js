@@ -24,7 +24,7 @@ function Payment(props){
     }
 
     const home = () =>{
-        navigate('/customer')
+        navigate('customer-order')
         localStorage.removeItem('enquiry')
         localStorage.removeItem('quotation')
         localStorage.removeItem('transactionId')

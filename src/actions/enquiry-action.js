@@ -9,7 +9,7 @@ export const setAddEnquiry = ({ formData, navigate }) => {
                 }
             })
             dispatch(addEnquiry(response.data))
-            navigate('/customer')
+            navigate('/customer/enquiries')
         } catch (e) {
             dispatch(setErrors(e.response.data.errors))
         }

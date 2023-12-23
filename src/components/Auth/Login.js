@@ -109,7 +109,7 @@ export default function Login() {
             setIsSubmitting(false); // Reset submitting state after submission
          }
       }
-   });
+   })
    return (
       <div className="container d-flex justify-content-center mt-5 ">
          {serverError.length > 0 && (

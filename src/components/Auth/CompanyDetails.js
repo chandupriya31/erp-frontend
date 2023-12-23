@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "../../config/axios";
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { UserContext } from "../../App";
 
 function CompanyDetails(props) {
+    const {userDispatch} = useContext(UserContext)
     const { state } = useLocation();
     console.log(state)
     const navigate = useNavigate();
@@ -65,7 +67,8 @@ function CompanyDetails(props) {
 
             try {
                 const companyData = await axios.post('/api/company/register', formData);
-                console.log(companyData.data);
+                // console.log(companyData.data);
+                userDispatch({type: "REG_COMPANY",payload:companyData.data})
                 localStorage.clear();
                 navigate('/login')
             } catch (e) {   

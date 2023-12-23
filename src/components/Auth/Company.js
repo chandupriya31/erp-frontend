@@ -129,7 +129,7 @@ const Company = (props) => {
                                         onChange={e => setCompanyName(e.target.value)}
                                     />
                                     {formErrors.companyname && (
-                                        <div className="error-message">{formErrors.companyname}</div>
+                                        <div style ={{color:"red"}} className="error-message">{formErrors.companyname}</div>
                                     )}
                                 </Form.Group>
                                 <Form.Group controlId="GST">
@@ -140,7 +140,7 @@ const Company = (props) => {
                                         onChange={e => setGst(e.target.value)}
                                     />
                                     {formErrors.GST && (
-                                        <div className="error-message">{formErrors.GST}</div>
+                                        <div className="error-message" style ={{color:"red"}}>{formErrors.GST}</div>
                                     )}
                                 </Form.Group>
                                 <h4>Contact details</h4>
@@ -153,7 +153,7 @@ const Company = (props) => {
                                         onChange={handleAddressChange}
                                     />
                                     {formErrors.contactdetails && formErrors.contactdetails.address && (
-                                        <div className="error-message">{formErrors.contactdetails.address.name}</div>
+                                        <div className="error-message" style ={{color:"red"}}>{formErrors.contactdetails.address.name}</div>
                                     )}
                                 </Form.Group>
                                 <Form.Group controlId="phno">
@@ -165,7 +165,7 @@ const Company = (props) => {
                                         onChange={handleChange}
                                     />
                                     {formErrors.contactdetails && formErrors.contactdetails.phone && (
-                                        <div className="error-message">{formErrors.contactdetails.phone}</div>
+                                        <div className="error-message" style ={{color:"red"}}>{formErrors.contactdetails.phone}</div>
                                     )}
                                 </Form.Group>
                                 <Form.Group controlId="email">
@@ -177,7 +177,7 @@ const Company = (props) => {
                                         onChange={handleChange}
                                     />
                                     {formErrors.contactdetails && formErrors.contactdetails.email && (
-                                        <div className="error-message">{formErrors.contactdetails.email}</div>
+                                        <div className="error-message" style ={{color:"red"}}>{formErrors.contactdetails.email}</div>
                                     )}
                                 </Form.Group>
                                 <div className="d-flex justify-content-between mt-4">
