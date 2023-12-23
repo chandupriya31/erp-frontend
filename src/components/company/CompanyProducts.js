@@ -46,7 +46,7 @@ function CompanyProducts(){
                                 <Card.Body>
                                 <Card.Title>{ele.productname}</Card.Title>
                                 <Card.Text>
-                                    {ele.description}
+                                    {ele.description.slice(0, 100)+'...'}
                                 </Card.Text>
                                 <Button variant="danger" onClick={()=>handleDelete(ele._id)}>Delete product</Button>
                                 </Card.Body>

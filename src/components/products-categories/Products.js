@@ -48,7 +48,7 @@ function Products() {
                         <Card.Body>
                         <Card.Title>{ele.productname}</Card.Title>
                         <Card.Text>
-                            {ele.description}
+                            {ele.description.slice(0, 100)+'...'}
                         </Card.Text>
                         <Button variant="primary" onClick={()=>handleClick(ele._id)}>About product</Button>
                         </Card.Body>
