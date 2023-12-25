@@ -131,7 +131,7 @@ function App() {
           <Route path='/payment-details' element={<PaymentDetails />} />
           {/* <Route path='/quotation/payment' element={<Payment/>}/> */}
           <Route path='/quotation/payment' element={<Payment />} />
-          <Route path='customer-order' element={<Myorders />} />
+          <Route path='/customer-order' element={<Myorders />} />
           <Route path='/orderview/:id' element={<Orderview />} />
           <Route path='/stats' element={<Stats />} />
           <Route path='/companyprofile' element={<CompanyProfile />} />

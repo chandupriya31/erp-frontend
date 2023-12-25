@@ -8,7 +8,7 @@ export const startGetorder = (formData) => {
             }
          })
          dispatch(addorder(response.data))
-         console.log(response.data)
+         // console.log(response.data)
       } catch (e) {
          console.log(e)
       }
@@ -23,7 +23,7 @@ export const getOrderList = () => {
             }
          })
          dispatch(getorder(response.data))
-         console.log(response.data, 'list')
+         // console.log(response.data, 'list')
       } catch (e) {
          console.log(e)
       }
