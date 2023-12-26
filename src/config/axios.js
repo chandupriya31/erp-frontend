@@ -1,4 +1,4 @@
 import axios from "axios";
 export default axios.create({
-    baseURL:'https://tradexchange.onrender.com'
+    baseURL:'http://localhost:7777'
 })
