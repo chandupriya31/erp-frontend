@@ -1,6 +1,6 @@
 # TradeXChange
 
-Application:  [https://trade-x-change-frontend.vercel.app/](https://trade-x-change-frontend.vercel.app/).
+Application:  [Live link](https://trade-x-change-frontend.vercel.app/).
 
 ## Description
 
@@ -59,7 +59,7 @@ TradeXChange helps MSME’s to handle enquiries and create quotations to enquiri
   
 **Enquiry**
 
-* From the product view page customer can directly be navigated to Add Enquiry Page
+* From the product view page customer can directly be navigated to Add Enquiry Page.\
 ❗To avoid unnecessary confusion product name and company are prefilled
 * Add the mobile number
 * Add the quantity required
