@@ -8,7 +8,7 @@ TradeXChange helps MSME’s to handle enquiries and create quotations to enquiri
 
 ### Roles
 
-* Company\
+* Company
 * Customer
 
 ### Features
