@@ -1,70 +1,84 @@
-# Getting Started with Create React App
+# TradeXChange
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Application:  [https://trade-x-change-frontend.vercel.app/](https://trade-x-change-frontend.vercel.app/).
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+TradeXChange helps MSME’s to handle enquiries and create quotations to enquiries and can create order acceptance form once the payment is done, maintenance of order details and delivery due date. Customers can send their enquiries based on product, can view order details and status of product.
 
-### `npm start`
+### Roles
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* Company\
+* Customer
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Features
 
-### `npm test`
+#### Company
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Registration**
 
-### `npm run build`
+* While registering they have to provide- 
+    * Email, Username, Password
+* Choose  ___Company___ while registering with company details
+* Provide the following details- 
+    * Company Name, GST, Company Email, Company Address, Mobile Number
+    * About Company, Vision, Mission
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Product Page**
+* Company admin can add the product and can view the product
+* Add name of product
+* Select the images of product and add price per unit
+* Add the payment terms and warranty period of product
+* If it's a best seller add it to best seller 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Quotations**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+❗Remaining Details are prefilled
+* Add/Update the price details
+* Add quotation expiry date
+* Add delivery due time period
 
-### `npm run eject`
+**Order Acceptance**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* Once the payment is done generate an order acceptance form
+* Add the delivery date
+* Add/Update status of ordered-product
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Dashboard**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* Contains the quotations sent
+* Sales statistics
+* Calender viewing the delivery dates
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### Customer
 
-## Learn More
+**Registration**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* Add Email, Username, Password
+  * Password should contain 1 Uppercase, 1 Numeric and 1 special character in the length of 8-128 characters.
+  
+**Enquiry**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* From the product view page customer can directly be navigated to Add Enquiry Page
+❗To avoid unnecessary confusion product name and company are prefilled
+* Add the mobile number
+* Add the quantity required
 
-### Code Splitting
+**Qutotation**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* Can view te quotation if there quotation exists
+* In view quotation they can send message to company before accepting the order
+* Order after providing consent click of move tom payment
+* Select the type of payment and click on make payment
+* Enter the details-
+  * If payment is success navigated to order page
+  * If payment failed they will be navigated to quotation page
 
-### Analyzing the Bundle Size
+**Order Acceptance**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* Can view the order details and status
 
-### Making a Progressive Web App
+**Profile**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* Can edit their email and username
+* Can view how many enquiries they made and how many and orders and quotations they receieved
