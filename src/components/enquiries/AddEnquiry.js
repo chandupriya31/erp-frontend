@@ -60,11 +60,9 @@ function AddEnquiry() {
     if (quantity.length === 0) {
       errors.quantity = '* Quantity is required';
     }
-
     setFormErrors(errors);
     return Object.keys(errors).length === 0; // Returns true if there are no errors
   }
-
   const handleEnquirySubmit = async (e) => {
     e.preventDefault();
 

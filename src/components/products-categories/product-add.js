@@ -26,7 +26,7 @@ export default function AddProduct() {
    const [paymentTerms, setPaymentTerms] = useState('')
    const [formerrors, setFormErrors] = useState({})
    const [showToast, setShowToast] = useState(true)
-   const [bestSeller,setBestSeller] = useState(false)
+   const [bestSeller, setBestSeller] = useState(false)
    const errors = {}
    const { userState } = useContext(UserContext)
 

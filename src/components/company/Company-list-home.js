@@ -39,7 +39,7 @@ export default function CompanyList() {
 
 
    return (
-      <div style={{margin: 'auto', maxWidth: '1000px'}}>
+      <div style={{ margin: 'auto', maxWidth: '1000px' }}>
          <Container className="mt-3" >
             <div style={{ border: '1px solid blue', padding: '10px', marginBottom: '30px' }}>
                <h1 style={{ fontSize: '2.5rem', color: 'blue', margin: '0' }}>Company List</h1>

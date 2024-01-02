@@ -50,60 +50,60 @@ export const quotationLogout = () => {
    return ({ type: 'QUOTATION_LOG_OUT' })
 }
 
-export const startEditQuote = (id,formData)=>{
-   return async(dispatch)=>{
-      try{
-         const response = await axios.put(`/api/quotation/${id}`,formData,{
-            headers:{
-               'Authorization':localStorage.getItem('token')
+export const startEditQuote = (id, formData) => {
+   return async (dispatch) => {
+      try {
+         const response = await axios.put(`/api/quotation/${id}`, formData, {
+            headers: {
+               'Authorization': localStorage.getItem('token')
             }
          })
          dispatch(editQuote(response.data))
-      }catch(e){
+      } catch (e) {
          console.log(e)
       }
    }
 }
 
-const editQuote = (data)=>{
-   return {type:'EDIT_QUOTE',payload:data}
+const editQuote = (data) => {
+   return { type: 'EDIT_QUOTE', payload: data }
 }
 
-export const startAddComment = (formData)=>{
-   return async(dispatch)=>{
-      try{
-         const response = await axios.post('/api/quotation/comments',formData,{
-            headers:{
-               'Authorization':localStorage.getItem('token')
+export const startAddComment = (formData) => {
+   return async (dispatch) => {
+      try {
+         const response = await axios.post('/api/quotation/comments', formData, {
+            headers: {
+               'Authorization': localStorage.getItem('token')
             }
          })
          dispatch(addComment(response.data))
-      }catch(e){
+      } catch (e) {
          console.log(e)
       }
    }
 }
 
-const addComment = data =>{
-   return {type:'ADD_COMMENT',payload:data}
+const addComment = data => {
+   return { type: 'ADD_COMMENT', payload: data }
 }
 
-export const startGetComments = (id)=>{
-   return async(dispatch)=>{
-      try{
-         const response = await axios.get(`/api/quotation/comments/${id}`,{
-            headers:{
-               'Authorization':localStorage.getItem('token')
+export const startGetComments = (id) => {
+   return async (dispatch) => {
+      try {
+         const response = await axios.get(`/api/quotation/comments/${id}`, {
+            headers: {
+               'Authorization': localStorage.getItem('token')
             }
          })
          dispatch(getComments(response.data))
          // console.log(response.data)
-      }catch(e){
+      } catch (e) {
          console.log(e);
       }
    }
 }
 
-const getComments = data =>{
-   return {type:'GET_COMMENTS',payload:data}
+const getComments = data => {
+   return { type: 'GET_COMMENTS', payload: data }
 }

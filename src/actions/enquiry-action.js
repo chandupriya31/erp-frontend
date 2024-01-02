@@ -6,7 +6,7 @@ export const setAddEnquiry = ({ formData, navigate }) => {
             const response = await axios.post('/api/enquiry/create', formData, {
                 headers: {
                     'Authorization': localStorage.getItem('token')
-                }
+                } 
             })
             dispatch(addEnquiry(response.data))
             navigate('/customer/enquiries')
