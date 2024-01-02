@@ -12,6 +12,7 @@ function Products() {
     console.log(state,'state')
     const { userState } = useContext(UserContext);
     console.log(userState, "prod");
+    
     const company = userState.companylist.find((ele) => ele._id === state);
     const products = useSelector(state =>{
         return state.product.data

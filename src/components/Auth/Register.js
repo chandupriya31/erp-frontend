@@ -93,7 +93,7 @@ export default function Register(props) {
                 value={username}
                 onChange={e => setUsername(e.target.value)}
               />
-              {formErrors.username && (
+              {username.length == 0 && formErrors.username && (
                 <div className="invalid-feedback">{formErrors.username}</div>
               )}
             </div>
