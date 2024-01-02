@@ -88,27 +88,27 @@ export default function Register(props) {
               <label htmlFor="username" className="form-label">Username</label>
               <input
                 type="text"
-                className={`form-control ${formErrors.username ? 'is-invalid' : ''}`}
+                className={`form-control ${ username.length === 0 &&(formErrors.username ? 'is-invalid' : '')}`}
                 id="username"
                 value={username}
                 onChange={e => setUsername(e.target.value)}
               />
-              {formErrors.username && (
+              {username.length === 0 && (formErrors.username && (
                 <div className="invalid-feedback">{formErrors.username}</div>
-              )}
+              ))}
             </div>
             <div className="mb-3">
               <label htmlFor="email" className="form-label">Email</label>
               <input
                 type="email"
-                className={`form-control ${formErrors.email ? 'is-invalid' : ''}`}
+                className={`form-control ${ email.length === 0 && (formErrors.email ? 'is-invalid' : '')}`}
                 id="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
               />
-              {formErrors.email && (
+              {email.length === 0 &&(formErrors.email && (
                 <div className="invalid-feedback">{formErrors.email}</div>
-              )}
+              ))}
             </div>
             <div className="mb-3">
               <label htmlFor="password" className="form-label">Password</label>

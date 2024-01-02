@@ -21,7 +21,7 @@ function AllProducts(){
     console.log(products)
     return (
         <div>
-            {products.length === 0 && (
+            {products.length > 0 && (
                 <div>
                     <h3>Products</h3>
                     <Row xs={1} md={2} lg={3} className="g-4">
