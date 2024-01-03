@@ -12,6 +12,9 @@ export const quotationReducer = (state = initialState, action) => {
       case 'SET_QUOTATION': {
          return { ...state, list: action.payload}
       }
+      case 'START_GET_SORTED_DATA':{
+         return {...state,list:action.payload}
+      }
       case 'EDIT_QUOTE':{
          return {...state,quotation:{...state.quotation,...action.payload}}
       }

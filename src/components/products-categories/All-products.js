@@ -24,22 +24,22 @@ function AllProducts() {
     _.isEmpty(userState.user) ? navigate("/login"): navigate(`/product/${id}`)
     }
 
-  const pageSize = 6
-  const totalProducts = products.length
-  const totalPages = Math.ceil(totalProducts / pageSize)
+  // const pageSize = 6
+  // const totalProducts = products.length
+  // const totalPages = Math.ceil(totalProducts / pageSize)
 
-  const paginatedProducts = products.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize
-  )
+  // const paginatedProducts = products.slice(
+  //   (currentPage - 1) * pageSize,
+  //   currentPage * pageSize
+  // )
 
   return (
     <div>
-      {paginatedProducts.length > 0 && (
+      {products.length > 0 && (
         <div style={{ margin: 'auto', maxWidth: '1000px', marginBottom: '200px' }}>
           <h3>Products</h3>
           <Row xs={1} md={2} lg={3} className="g-4">
-            {paginatedProducts.map((ele) => (
+            {products.map((ele) => (
               <Col key={ele._id} xs={12} sm={6} md={4} lg={3}>
                 <Card style={{ width: "100%", marginBottom: "20px" }}>
                   <Carousel>
@@ -67,7 +67,7 @@ function AllProducts() {
               </Col>
             ))}
           </Row>
-          <div className="pagination-container">
+          {/* <div className="pagination-container">
             {Array.from({ length: totalPages }, (_, index) => index + 1).map(
               (pageNumber) => (
                 <Button
@@ -79,7 +79,7 @@ function AllProducts() {
                 </Button>
               )
             )}
-          </div>
+          </div> */}
         </div>
       )}
     </div>

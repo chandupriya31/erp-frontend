@@ -107,3 +107,22 @@ export const startGetComments = (id) => {
 const getComments = data => {
    return { type: 'GET_COMMENTS', payload: data }
 }
+
+export const startGetSortedData = (order)=>{
+   return async(dispatch)=>{
+      try{
+         const response = await axios.post('/api/quotations/sorted',order,{
+            headers:{
+               'Authorization':localStorage.getItem('token')
+            }
+         })
+         dispatch(getSortedData(response.data))
+      }catch(e){
+         console.log(e)
+      }
+   }
+}
+
+const getSortedData = data =>{
+   return {type: 'START_GET_SORTED_DATA',payload:data}
+}

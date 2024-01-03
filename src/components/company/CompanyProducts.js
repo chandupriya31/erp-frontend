@@ -11,7 +11,7 @@ function CompanyProducts(){
     const company = userState?.user?.company
     const dispatch = useDispatch()
     const product = useSelector((state)=>{
-        return state.product?.data
+        return state.product?.data?.products
     })
     const handleDelete = (id)=>{
         dispatch(startDeleteProduct(id))
