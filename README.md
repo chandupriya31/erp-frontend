@@ -1,7 +1,5 @@
 # TradeXChange
 
-Application:  [Live link](https://trade-x-change-frontend.vercel.app/).
-
 ## Description
 
 TradeXChange helps MSME’s to handle enquiries and create quotations to enquiries and can create order acceptance form once the payment is done, maintenance of order details and delivery due date. Customers can send their enquiries based on product, can view order details and status of product.
