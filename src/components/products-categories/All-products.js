@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Card, Row, Col, Carousel, Button } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 import _ from "lodash"
-import {getIndividualProduct,startGetProduct} from "../../actions/productactionCltr"
+import { startGetProduct } from "../../actions/productactionCltr"
 import { UserContext } from "../../App"
 
 function AllProducts() {
@@ -21,8 +21,8 @@ function AllProducts() {
   }, [dispatch])
 
   const handleView = (id) => {
-    _.isEmpty(userState.user) ? navigate("/login"): navigate(`/product/${id}`)
-    }
+    _.isEmpty(userState.user) ? navigate("/login") : navigate(`/product/${id}`)
+  }
 
   // const pageSize = 6
   // const totalProducts = products.length
@@ -35,7 +35,7 @@ function AllProducts() {
 
   return (
     <div>
-      {products.length > 0 && (
+      {products?.length > 0 && (
         <div style={{ margin: 'auto', maxWidth: '1000px', marginBottom: '200px' }}>
           <h3>Products</h3>
           <Row xs={1} md={2} lg={3} className="g-4">
@@ -43,8 +43,8 @@ function AllProducts() {
               <Col key={ele._id} xs={12} sm={6} md={4} lg={3}>
                 <Card style={{ width: "100%", marginBottom: "20px" }}>
                   <Carousel>
-                    {ele.image &&
-                      ele.image.map((ele1) => (
+                    {ele?.image &&
+                      ele?.image.map((ele1) => (
                         <Carousel.Item key={ele1._id}>
                           <img
                             className="d-block w-100 carousel-image"
@@ -55,10 +55,10 @@ function AllProducts() {
                       ))}
                   </Carousel>
                   <Card.Body>
-                    <Card.Title>{ele.productname}</Card.Title>
+                    <Card.Title>{ele?.productname}</Card.Title>
                     <Button
                       variant="success"
-                      onClick={() => handleView(ele._id)}
+                      onClick={() => handleView(ele?._id)}
                     >
                       About product
                     </Button>

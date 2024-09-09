@@ -7,48 +7,48 @@ import Card from 'react-bootstrap/Card'
 import Table from 'react-bootstrap/Table'
 import _ from 'lodash'
 import { useDispatch, useSelector } from "react-redux"
-import { startEditQuote,startGetComments,startSetQuotation } from "../../actions/quotation-action"
+import { startEditQuote, startGetComments, startSetQuotation } from "../../actions/quotation-action"
 import Comment from "../company/Comment"
 
 export default function Quotationview() {
-   const [commentView,setCommentView] = useState(false)
+   const [commentView, setCommentView] = useState(false)
    const dispatch = useDispatch()
-   const [totalCost,setTotalCost] = useState('')
+   const [totalCost, setTotalCost] = useState('')
    const navigate = useNavigate()
    const params = useParams()
    const { id } = params
    const { userState } = useContext(UserContext)
    console.log(userState, 'user')
 
-   const quote = useSelector((state)=>{
+   const quote = useSelector((state) => {
       return state?.quotation?.list
    })
 
-   const comments = useSelector((state)=>{
+   const comments = useSelector((state) => {
       return state?.quotation?.commentsList
    })
-   console.log(comments,'com')
-   const quotation = quote.find((ele)=>{
+   console.log(comments, 'com')
+   const quotation = quote.find((ele) => {
       return ele?.enquiry?._id === id
    })
-   
-   useEffect(()=>{
-      (async()=>{
+
+   useEffect(() => {
+      (async () => {
          dispatch(startSetQuotation())
          // dispatch(startGetComments(quotation?._id))
       })()
-   },[])
+   }, [])
 
-   console.log('quote1',quote)
+   console.log('quote1', quote)
 
-   const handleCostChange = (id)=>{
+   const handleCostChange = (id) => {
       const formData = {
          totalCost: Number(totalCost)
       }
-      dispatch(startEditQuote(id,formData))
+      dispatch(startEditQuote(id, formData))
       setTotalCost('')
    }
-   const handleViewComments = (id)=>{
+   const handleViewComments = (id) => {
       setCommentView(!commentView)
       dispatch(startGetComments(id))
    }
@@ -110,7 +110,7 @@ export default function Quotationview() {
                            </tr>
                            <tr>
                               <td class="fw-normal">quotationExpiry</td>
-                              <td className="fw-bold">{new Date(quotation.quotationExpiry).toLocaleDateString()}</td>
+                              <td className="fw-bold">{new Date(quotation.quotation_expiry).toLocaleDateString()}</td>
                            </tr>
                            <tr>
                               <td class="fw-normal">product name</td>
@@ -122,21 +122,21 @@ export default function Quotationview() {
                            </tr>
                            <tr>
                               <td class="fw-normal">per unit cost</td>
-                              <td className="fw-bold">{quotation?.unitPrice}</td>
+                              <td className="fw-bold">{quotation?.unit_price}</td>
                            </tr>
                            <tr>
                               <td class="fw-normal">total price</td>
-                              <td className="fw-bold">{quotation?.totalCost}<br/>{userState.user.role === 'companyAdmin' && (<div>
-                              <input 
-                                 type="number"
-                                 value = {totalCost}
-                                 onChange={e => setTotalCost(e.target.value)}
-                              /><Button onClick={()=>handleCostChange(quotation._id)} disabled={isApproved===true}>Update cost</Button>
-                           </div>)}</td>
+                              <td className="fw-bold">{quotation?.totalCost}<br />{userState.user.role === 'companyAdmin' && (<div>
+                                 <input
+                                    type="number"
+                                    value={totalCost}
+                                    onChange={e => setTotalCost(e.target.value)}
+                                 /><Button onClick={() => handleCostChange(quotation._id)} disabled={isApproved === true}>Update cost</Button>
+                              </div>)}</td>
                            </tr>
                            <tr>
                               <td class="fw-normal">product warrenty</td>
-                              <td className="fw-bold">{quotation.product?.productWarranty}</td>
+                              <td className="fw-bold">{quotation.product?.product_warranty}</td>
                            </tr>
                            <tr>
                               <td class="fw-normal">delivery duration</td>
@@ -144,7 +144,7 @@ export default function Quotationview() {
                            </tr>
                            <tr>
                               <td class="fw-normal">payment terms</td>
-                              <td className="fw-bold">{quotation.product?.paymentTerms}</td>
+                              <td className="fw-bold">{quotation.product?.payment_terms}</td>
                            </tr>
                         </tbody>
                      </Table>
@@ -156,22 +156,22 @@ export default function Quotationview() {
                      <div className="mt-3">
                         {comments.map(ele => (
                            <div key={ele._id} className="mb-2">
-                           <strong>{ele?.userId?.username}:</strong> {ele.content}
+                              <strong>{ele?.user_id?.username}:</strong> {ele.content}
                            </div>
                         ))}
                      </div>
                   ) : (
                      <p className="mt-3">No messages yet... begin your chat</p>
                   ))}
-                  {isApproved ? '':<Comment quotation = {quotation._id}/>}
-                  {userState.user.role==='customer' && 
+                  {isApproved ? '' : <Comment quotation={quotation._id} />}
+                  {userState.user.role === 'customer' &&
                      <div>
                         <label>agreed</label>
                         <input class="form-check-input" type="checkbox" checked={isApproved}
                            onChange={handleChange}
-                           disabled={isApproved===true}
+                           disabled={isApproved === true}
                            id="flexCheckChecked" />
-                           <Button variant="primary" disabled={!isApproved} onClick={handleClick}>Move to payment</Button>
+                        <Button variant="primary" disabled={!isApproved} onClick={handleClick}>Move to payment</Button>
                      </div>
                   }
                </Card.Body>

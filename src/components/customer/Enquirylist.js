@@ -12,14 +12,13 @@ export default function Enquirylist({ enquiries }) {
    const { userState } = useContext(UserContext)
    const { id } = useParams()
    console.log(id)
-   console.log(userState.user.myenquiries)
-   const enquiry = userState.user?.myenquiries?.find((ele) => ele._id === id)
+   const enquiry = userState.user?.my_enquiries?.find((ele) => ele._id === id)
 
-   useEffect(()=>{
-      (async()=>{
+   useEffect(() => {
+      (async () => {
          dispatch(startGetEnquiries())
       })()
-   },[])
+   }, [])
 
    const eid = enquiry && enquiry._id
    console.log(eid)
@@ -35,7 +34,7 @@ export default function Enquirylist({ enquiries }) {
                <ListGroup variant="flush">
                   <ListGroup.Item>EnquiryId - <b>{enquiry && enquiry._id}</b></ListGroup.Item>
                   <ListGroup.Item>EnquiryDate - <b>{enquiry && enquiry.date && new Date(enquiry.date).toLocaleDateString()}</b></ListGroup.Item>
-                  <ListGroup.Item>ProductName - <b>{enquiry && enquiry.productId && enquiry.productId.productname}</b></ListGroup.Item>
+                  <ListGroup.Item>ProductName - <b>{enquiry && enquiry?.product_id && enquiry?.product_id.productname}</b></ListGroup.Item>
                   <ListGroup.Item>Quantity - <b>{enquiry && enquiry.quantity}</b></ListGroup.Item>
                </ListGroup>
             </Card>

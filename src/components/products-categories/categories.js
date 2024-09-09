@@ -30,7 +30,7 @@ export default function Categories() {
       dispatch(startGetCatProduct(id))
 
    }
-   const handleBack = ()=>{
+   const handleBack = () => {
       navigate(`/company-website/${state}`)
    }
    return (
@@ -45,8 +45,8 @@ export default function Categories() {
                   </Accordion.Header>
                   <Accordion.Body class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
                      <Row>
-                        {product.length > 0 && ele._id === product[0].categoryId._id ? (
-                           product.map((item) => (
+                        {product?.length > 0 && ele?._id === product[0].category_id?._id ? (
+                           product?.map((item) => (
                               <Col key={item._id} md={4} className="mb-4">
                                  <div>
                                     {item.image && item.image.length > 0 && (
@@ -55,8 +55,8 @@ export default function Categories() {
                                     <div>
                                        <b>Product Name:</b> {item.productname}<br />
                                        <b>Description:</b> {item.description}<br />
-                                       <Link to={`/product/${item._id}`}>                                       
-                                       <Button variant="outline-info" className="mt-2">More...</Button></Link>
+                                       <Link to={`/product/${item._id}`}>
+                                          <Button variant="outline-info" className="mt-2">More...</Button></Link>
                                     </div>
                                  </div>
                               </Col>

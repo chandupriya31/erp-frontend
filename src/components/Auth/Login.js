@@ -23,7 +23,7 @@ export default function Login() {
             dispatch(startGetProduct())
             dispatch(startGetCategory())
             const response = await axios.get('/api/companies/list')
-            userDispatch({ type: 'COMAPNY_LIST', payload: response.data })
+            userDispatch({ type: 'COMAPNY_LIST', payload: response?.data })
          } catch (e) {
             console.log(e)
          }
@@ -43,7 +43,7 @@ export default function Login() {
                const companyuser = profile.data.user
                userDispatch({ type: 'USER_LOGIN', payload: user })
                userDispatch({ type: 'USER_LOGIN', payload: companyuser })
-               userDispatch({ type: 'USER_COMPANY', payload: user.company })
+               userDispatch({ type: 'USER_COMPANY', payload: user?.company })
                if (user.role === 'companyAdmin' || user.role === 'customer') {
                   dispatch(startGetEnquiries())
                   dispatch(startSetQuotation())
@@ -84,7 +84,6 @@ export default function Login() {
             });
             const user = profile.data;
             const company = user.company
-            console.log(user.company, 'user+company')
             const companyUser = profile.data.user;
 
             if (user.role === 'customer') {
@@ -97,7 +96,7 @@ export default function Login() {
                navigate('/companyDashboard');
             }
          } catch (e) {
-            setServerError(e.response.data.errors);
+            setServerError(e?.response?.data?.errors);
          } finally {
             setIsSubmitting(false); // Reset submitting state after submission
          }
@@ -105,9 +104,9 @@ export default function Login() {
    })
    return (
       <div className="container d-flex justify-content-center mt-5 ">
-         {serverError.length > 0 && (
+         {serverError?.length > 0 && (
             <div className="server-errors mt-3 ">
-               {serverError.map((ele, index) => (
+               {serverError?.map((ele, index) => (
                   <div key={index} className="alert alert-danger" style={{ width: '200px' }} role="alert">
                      <b>Server Error</b><br />
                      {ele.msg}

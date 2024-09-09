@@ -7,10 +7,10 @@ import { setAddEnquiry, startGetEnquiries } from "../../actions/enquiry-action";
 function AddEnquiry() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {state} = useLocation()
+  const { state } = useLocation()
   // console.log(state,"prod")
   const [products, setProducts] = useState([]);
-  const [productId, setProductId] = useState(state.prod ? state.prod._id:'');
+  const [productId, setProductId] = useState(state.prod ? state.prod._id : '');
   const [phNo, setPhNo] = useState('');
   const [quantity, setQuantity] = useState('');
   const [companies, setCompanies] = useState([]);
@@ -36,7 +36,7 @@ function AddEnquiry() {
       try {
         if (productId) {
           const productDetails = await axios.get(`/api/productdetails/${productId}`);
-          setCompany(productDetails.data.companyId._id);
+          setCompany(productDetails.data.company_id._id);
         }
       } catch (e) {
         console.log(e);
@@ -76,8 +76,8 @@ function AddEnquiry() {
 
     // Rest of the code remains unchanged
     const formData = {
-      productId,
-      phNo,
+      product_id: productId,
+      phno: phNo,
       quantity,
       company,
     };
@@ -102,18 +102,18 @@ function AddEnquiry() {
                 value={productId}
                 onChange={(e) => setProductId(e.target.value)}>
                 <option value="">Select product</option>
-                {products.map(ele => (
+                {products?.length > 0 && products?.map(ele => (
                   <option key={ele._id} value={ele._id}>{ele.productname}</option>
                 ))}
               </select>
               <div className="invalid-feedback">{formErrors.productId}</div>
             </div>
             <div className="mb-3">
-              <label htmlFor="phNo" className="form-label">Mobile Number</label>
+              <label htmlFor="phno" className="form-label">Mobile Number</label>
               <input
                 type="number"
                 className={`form-control ${formErrors.phNo ? 'is-invalid' : ''}`}
-                id="phNo"
+                id="phno"
                 value={phNo}
                 onChange={(e) => setPhNo(e.target.value)}
               />
@@ -138,7 +138,7 @@ function AddEnquiry() {
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}>
                 <option value="">Select Company</option>
-                {companies.map(ele => (
+                {companies?.map(ele => (
                   <option key={ele._id} value={ele._id}>{ele.companyname}</option>
                 ))}
               </select>

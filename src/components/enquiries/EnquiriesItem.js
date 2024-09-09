@@ -22,7 +22,7 @@ export function EnquiresItem(props) {
    const [lgShow, setLgShow] = useState(false)
    const { enquiry } = props;
    console.log(enquiry, 'ele')
-   const { customerId, productId, date, quantity } = enquiry
+   const { customer_id, product_id, date, quantity } = enquiry
    // console.log(props.ele,'enquiry')
 
    const present = quotation?.find(ele1 => ele1.enquiry._id === enquiry._id)
@@ -32,7 +32,7 @@ export function EnquiresItem(props) {
    // const id = present.enquiry
    // console.log(id)
    // // console.log(productId, 'item');
-   
+
    const handleViewQuotation = (id) => {
       console.log(id, 'quoteid')
       navigate(`/quotationview/${id}`)
@@ -40,8 +40,8 @@ export function EnquiresItem(props) {
 
    return (
       <tr>
-         <td>{productId?.productname}</td>
-         <td>{customerId.username}</td>
+         <td>{product_id?.productname}</td>
+         <td>{customer_id.username}</td>
          <td>{quantity}</td>
          <td>{new Date(date).toLocaleDateString()}</td>
          <td>{present ? <Button variant="success" onClick={() => handleViewQuotation(present.enquiry._id)}>View quotation</Button> : <Button variant="primary" onClick={() => setLgShow(true)} >send quotation</Button>}</td>
@@ -60,7 +60,7 @@ export function EnquiresItem(props) {
                      </Modal.Title>
                   </Modal.Header>
                   <Modal.Body>
-                     <AddQuotation ele={enquiry} customerId={customerId._id} onClose={() => setLgShow(false)} />
+                     <AddQuotation ele={enquiry} customerId={customer_id._id} onClose={() => setLgShow(false)} />
                   </Modal.Body>
                </Modal>
             )}

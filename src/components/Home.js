@@ -7,7 +7,7 @@ export default function Home() {
     <div style={{ margin: 'auto', maxWidth: '800px', marginBottom: '200px' }}>
       <h1>Home</h1>
       <IndividualIntervalsExample />
-      <Productcar/>
+      <Productcar />
     </div>
   )
 }

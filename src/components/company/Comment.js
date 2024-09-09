@@ -9,17 +9,17 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function Comment(props) {
-    const {quotation} = props;
+    const { quotation } = props;
     const quotations = useSelector((state) => state.quotation.list);
     const quoteComments = quotations.find(ele => ele._id === quotation);
     const dispatch = useDispatch();
-    const {userState} = useContext(UserContext);
+    const { userState } = useContext(UserContext);
     const [content, setContent] = useState('');
-    const [formErrors,setFormErrors] = useState({})
+    const [formErrors, setFormErrors] = useState({})
 
-    const runValidations = ()=>{
+    const runValidations = () => {
         const errors = {}
-        if(content.length === 0){
+        if (content.length === 0) {
             errors.content = '*Message cannot be empty'
         }
         setFormErrors(errors)
@@ -29,9 +29,9 @@ function Comment(props) {
     const handleClick = (e) => {
         e.preventDefault()
         const errors = runValidations()
-        if(Object.keys(errors).length === 0){
+        if (Object.keys(errors).length === 0) {
             const formData = {
-                quotationId: quotation,
+                quotation_id: quotation,
                 content
             };
             dispatch(startAddComment(formData));

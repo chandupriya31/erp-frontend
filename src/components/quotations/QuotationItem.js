@@ -18,9 +18,9 @@ export function QuotationItem(props) {
    const handleShow = () => setShow(true);
 
    const order = useSelector((state) => {
-      return state.order.order.find(e => e.quotationId === ele._id)
+      return state.order.order.find(e => e.quotation_id === ele._id)
    })
-   console.log(order,'order')
+   console.log(order, 'order')
 
    useEffect(() => {
       dispatch(getOrderList())
@@ -28,9 +28,9 @@ export function QuotationItem(props) {
 
    function handleClick() {
       const formData = {
-         quotationId: ele._id,
-         deliveryDate: date,
-         statusofProduct: productstatus
+         quotation_id: ele._id,
+         delivery_date: date,
+         status_of_product: productstatus
       }
       dispatch(startGetorder(formData))
       console.log(formData)
@@ -39,17 +39,17 @@ export function QuotationItem(props) {
       <tr className='text-center mt-3'>
          <td>{new Date(ele.date).toLocaleDateString()}</td>
          <td>{ele.enquiry._id}</td>
-         <td>{new Date(ele.quotationExpiry).toLocaleDateString()}</td>
+         <td>{new Date(ele.quotation_expiry).toLocaleDateString()}</td>
          <td>{ele.customer && ele.customer.username}</td>
          <td>{ele.product && ele.product.productname}</td>
          <td>{ele.quantity}</td>
-         <td>{ele.unitPrice}</td>
-         <td>{ele.totalCost}</td>
+         <td>{ele.unit_price}</td>
+         <td>{ele.total_cost}</td>
          <td>{ele.termsandconditions.delivery}</td>
-         <td>{ele.termsandconditions.isApproved ? (
+         <td>{ele.termsandconditions.is_approved ? (
             <div>
                <Checkmark size='25px' />
-               {order && order.quotationId === ele._id ? <Link to={`/orderview/${order._id}`} ><Button>view</Button></Link> : <Button variant="primary" onClick={handleShow}>create order</Button>}
+               {order && order.quotation_id === ele._id ? <Link to={`/orderview/${order._id}`} ><Button>view</Button></Link> : <Button variant="primary" onClick={handleShow}>create order</Button>}
                <Modal show={show} onHide={handleClose}>
                   <Modal.Header closeButton>
                      <Modal.Title>Modal heading</Modal.Title>

@@ -77,11 +77,11 @@ export default function AddProduct() {
          const formData = new FormData()
          formData.append('productname', productname)
          formData.append('description', description)
-         formData.append('companyId', companyId)
-         formData.append('perUnitCost', Number(cost))
-         formData.append('categoryId', categoryId)
-         formData.append('productWarranty', productWarrenty)
-         formData.append('paymentTerms', paymentTerms)
+         formData.append('company_id', companyId)
+         formData.append('per_unit_cost', Number(cost))
+         formData.append('category_id', categoryId)
+         formData.append('product_warranty', productWarrenty)
+         formData.append('payment_terms', paymentTerms)
 
          files.forEach((obj) => {
             formData.append('image', obj)
@@ -219,7 +219,7 @@ export default function AddProduct() {
                         <span className="red" style={{ position: 'absolute', top: 630, right: 30 }}>{formerrors.paymentTerms}</span>
                      )}
                   </Form.Group>
-                  <Form.Control type="hidden" name="companyId" value={companyId} />
+                  <Form.Control type="hidden" name="company_id" value={companyId} />
                   <div variant="primary" type="submit" className="d-flex justify-content-center mt-5 ">
                      <Button style={{ width: '400px' }} type="submit">submit</Button>
                   </div>

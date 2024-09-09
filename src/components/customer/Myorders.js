@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 export default function Myorders() {
    const { userState } = useContext(UserContext)
    console.log(userState.user, 'mo')
-   const orders = userState.user.myOrders
+   const orders = userState.user.my_orders
    console.log(orders, 'o')
    const containerStyle = {
       height: '100vh',
@@ -21,7 +21,7 @@ export default function Myorders() {
    }
    return (
       <div style={containerStyle}>
-         <h1 style={{color:"blueviolet"}}>MyOrders-{userState.user.myOrders?.length}</h1>
+         <h1 style={{ color: "blueviolet" }}>MyOrders-{userState.user.my_orders?.length}</h1>
          <Card style={{ width: '30rem' }} className='p-3 mb-2 bg-primary-subtle text-emphasis-primary' >
             {orders?.map((ele, i) => {
                return <Link className="text-decoration-none" to={`/myorder/${ele._id}`}>
@@ -30,7 +30,7 @@ export default function Myorders() {
                         <div className='d-flex center'>
                            {i + 1}
                            <ListGroup.Item action className='text-primary'>
-                              {ele.company?.companyname}-{ele.productId?.productname}
+                              {ele.company?.companyname}-{ele.product_id?.productname}
                            </ListGroup.Item>
                         </div>
                      </ListGroup>

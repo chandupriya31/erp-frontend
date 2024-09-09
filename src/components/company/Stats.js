@@ -11,9 +11,9 @@ export default function Stats() {
    const customerTotals = {};
 
    userState.company?.orders?.forEach((ele) => {
-      if (ele.customerId && ele.quotationId && ele.customerId._id === ele.quotationId.customer) {
-         const customerId = ele.customerId._id;
-         const totalCost = ele.quotationId.totalCost;
+      if (ele?.customer_id && ele?.quotation_id && ele.customer_id?._id === ele.quotation_id?.customer) {
+         const customerId = ele.customer_id._id;
+         const totalCost = ele.quotation_id.total_cost;
 
          if (!customerTotals[customerId]) {
             customerTotals[customerId] = totalCost;
@@ -25,7 +25,7 @@ export default function Stats() {
    console.log(customerTotals);
 
    const chart = Object.entries(customerTotals).map(([customerId, totalCost]) => {
-      const customerName = userState.company?.orders?.find(ele => ele.customerId._id === customerId)?.customerId?.username || "Unknown";
+      const customerName = userState.company?.orders?.find(ele => ele.customer_id?._id === customerId)?.customer_id?.username || "Unknown";
       return [`name-${customerName}`, totalCost];
    });
 
