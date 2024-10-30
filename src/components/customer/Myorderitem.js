@@ -8,7 +8,7 @@ export default function MyorderItem() {
    const { userState } = useContext(UserContext)
    const params = useParams()
    const { id } = params
-   const order = userState.user?.my_orders?.find(ele => ele._id === id)
+   const order = userState.user?.myOrders?.find(ele => ele._id === id)
    console.log(order)
 
    return (
@@ -30,7 +30,7 @@ export default function MyorderItem() {
                               quotataionId<br />
                            </td>
                            <td className="fw-bold">{order?._id}<br />
-                              {order?.quotation_id?._id}
+                              {order?.quotationId?._id}
                            </td>
                         </tr>
                         <tr>
@@ -40,31 +40,31 @@ export default function MyorderItem() {
                         </tr>
                         <tr>
                            <td class="fw-normal">productname</td>
-                           <td className="fw-bold">{order?.product_id?.productname}</td>
+                           <td className="fw-bold">{order?.productId?.productname}</td>
                         </tr>
                         <tr>
                            <td class="fw-normal">quantity</td>
-                           <td className="fw-bold">{order?.quotation_id?.quantity}</td>
+                           <td className="fw-bold">{order?.quotationId?.quantity}</td>
                         </tr>
                         <tr>
                            <td class="fw-normal">cost per unit</td>
-                           <td className="fw-bold">{order?.quotation_id?.unit_price}</td>
+                           <td className="fw-bold">{order?.quotationId?.unitPrice}</td>
                         </tr>
                         <tr>
                            <td class="fw-normal">total cost</td>
-                           <td className="fw-bold">{order?.quotation_id?.total_cost}</td>
+                           <td className="fw-bold">{order?.quotationId?.totalCost}</td>
                         </tr>
                         <tr>
                            <td class="fw-normal">deliverydate</td>
-                           <td className="fw-bold">{new Date(order?.delivery_date).toLocaleDateString()}</td>
+                           <td className="fw-bold">{new Date(order?.deliveryDate).toLocaleDateString()}</td>
                         </tr>
                         <tr>
                            <td class="fw-normal">product warrenty</td>
-                           <td className="fw-bold">{order?.product_id?.product_warranty}</td>
+                           <td className="fw-bold">{order?.productId?.productWarranty}</td>
                         </tr>
                         <tr>
                            <td class="fw-normal">Payment transactionId</td>
-                           <td className="fw-bold">{order?.transaction_id}</td>
+                           <td className="fw-bold">{order?.transactionId}</td>
                         </tr>
                         <tr>
                         </tr>

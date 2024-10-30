@@ -39,7 +39,7 @@ const addorder = (data) => {
 export const startEdit = (id, status) => {
    return async (dispatch) => {
       try {
-         const response = await axios.put(`/api/order/${id}`, { statusof_product: status }, {
+         const response = await axios.put(`/api/order/${id}`, { statusofProduct: status }, {
             headers: {
                'Authorization': localStorage.getItem('token')
             }

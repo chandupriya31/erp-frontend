@@ -66,27 +66,28 @@ export default function AddProduct() {
          errors.productWarrenty = '*required warrenty of product'
       }
       if (paymentTerms.length === 0) {
-         errors.paymentTerms = '*payment terms requires'
+         errors.paymentTerms = '*payment terms required'
       }
       return errors
    }
    function handleSubmit(e) {
+      // alert('here')
       e.preventDefault()
       runValidation()
       if (Object.keys(errors).length === 0) {
          const formData = new FormData()
          formData.append('productname', productname)
          formData.append('description', description)
-         formData.append('company_id', companyId)
-         formData.append('per_unit_cost', Number(cost))
-         formData.append('category_id', categoryId)
-         formData.append('product_warranty', productWarrenty)
-         formData.append('payment_terms', paymentTerms)
+         formData.append('companyId', companyId)
+         formData.append('perUnitCost', Number(cost))
+         formData.append('categoryId', categoryId)
+         formData.append('productWarranty', productWarrenty)
+         formData.append('paymentTerms', paymentTerms)
 
          files.forEach((obj) => {
             formData.append('image', obj)
          })
-
+         console.log(formData, 'product data');
          dispatch(startAddProduct(formData))
             .then(() => {
                // Reset form fields after successful submission
@@ -219,7 +220,7 @@ export default function AddProduct() {
                         <span className="red" style={{ position: 'absolute', top: 630, right: 30 }}>{formerrors.paymentTerms}</span>
                      )}
                   </Form.Group>
-                  <Form.Control type="hidden" name="company_id" value={companyId} />
+                  <Form.Control type="hidden" name="companyId" value={companyId} />
                   <div variant="primary" type="submit" className="d-flex justify-content-center mt-5 ">
                      <Button style={{ width: '400px' }} type="submit">submit</Button>
                   </div>

@@ -17,12 +17,12 @@ function CompanyProducts() {
         dispatch(startDeleteProduct(id))
     }
 
-    const products = product.filter(ele => ele?.company_id == company?._id)
+    const products = product?.filter(ele => ele?.companyId == company?._id)
 
     console.log(products)
     return (
         <div>
-            {products.length === 0 ? (
+            {products?.length === 0 ? (
                 <p>no products <Link to="/addproduct"><b style={{ color: "blueviolet" }}>Add your products</b></Link></p>
             ) : (
                 <div>

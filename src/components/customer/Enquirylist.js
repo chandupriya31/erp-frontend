@@ -12,7 +12,10 @@ export default function Enquirylist({ enquiries }) {
    const { userState } = useContext(UserContext)
    const { id } = useParams()
    console.log(id)
-   const enquiry = userState.user?.my_enquiries?.find((ele) => ele._id === id)
+   const enquiry = userState.user?.myenquiries?.find((ele) => ele?._id === id)
+
+   console.log(enquiry, 'my enquiry list');
+
 
    useEffect(() => {
       (async () => {
@@ -32,9 +35,9 @@ export default function Enquirylist({ enquiries }) {
                   <Card.Header><b>Enquiry details</b></Card.Header>
                </div>
                <ListGroup variant="flush">
-                  <ListGroup.Item>EnquiryId - <b>{enquiry && enquiry._id}</b></ListGroup.Item>
-                  <ListGroup.Item>EnquiryDate - <b>{enquiry && enquiry.date && new Date(enquiry.date).toLocaleDateString()}</b></ListGroup.Item>
-                  <ListGroup.Item>ProductName - <b>{enquiry && enquiry?.product_id && enquiry?.product_id.productname}</b></ListGroup.Item>
+                  <ListGroup.Item>EnquiryId - <b>{enquiry && enquiry?._id}</b></ListGroup.Item>
+                  <ListGroup.Item>EnquiryDate - <b>{enquiry && enquiry?.date && new Date(enquiry?.date).toLocaleDateString()}</b></ListGroup.Item>
+                  <ListGroup.Item>ProductName - <b>{enquiry && enquiry?.productId && enquiry?.productId.productname}</b></ListGroup.Item>
                   <ListGroup.Item>Quantity - <b>{enquiry && enquiry.quantity}</b></ListGroup.Item>
                </ListGroup>
             </Card>

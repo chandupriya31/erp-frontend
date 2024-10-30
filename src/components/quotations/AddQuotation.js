@@ -9,10 +9,10 @@ import Button from 'react-bootstrap/Button'
 import swal from 'sweetalert'
 function AddQuotation(props) {
     const { ele } = props
-    const { _id, product_id, quantity, customer_id } = ele
+    const { _id, productId, quantity, customerId } = ele
     const dispatch = useDispatch()
     const [enquiryId, setEnquiryId] = useState(_id ? _id : '')
-    const [product, setProductname] = useState(product_id.productname ? product_id.productname : '')
+    const [product, setProductname] = useState(productId.productname ? productId.productname : '')
     const [Quantity, setQuantity] = useState(quantity ? quantity : '')
     const [unitPrice, setUnitPrice] = useState('')
     const [total, setTotal] = useState('')
@@ -59,8 +59,8 @@ function AddQuotation(props) {
         if (Object.keys(errors).length === 0) {
             const formData = {
                 enquiry: enquiryId,
-                customer: customer_id,
-                product: product_id._id,
+                customer: customerId,
+                product: productId._id,
                 quantity: Quantity,
                 unitPrice: Number(unitPrice),
                 totalCost: total,

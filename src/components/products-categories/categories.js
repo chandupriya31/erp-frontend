@@ -45,7 +45,7 @@ export default function Categories() {
                   </Accordion.Header>
                   <Accordion.Body class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
                      <Row>
-                        {product?.length > 0 && ele?._id === product[0].category_id?._id ? (
+                        {product?.length > 0 && ele?._id === product[0].categoryId?._id ? (
                            product?.map((item) => (
                               <Col key={item._id} md={4} className="mb-4">
                                  <div>

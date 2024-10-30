@@ -110,7 +110,7 @@ export default function Quotationview() {
                            </tr>
                            <tr>
                               <td class="fw-normal">quotationExpiry</td>
-                              <td className="fw-bold">{new Date(quotation.quotation_expiry).toLocaleDateString()}</td>
+                              <td className="fw-bold">{new Date(quotation.quotationExpiry).toLocaleDateString()}</td>
                            </tr>
                            <tr>
                               <td class="fw-normal">product name</td>
@@ -122,7 +122,7 @@ export default function Quotationview() {
                            </tr>
                            <tr>
                               <td class="fw-normal">per unit cost</td>
-                              <td className="fw-bold">{quotation?.unit_price}</td>
+                              <td className="fw-bold">{quotation?.unitPrice}</td>
                            </tr>
                            <tr>
                               <td class="fw-normal">total price</td>
@@ -136,7 +136,7 @@ export default function Quotationview() {
                            </tr>
                            <tr>
                               <td class="fw-normal">product warrenty</td>
-                              <td className="fw-bold">{quotation.product?.product_warranty}</td>
+                              <td className="fw-bold">{quotation.product?.productWarranty}</td>
                            </tr>
                            <tr>
                               <td class="fw-normal">delivery duration</td>
@@ -144,7 +144,7 @@ export default function Quotationview() {
                            </tr>
                            <tr>
                               <td class="fw-normal">payment terms</td>
-                              <td className="fw-bold">{quotation.product?.payment_terms}</td>
+                              <td className="fw-bold">{quotation.product?.paymentTerms}</td>
                            </tr>
                         </tbody>
                      </Table>
@@ -156,7 +156,7 @@ export default function Quotationview() {
                      <div className="mt-3">
                         {comments.map(ele => (
                            <div key={ele._id} className="mb-2">
-                              <strong>{ele?.user_id?.username}:</strong> {ele.content}
+                              <strong>{ele?.userId?.username}:</strong> {ele.content}
                            </div>
                         ))}
                      </div>

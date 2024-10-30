@@ -22,7 +22,7 @@ export default function Orderview() {
    })
    console.log(order)
 
-   const product = order?.customer_id?.my_quotations?.find(ele => ele._id == order.quotation_id)
+   const product = order?.customerId?.myQuotations?.find(ele => ele._id == order.quotationId)
    console.log(product)
 
    const handleClick = async () => {
@@ -60,17 +60,17 @@ export default function Orderview() {
                               quotataionId<br />
                            </td>
                            <td className="fw-bold">{order?._id}<br />
-                              {order?.quotation_id}
+                              {order?.quotationId}
                            </td>
                         </tr>
                         <tr>
                            <td class="fw-normal"><br />customer name</td>
-                           <td className="fw-bold">{order?.customer_id?.username}<br />
+                           <td className="fw-bold">{order?.customerId?.username}<br />
                            </td>
                         </tr>
                         <tr>
                            <td class="fw-normal">productname</td>
-                           <td className="fw-bold">{order?.product_id?.productname}</td>
+                           <td className="fw-bold">{order?.productId?.productname}</td>
                         </tr>
                         <tr>
                            <td class="fw-normal">quantity</td>
@@ -78,34 +78,34 @@ export default function Orderview() {
                         </tr>
                         <tr>
                            <td class="fw-normal">cost per unit</td>
-                           <td className="fw-bold">{product?.unit_price}</td>
+                           <td className="fw-bold">{product?.unitPrice}</td>
                         </tr>
                         <tr>
                            <td class="fw-normal">total cost</td>
-                           <td className="fw-bold">{product?.total_cost}</td>
+                           <td className="fw-bold">{product?.totalCost}</td>
                         </tr>
                         <tr>
                            <td class="fw-normal">deliverydate</td>
-                           <td className="fw-bold">{new Date(order?.delivery_date).toLocaleDateString()}</td>
+                           <td className="fw-bold">{new Date(order?.deliveryDate).toLocaleDateString()}</td>
                         </tr>
                         <tr>
                            <td class="fw-normal">product warrenty</td>
-                           <td className="fw-bold">{order?.product_id?.product_warranty}</td>
+                           <td className="fw-bold">{order?.productId?.productWarranty}</td>
                         </tr>
                         <tr>
                            <td class="fw-normal">payment terms</td>
-                           <td className="fw-bold">{order?.product_id?.payment_terms}</td>
+                           <td className="fw-bold">{order?.productId?.paymentTerms}</td>
                         </tr>
                         <tr>
                            <td class="fw-normal">transactionId</td>
-                           <td className="fw-bold">{order?.transaction_id}</td>
+                           <td className="fw-bold">{order?.transactionId}</td>
                         </tr>
                         <tr>
                            <td class="fw-normal">status of Product</td>
-                           <td className="fw-bold">{order?.status_of_product}<br />{userState.user.role === 'companyAdmin' &&
+                           <td className="fw-bold">{order?.statusofProduct}<br />{userState.user.role === 'companyAdmin' &&
                               <div>
                                  <input type="text" value={status} onChange={(e) => { setstatus(e.target.value) }} />
-                                 <Button onClick={handleClick} disabled={order?.status_of_product == 'delivered'}>update</Button>
+                                 <Button onClick={handleClick} disabled={order?.statusofProduct == 'delivered'}>update</Button>
                               </div>}
                            </td>
                         </tr>

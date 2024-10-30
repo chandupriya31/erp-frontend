@@ -22,8 +22,8 @@ export function DashBoard() {
   console.log('orders', orders)
 
   const calendarData = orders?.map((order) => ({
-    title: `${order.customer_id?.username} - ${order.product_id?.productname} - ${order.delivery}`,
-    date: order.delivery_date,
+    title: `${order.customerId?.username} - ${order.productId?.productname} - ${order.delivery}`,
+    date: order.deliveryDate,
     hasData: true
   }))
 

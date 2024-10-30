@@ -31,7 +31,7 @@ function Comment(props) {
         const errors = runValidations()
         if (Object.keys(errors).length === 0) {
             const formData = {
-                quotation_id: quotation,
+                quotationId: quotation,
                 content
             };
             dispatch(startAddComment(formData));

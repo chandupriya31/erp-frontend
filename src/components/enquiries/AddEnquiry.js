@@ -11,6 +11,7 @@ function AddEnquiry() {
   // console.log(state,"prod")
   const [products, setProducts] = useState([]);
   const [productId, setProductId] = useState(state.prod ? state.prod._id : '');
+  console.log(productId, 'product');
   const [phNo, setPhNo] = useState('');
   const [quantity, setQuantity] = useState('');
   const [companies, setCompanies] = useState([]);
@@ -36,7 +37,7 @@ function AddEnquiry() {
       try {
         if (productId) {
           const productDetails = await axios.get(`/api/productdetails/${productId}`);
-          setCompany(productDetails.data.company_id._id);
+          setCompany(productDetails.data.companyId._id);
         }
       } catch (e) {
         console.log(e);
@@ -76,8 +77,8 @@ function AddEnquiry() {
 
     // Rest of the code remains unchanged
     const formData = {
-      product_id: productId,
-      phno: phNo,
+      productId: productId,
+      phNo: phNo,
       quantity,
       company,
     };
@@ -109,11 +110,11 @@ function AddEnquiry() {
               <div className="invalid-feedback">{formErrors.productId}</div>
             </div>
             <div className="mb-3">
-              <label htmlFor="phno" className="form-label">Mobile Number</label>
+              <label htmlFor="phNo" className="form-label">Mobile Number</label>
               <input
                 type="number"
                 className={`form-control ${formErrors.phNo ? 'is-invalid' : ''}`}
-                id="phno"
+                id="phNo"
                 value={phNo}
                 onChange={(e) => setPhNo(e.target.value)}
               />

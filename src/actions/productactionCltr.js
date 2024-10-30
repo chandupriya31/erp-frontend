@@ -10,7 +10,7 @@ export const startAddProduct = (data) => {
          })
          dispatch(addproduct(response.data))
       } catch (e) {
-         dispatch(serverErrors(e.response.data.errors))
+         dispatch(serverErrors(e.response?.data?.errors))
       }
    }
 }
@@ -64,13 +64,13 @@ export const startGetCatProduct = (id) => {
       }
    }
 }
-export const getIndividualProduct = (id)=>{
-   return async(dispatch) =>{
+export const getIndividualProduct = (id) => {
+   return async (dispatch) => {
       try {
          const response = await axios.get(`/api/productdetails/${id}`)
          dispatch(getProduct(response.data))
          // console.log(response.data,'response')
-      }catch(e){
+      } catch (e) {
          console.log(e)
       }
    }
@@ -79,21 +79,21 @@ export const getIndividualProduct = (id)=>{
 const catpro = (data) => {
    return ({ type: 'CAT_PRO', payload: data })
 }
-const getProduct = (data)=>{
-   return {type: 'GET_PRODUCT',payload:data}
+const getProduct = (data) => {
+   return { type: 'GET_PRODUCT', payload: data }
 }
 
-export const startDeleteProduct =(id)=>{
-   return async(dispatch)=>{
-      const response = await axios.delete(`api/products/${id}`,{
-         headers:{
-            'Authorization':localStorage.getItem('token')
+export const startDeleteProduct = (id) => {
+   return async (dispatch) => {
+      const response = await axios.delete(`api/products/${id}`, {
+         headers: {
+            'Authorization': localStorage.getItem('token')
          }
       })
       dispatch(deleteProduct(response.data))
    }
 }
 
-const deleteProduct = data =>{
-   return {type:'DELETE_PRODUCT',payload:data}
+const deleteProduct = data => {
+   return { type: 'DELETE_PRODUCT', payload: data }
 }

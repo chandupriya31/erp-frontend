@@ -58,9 +58,9 @@ function CustomerProfile() {
                     </Form>
                     <ListGroup>
                         <ListGroup.Item>Your role - <b>{user.role}</b></ListGroup.Item>
-                        <ListGroup.Item>Total Enquiries - <b>{user.my_enquiries && user.my_enquiries.length}</b></ListGroup.Item>
-                        <ListGroup.Item>Total Quotations - <b>{user.my_quotations && user.my_quotations.length}</b></ListGroup.Item>
-                        <ListGroup.Item>Total Orders - <b>{user.my_orders && user.my_orders.length}</b></ListGroup.Item>
+                        <ListGroup.Item>Total Enquiries - <b>{user.myenquiries && user.myenquiries.length}</b></ListGroup.Item>
+                        <ListGroup.Item>Total Quotations - <b>{user.myQuotations && user.myQuotations.length}</b></ListGroup.Item>
+                        <ListGroup.Item>Total Orders - <b>{user.myOrders && user.myOrders.length}</b></ListGroup.Item>
                     </ListGroup>
                 </Card.Body>
                 <div class="mx-auto p-2">
